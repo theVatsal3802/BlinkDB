@@ -1,0 +1,43 @@
+\doxysection{Client.\+cpp File Reference}
+\hypertarget{Client_8cpp}{}\label{Client_8cpp}\index{Client.cpp@{Client.cpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$netinet/in.\+h$>$}\newline
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$cstring$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{Client_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\begin{DoxyCompactList}\small\item\em Main function to establish a connection with the Blink\+DB server and send commands. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{Client_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\index{Client.cpp@{Client.cpp}!main@{main}}
+\index{main@{main}!Client.cpp@{Client.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{Client_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Main function to establish a connection with the Blink\+DB server and send commands. 
+
+\begin{DoxyReturn}{Returns}
+int Returns 0 on successful execution, -\/1 if socket creation fails, and -\/2 if the connection fails. 
+\end{DoxyReturn}
+Create a TCP socket
+
+Define server address
+
+Attempt to connect to the Blink\+DB server
+
+Validate user input
+
+Send command to server
+
+Handle exit command
+
+Receive and display server response
