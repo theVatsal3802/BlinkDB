@@ -102,8 +102,21 @@ void REPL()
         }
 
         // Construct and print the response
-        Response response(200, "Success", {"Data", apiResponse});
-        cout << "Response: " << response.to_string() << endl;
+        if (apiResponse == "-1")
+        {
+            Response response(404, "Not Found", {"Data", "Key not found"});
+            cout << "Response: " << response.to_string() << endl;
+        }
+        else if (apiResponse == "-2")
+        {
+            Response response(500, "Internal Server Error", {"Data", "Error occurred"});
+            cout << "Response: " << response.to_string() << endl;
+        }
+        else
+        {
+            Response response(200, "Success", {"Data", apiResponse});
+            cout << "Response: " << response.to_string() << endl;
+        }
     }
 }
 

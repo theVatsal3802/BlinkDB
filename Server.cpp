@@ -122,8 +122,23 @@ void handleClient(int clientSocket)
             lock_guard<mutex> lock(dbMutex);
             apiResponse = apiGateway.executeCommand(command);
         }
+        Response response;
 
-        Response response(200, "Success", {"Data", apiResponse});
+        if (apiResponse == "-1")
+        {
+            response = Response(404, "Not Found", {"Data", "Key not found"});
+            cout << "Response: " << response.to_string() << endl;
+        }
+        else if (apiResponse == "-2")
+        {
+            response = Response(500, "Internal Server Error", {"Data", "Error occurred"});
+            cout << "Response: " << response.to_string() << endl;
+        }
+        else
+        {
+            response = Response(200, "Success", {"Data", apiResponse});
+            cout << "Response: " << response.to_string() << endl;
+        }
         memset(buffer, 0, sizeof(buffer));
         strcpy(buffer, response.to_string().c_str());
         send(clientSocket, buffer, strlen(buffer), 0);
