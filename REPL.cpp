@@ -1,4 +1,6 @@
 #include <bits/stdc++.h>
+#include <iostream>
+#include <fstream>
 #include <atomic>
 #include "./APIGateway/APIGateway.h"
 #include "./Models/Response.h"
@@ -50,72 +52,95 @@ void signalHandler(int signal)
     exit(0);
 }
 
+void executeCommand(string input, int mode)
+{
+    vector<string> result = utils.splitCommand(input);
+
+    // Hash the key if present
+    if (result.size() > 1)
+    {
+        result[1] = utils.hashKey(result[1]);
+    }
+
+    // Process the command based on its type
+    if (result.size() == 3 && result[0] == "set")
+    {
+        command = Command(result[0], result[1], result[2]);
+    }
+    else if (result.size() == 2 && result[0] == "get")
+    {
+        command = Command(result[0], result[1]);
+    }
+    else if (result.size() == 2 && result[0] == "del")
+    {
+        command = Command(result[0], result[1]);
+    }
+    else if (result[0] == "exit")
+    {
+        return;
+    }
+    else
+    {
+        cout << "Invalid command" << endl;
+        return;
+    }
+
+    // Execute the command and retrieve the response
+    string apiResponse;
+    {
+        lock_guard<mutex> lock(dbMutex);
+        apiResponse = apiGateway.executeCommand(command);
+    }
+
+    // Construct and print the response
+    Response response;
+    if (apiResponse == "-1")
+    {
+        response = Response(404, "Not Found", {"Data", "Key not found"});
+    }
+    else if (apiResponse == "-2")
+    {
+        response = Response(500, "Internal Server Error", {"Data", "Error occurred"});
+    }
+    else
+    {
+        response = Response(200, "Success", {"Data", apiResponse});
+    }
+    if (mode == 1 && command.getCommand() == "get")
+    {
+        cout << "Response: " << response.to_string() << endl;
+    }
+    else if (mode == 0)
+    {
+        cout << "Response: " << response.to_string() << endl;
+    }
+}
+
 /**
  * @brief Read-Eval-Print Loop (REPL) for processing user commands.
  *
  * This function continuously prompts the user for input, parses the command,
  * executes it via the API Gateway, and prints the response.
  */
-void REPL()
+void REPL(int mode, string filename = "")
 {
-    while (true)
+    if (mode == 1)
     {
-        cout << "User > ";
-        string input;
-        getline(cin, input);
-        vector<string> result = utils.splitCommand(input);
-
-        // Hash the key if present
-        if (result.size() > 1)
+        ifstream testFile(filename);
+        string line;
+        while (getline(testFile, line))
         {
-            result[1] = utils.hashKey(result[1]);
+            executeCommand(line, mode);
         }
-
-        // Process the command based on its type
-        if (result.size() == 3 && result[0] == "set")
+    }
+    else if (mode == 0)
+    {
+        while (true)
         {
-            command = Command(result[0], result[1], result[2]);
-        }
-        else if (result.size() == 2 && result[0] == "get")
-        {
-            command = Command(result[0], result[1]);
-        }
-        else if (result.size() == 2 && result[0] == "del")
-        {
-            command = Command(result[0], result[1]);
-        }
-        else if (result[0] == "exit")
-        {
-            break;
-        }
-        else
-        {
-            cout << "Invalid command" << endl;
-            continue;
-        }
-
-        // Execute the command and retrieve the response
-        string apiResponse;
-        {
-            lock_guard<mutex> lock(dbMutex);
-            apiResponse = apiGateway.executeCommand(command);
-        }
-
-        // Construct and print the response
-        if (apiResponse == "-1")
-        {
-            Response response(404, "Not Found", {"Data", "Key not found"});
-            cout << "Response: " << response.to_string() << endl;
-        }
-        else if (apiResponse == "-2")
-        {
-            Response response(500, "Internal Server Error", {"Data", "Error occurred"});
-            cout << "Response: " << response.to_string() << endl;
-        }
-        else
-        {
-            Response response(200, "Success", {"Data", apiResponse});
-            cout << "Response: " << response.to_string() << endl;
+            cout << "User > ";
+            string input;
+            getline(cin, input);
+            executeCommand(input, mode);
         }
     }
 }
@@ -128,15 +153,41 @@ void REPL()
  *
  * @return int Exit status code.
  */
-int main()
+int main(int argc, char *argv[])
 {
     cout << "Initializing BlinkDB server..." << endl;
 
     // Register signal handler for graceful termination
     signal(SIGINT, signalHandler);
+    if (argc < 2)
+    {
+        cout << "Enter 0 for interactive mode and 1 for file mode in command line and a filename for file mode." << endl;
+        discBackupHandler.terminate();
+        cout << "Exiting BlinkDB: Closing server..." << endl;
+        cout << "Exited" << endl;
+        return 0;
+    }
+    int mode = int(argv[1]);
+    string filename = string(argv[2] != NULL ? argv[2] : "");
+    if (mode != 0 || mode != 1)
+    {
+        cout << "Enter 0 for interactive mode and 1 for file mode" << endl;
+        discBackupHandler.terminate();
+        cout << "Exiting BlinkDB: Closing server..." << endl;
+        cout << "Exited" << endl;
+        return 0;
+    }
 
+    if (mode == 1 && filename == "")
+    {
+        cout << "Please provide a filename for the test file" << endl;
+        discBackupHandler.terminate();
+        cout << "Exiting BlinkDB: Closing server..." << endl;
+        cout << "Exited" << endl;
+        return 0;
+    }
     // Start the Read-Eval-Print Loop
-    REPL();
+    REPL(mode, filename);
 
     // Cleanup before exiting
     discBackupHandler.terminate();

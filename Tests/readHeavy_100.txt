@@ -1,0 +1,100 @@
+get key7
+get key4
+set key3 value10
+get key3
+get key10
+set key1 value7
+set key7 value2
+get key8
+get key1
+get key8
+del key3
+get key10
+get key7
+set key10 value4
+get key10
+get key9
+del key1
+set key2 value1
+get key4
+get key7
+get key6
+get key7
+set key10 value4
+del key5
+get key6
+get key5
+get key1
+get key7
+get key5
+del key5
+get key1
+get key10
+set key7 value5
+del key6
+get key9
+get key8
+get key3
+get key2
+get key2
+del key5
+set key10 value2
+get key8
+get key6
+get key8
+del key4
+del key7
+del key5
+get key3
+get key10
+get key9
+set key10 value7
+del key9
+get key2
+del key10
+get key9
+get key4
+get key5
+set key8 value7
+get key2
+get key10
+set key2 value8
+set key6 value8
+get key2
+get key10
+get key4
+get key4
+get key10
+set key4 value4
+del key9
+set key5 value9
+get key9
+get key8
+get key4
+del key1
+set key6 value5
+get key6
+get key7
+get key3
+get key8
+set key9 value2
+get key9
+get key7
+set key3 value2
+set key6 value2
+get key1
+del key1
+set key7 value3
+del key9
+get key9
+get key3
+get key7
+del key10
+get key2
+del key2
+get key5
+get key10
+del key7
+get key4
+get key6
+get key5

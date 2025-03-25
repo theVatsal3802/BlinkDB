@@ -1,0 +1,100 @@
+set key7 value8
+set key4 value6
+get key3
+set key3 value8
+set key10 value4
+get key1
+get key7
+set key8 value10
+set key1 value3
+set key8 value6
+del key3
+set key10 value8
+set key7 value2
+get key10
+set key10 value5
+set key9 value5
+del key1
+get key2
+set key4 value3
+set key7 value2
+set key6 value5
+set key7 value6
+get key10
+del key5
+set key6 value5
+set key5 value5
+set key1 value8
+set key7 value9
+set key5 value4
+del key5
+set key1 value7
+set key10 value3
+get key7
+del key6
+set key9 value8
+set key8 value3
+set key3 value3
+set key2 value1
+set key2 value6
+del key5
+get key10
+set key8 value2
+set key6 value10
+set key8 value7
+del key4
+del key7
+del key5
+set key3 value10
+set key10 value1
+set key9 value6
+get key10
+del key9
+set key2 value2
+del key10
+set key9 value2
+set key4 value1
+set key5 value5
+get key8
+set key2 value8
+set key10 value7
+get key2
+get key6
+set key2 value9
+set key10 value8
+set key4 value9
+set key4 value2
+set key10 value7
+get key4
+del key9
+get key5
+set key9 value10
+set key8 value7
+set key4 value1
+del key1
+get key6
+set key6 value10
+set key7 value10
+set key3 value5
+set key8 value6
+get key9
+set key9 value10
+set key7 value9
+get key3
+get key6
+set key1 value9
+del key1
+get key7
+del key9
+set key9 value5
+set key3 value5
+set key7 value3
+del key10
+set key2 value4
+del key2
+set key5 value1
+set key10 value2
+del key7
+set key4 value9
+set key6 value7
+set key5 value1
