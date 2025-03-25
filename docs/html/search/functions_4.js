@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['signalhandler_0',['signalHandler',['../REPL_8cpp.html#ad2e59c7203b3bddc1bc9a2224b52e8e7',1,'signalHandler(int signal):&#160;REPL.cpp'],['../Server_8cpp.html#ad2e59c7203b3bddc1bc9a2224b52e8e7',1,'signalHandler(int signal):&#160;Server.cpp']]]
+  ['executecommand_0',['executeCommand',['../classAPIGateway.html#a7b560b881c96a25943ad753dfc76b100',1,'APIGateway::executeCommand()'],['../REPL_8cpp.html#a5b9352503c4f11028bdf32bfd4a8a5a2',1,'executeCommand():&#160;REPL.cpp']]]
 ];

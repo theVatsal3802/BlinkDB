@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['handleclient_0',['handleClient',['../Server_8cpp.html#a28ce186ce771194512785b1d1d5310c0',1,'Server.cpp']]]
+  ['backup_0',['backup',['../classDiscBackupHandler.html#a4c2ae8132e674489e373aabfade1b429',1,'DiscBackupHandler']]],
+  ['blinkdb_1',['BlinkDB',['../classBlinkDB.html#a69140f26047029abd72d3e3354af0727',1,'BlinkDB']]]
 ];

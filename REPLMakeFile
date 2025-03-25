@@ -1,0 +1,18 @@
+CXX = g++
+CXXFLAGS = -std=c++23 -Wall
+
+REPL_SRC = REPL.cpp
+REPL_OBJ = $(REPL_SRC:.cpp=.o)
+REPL_BIN = repl
+
+all: $(REPL_BIN)
+
+$(REPL_BIN): $(REPL_OBJ)
+	$(CXX) $(CXXFLAGS) -o $(REPL_BIN) $(REPL_OBJ)
+
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+clean:
+	rm -f $(REPL_OBJ)
+	rm -f $(REPL_BIN)

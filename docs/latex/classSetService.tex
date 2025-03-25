@@ -1,0 +1,90 @@
+\doxysection{Set\+Service Class Reference}
+\hypertarget{classSetService}{}\label{classSetService}\index{SetService@{SetService}}
+
+
+Service class for setting key-\/value pairs in \doxylink{classBlinkDB}{Blink\+DB}.  
+
+
+
+
+{\ttfamily \#include $<$Set\+Service.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSetService_a46efa328eaa22de384f326fce848ec62}{Set\+Service}} (\mbox{\hyperlink{classBlinkDB}{Blink\+DB}} \&blink\+DB)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classSetService}{Set\+Service} instance. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSetService_a7c918775cd2f5d8c1e45f1fbb8297c44}{set}} (string key, string value)
+\begin{DoxyCompactList}\small\item\em Stores a key-\/value pair in \doxylink{classBlinkDB}{Blink\+DB}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Service class for setting key-\/value pairs in \doxylink{classBlinkDB}{Blink\+DB}. 
+
+This class provides an interface for storing key-\/value pairs in the \doxylink{classBlinkDB}{Blink\+DB} database. 
+
+Definition at line \mbox{\hyperlink{SetService_8h_source_l00011}{11}} of file \mbox{\hyperlink{SetService_8h_source}{Set\+Service.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classSetService_a46efa328eaa22de384f326fce848ec62}\index{SetService@{SetService}!SetService@{SetService}}
+\index{SetService@{SetService}!SetService@{SetService}}
+\doxysubsubsection{\texorpdfstring{SetService()}{SetService()}}
+{\footnotesize\ttfamily \label{classSetService_a46efa328eaa22de384f326fce848ec62} 
+Set\+Service\+::\+Set\+Service (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBlinkDB}{Blink\+DB}} \&}]{blink\+DB}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classSetService}{Set\+Service} instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em blink\+DB} & Reference to the \doxylink{classBlinkDB}{Blink\+DB} database instance. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{SetService_8h_source_l00025}{25}} of file \mbox{\hyperlink{SetService_8h_source}{Set\+Service.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00025\ :\ blinkDB(blinkDB)\ \{\}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classSetService_a7c918775cd2f5d8c1e45f1fbb8297c44}\index{SetService@{SetService}!set@{set}}
+\index{set@{set}!SetService@{SetService}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily \label{classSetService_a7c918775cd2f5d8c1e45f1fbb8297c44} 
+void Set\+Service\+::set (\begin{DoxyParamCaption}\item[{string}]{key}{, }\item[{string}]{value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Stores a key-\/value pair in \doxylink{classBlinkDB}{Blink\+DB}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key to store. \\
+\hline
+{\em value} & The value associated with the key. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{SetService_8h_source_l00033}{33}} of file \mbox{\hyperlink{SetService_8h_source}{Set\+Service.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00034\ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ blinkDB.set(key,\ value);}
+\DoxyCodeLine{00036\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Services/\mbox{\hyperlink{SetService_8h}{Set\+Service.\+h}}\end{DoxyCompactItemize}

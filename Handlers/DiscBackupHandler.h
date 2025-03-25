@@ -1,5 +1,7 @@
 #pragma once
 #include <bits/stdc++.h>
+#include <mutex>
+#include <filesystem>
 #include "../Utils/Utils.h"
 
 using namespace std;
@@ -27,24 +29,28 @@ private:
     Utils utils;
 
     /**
+     * @brief Mutex for thread-safe file operations.
+     */
+    mutex backupMutex;
+
+    /**
      * @brief Writes database contents to a temporary backup buffer file.
      *
      * @param map The database map to be backed up.
      * @return true if the backup was successful, false otherwise.
      */
-    bool backupFromMapToBufferFile(unordered_map<string, string> map)
+    bool backupFromMapToBufferFile(const unordered_map<string, string> &map)
     {
-        ofstream file;
-        file.open("./backups/backup.txt", ios::app);
+        lock_guard<mutex> lock(backupMutex);
+        ofstream file("./backups/backup.txt", ios::app);
         if (!file.is_open())
         {
             return false;
         }
-        for (auto it = map.begin(); it != map.end(); it++)
+        for (const auto &entry : map)
         {
-            file << it->first << " " << it->second << endl;
+            file << entry.first << " " << entry.second << endl;
         }
-        file.close();
         return true;
     }
 
@@ -58,44 +64,41 @@ private:
      */
     bool backupFromBufferFileToDisc()
     {
-        ifstream backupBuffer;
-        backupBuffer.open("./backups/backup.txt", ios::in);
+        lock_guard<mutex> lock(backupMutex);
+        ifstream backupBuffer("./backups/backup.txt");
         if (!backupBuffer.is_open())
         {
             return false;
         }
 
-        string line;
         vector<string> lines;
+        string line;
         while (getline(backupBuffer, line))
         {
             lines.push_back(line);
         }
         backupBuffer.close();
+
         sort(lines.begin(), lines.end());
 
         for (int i = 0; i < 10; i++)
         {
-            ofstream file;
-            file.open("./backups/" + backupFiles[i] + ".txt", ios::out);
+            ofstream file("./backups/" + backupFiles[i] + ".txt", ios::out);
             if (!file.is_open())
             {
                 return false;
             }
-            for (int j = 0; j < lines.size(); j++)
+            for (const string &entry : lines)
             {
-                if (utils.startsWith(lines[i], backupFiles[i]))
+                if (utils.startsWith(entry, backupFiles[i]))
                 {
-                    file << lines[j] << endl;
+                    file << entry << endl;
                 }
             }
-            file.close();
         }
 
-        // Clear the buffer file after committing backup
-        ofstream clearBuffer;
-        clearBuffer.open("./backups/backup.txt", ios::out);
-        clearBuffer.close();
+        // Clear buffer file
+        ofstream clearBuffer("./backups/backup.txt", ios::out);
         return true;
     }
 
@@ -107,8 +110,7 @@ public:
      */
     DiscBackupHandler()
     {
-        system("mkdir -p ./backups");
-        utils = Utils();
+        std::filesystem::create_directories("./backups");
     }
 
     /**
@@ -117,7 +119,7 @@ public:
      * @param map The database contents to be backed up.
      * @return true if backup was successful, false otherwise.
      */
-    bool backup(unordered_map<string, string> map)
+    bool backup(const unordered_map<string, string> &map)
     {
         return backupFromMapToBufferFile(map);
     }
@@ -142,7 +144,8 @@ public:
      */
     bool terminate()
     {
-        system("rm -rf ./backups");
+        lock_guard<mutex> lock(backupMutex);
+        std::filesystem::remove_all("./backups");
         return true;
     }
 
@@ -153,26 +156,31 @@ public:
      * based on the first character of the key.
      *
      * @param key The key to search for.
-     * @return string The value associated with the key if found, "-1" if not found, "-2" if an error occurs.
+     * @return The value associated with the key if found, "-1" if not found, "-2" if an error occurs.
      */
-    string checkBackupForKey(string key)
+    string checkBackupForKey(const string &key)
     {
+        lock_guard<mutex> lock(backupMutex);
         string filename = key.substr(0, 1) + ".txt";
-        ifstream backupBuffer;
-        backupBuffer.open("./backups/" + filename, ios::in);
+        ifstream backupBuffer("./backups/" + filename);
         if (!backupBuffer.is_open())
         {
             return "-2";
         }
 
-        string line;
+        string line, foundValue = "-1";
         while (getline(backupBuffer, line))
         {
             if (utils.startsWith(line, key))
             {
-                return line;
+                size_t pos = line.find(" ");
+                if (pos != string::npos)
+                {
+                    foundValue = line.substr(pos + 1);
+                }
+                break;
             }
         }
-        return "-1";
+        return foundValue;
     }
 };

@@ -1,0 +1,137 @@
+\doxysection{APIGateway Class Reference}
+\hypertarget{classAPIGateway}{}\label{classAPIGateway}\index{APIGateway@{APIGateway}}
+
+
+Acts as an intermediary between clients and the \doxylink{classBlinkDB}{Blink\+DB} storage system.  
+
+
+
+
+{\ttfamily \#include $<$APIGateway.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classAPIGateway_a2b39180cf4a7f9172d8e5a3623d9a6dc}{APIGateway}} (\mbox{\hyperlink{classBlinkDB}{Blink\+DB}} \&blink\+DB)
+\begin{DoxyCompactList}\small\item\em Constructs the \doxylink{classAPIGateway}{APIGateway} and initializes services. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classAPIGateway_a7b560b881c96a25943ad753dfc76b100}{execute\+Command}} (\mbox{\hyperlink{classCommand}{Command}} \mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}})
+\begin{DoxyCompactList}\small\item\em Executes a given command by routing it to the appropriate service. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Acts as an intermediary between clients and the \doxylink{classBlinkDB}{Blink\+DB} storage system. 
+
+The \doxylink{classAPIGateway}{APIGateway} processes incoming commands, interacts with the cache, and routes requests to the appropriate services for handling {\ttfamily set}, {\ttfamily get}, and {\ttfamily del} operations. 
+
+Definition at line \mbox{\hyperlink{APIGateway_8h_source_l00019}{19}} of file \mbox{\hyperlink{APIGateway_8h_source}{APIGateway.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classAPIGateway_a2b39180cf4a7f9172d8e5a3623d9a6dc}\index{APIGateway@{APIGateway}!APIGateway@{APIGateway}}
+\index{APIGateway@{APIGateway}!APIGateway@{APIGateway}}
+\doxysubsubsection{\texorpdfstring{APIGateway()}{APIGateway()}}
+{\footnotesize\ttfamily \label{classAPIGateway_a2b39180cf4a7f9172d8e5a3623d9a6dc} 
+APIGateway\+::\+APIGateway (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBlinkDB}{Blink\+DB}} \&}]{blink\+DB}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs the \doxylink{classAPIGateway}{APIGateway} and initializes services. 
+
+This constructor initializes the cache and services required for handling database interactions.
+
+
+\begin{DoxyParams}{Parameters}
+{\em blink\+DB} & Reference to the \doxylink{classBlinkDB}{Blink\+DB} database instance. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{APIGateway_8h_source_l00066}{66}} of file \mbox{\hyperlink{APIGateway_8h_source}{APIGateway.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ blinkDB(blinkDB),\ setService(blinkDB),\ getService(blinkDB),\ delService(blinkDB)}
+\DoxyCodeLine{00067\ \ \ \ \ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ L1Cache\ =\ Cache();}
+\DoxyCodeLine{00069\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classAPIGateway_a7b560b881c96a25943ad753dfc76b100}\index{APIGateway@{APIGateway}!executeCommand@{executeCommand}}
+\index{executeCommand@{executeCommand}!APIGateway@{APIGateway}}
+\doxysubsubsection{\texorpdfstring{executeCommand()}{executeCommand()}}
+{\footnotesize\ttfamily \label{classAPIGateway_a7b560b881c96a25943ad753dfc76b100} 
+string APIGateway\+::execute\+Command (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCommand}{Command}}}]{command}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Executes a given command by routing it to the appropriate service. 
+
+This function determines the command type and delegates processing to the corresponding service ({\ttfamily set}, {\ttfamily get}, {\ttfamily del}).
+
+
+\begin{DoxyItemize}
+\item {\ttfamily set}\+: Stores the key-\/value pair in both cache and database.
+\item {\ttfamily get}\+: Retrieves the value from the cache or falls back to the database.
+\item {\ttfamily del}\+: Removes the key from both cache and database.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em command} & The command object containing operation type, key, and optional value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::string \doxylink{classResponse}{Response} message indicating success or failure. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{APIGateway_8h_source_l00084}{84}} of file \mbox{\hyperlink{APIGateway_8h_source}{APIGateway.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00085\ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.\mbox{\hyperlink{classCommand_abdd31f136459c4aeaabcac39ec21bbf1}{getCommand}}()\ ==\ \textcolor{stringliteral}{"{}set"{}})}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Clear\ cache\ if\ size\ exceeds\ limit}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (L1Cache.getSize()\ >=\ 100000000)}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ L1Cache.clear();}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Store\ in\ cache\ and\ database}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ L1Cache.set(\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.\mbox{\hyperlink{classCommand_a684ed199358c644a0766d91e8c903ee8}{getKey}}(),\ \mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.\mbox{\hyperlink{classCommand_a7f13017cfdbbc43288aa28adb553e2cd}{getValue}}());}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ setService.set(\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.\mbox{\hyperlink{classCommand_a684ed199358c644a0766d91e8c903ee8}{getKey}}(),\ \mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.\mbox{\hyperlink{classCommand_a7f13017cfdbbc43288aa28adb553e2cd}{getValue}}());}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Set\ Success"{}};}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.\mbox{\hyperlink{classCommand_abdd31f136459c4aeaabcac39ec21bbf1}{getCommand}}()\ ==\ \textcolor{stringliteral}{"{}get"{}})}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ cache\ first}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ cacheCheckResult\ =\ L1Cache.get(\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.\mbox{\hyperlink{classCommand_a684ed199358c644a0766d91e8c903ee8}{getKey}}());}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (cacheCheckResult\ ==\ \textcolor{stringliteral}{"{}-\/1"{}})}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ getService.get(\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.\mbox{\hyperlink{classCommand_a684ed199358c644a0766d91e8c903ee8}{getKey}}());}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ cacheCheckResult;}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.\mbox{\hyperlink{classCommand_abdd31f136459c4aeaabcac39ec21bbf1}{getCommand}}()\ ==\ \textcolor{stringliteral}{"{}del"{}})}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Remove\ from\ cache\ and\ database}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ L1Cache.del(\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.\mbox{\hyperlink{classCommand_a684ed199358c644a0766d91e8c903ee8}{getKey}}());}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ delService.del(\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.\mbox{\hyperlink{classCommand_a684ed199358c644a0766d91e8c903ee8}{getKey}}());}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Deletion\ Success"{}};}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Invalid\ Command"{}};}
+\DoxyCodeLine{00119\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+APIGateway/\mbox{\hyperlink{APIGateway_8h}{APIGateway.\+h}}\end{DoxyCompactItemize}

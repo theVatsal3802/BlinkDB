@@ -1,0 +1,198 @@
+\doxysection{Disc\+Backup\+Handler Class Reference}
+\hypertarget{classDiscBackupHandler}{}\label{classDiscBackupHandler}\index{DiscBackupHandler@{DiscBackupHandler}}
+
+
+The \doxylink{classDiscBackupHandler}{Disc\+Backup\+Handler} class handles disk-\/based backups for \doxylink{classBlinkDB}{Blink\+DB}.  
+
+
+
+
+{\ttfamily \#include $<$Disc\+Backup\+Handler.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classDiscBackupHandler_a168deaa3705d9227e7cb7a26d882f624}{Disc\+Backup\+Handler}} ()
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classDiscBackupHandler}{Disc\+Backup\+Handler} instance. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classDiscBackupHandler_a4c2ae8132e674489e373aabfade1b429}{backup}} (const unordered\+\_\+map$<$ string, string $>$ \&map)
+\begin{DoxyCompactList}\small\item\em Initiates a backup of the given database map to a temporary file. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classDiscBackupHandler_a158d772e9a15d01585cceb5c06cd643d}{commit\+Backup}} ()
+\begin{DoxyCompactList}\small\item\em Commits the buffered backup to permanent disk storage. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classDiscBackupHandler_ab46ac78bae831343b85d5b38de3f9463}{terminate}} ()
+\begin{DoxyCompactList}\small\item\em Deletes all backup files, effectively clearing the backup storage. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classDiscBackupHandler_a147c2463a854dd8ff5d7bda0ca1cfd7a}{check\+Backup\+For\+Key}} (const string \&key)
+\begin{DoxyCompactList}\small\item\em Checks if a key exists in the disk backup and retrieves its value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \doxylink{classDiscBackupHandler}{Disc\+Backup\+Handler} class handles disk-\/based backups for \doxylink{classBlinkDB}{Blink\+DB}. 
+
+This class manages periodic backups of the database by writing data to files, sorting and distributing data across multiple backup files, and retrieving data from disk when necessary. 
+
+Definition at line \mbox{\hyperlink{DiscBackupHandler_8h_source_l00016}{16}} of file \mbox{\hyperlink{DiscBackupHandler_8h_source}{Disc\+Backup\+Handler.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classDiscBackupHandler_a168deaa3705d9227e7cb7a26d882f624}\index{DiscBackupHandler@{DiscBackupHandler}!DiscBackupHandler@{DiscBackupHandler}}
+\index{DiscBackupHandler@{DiscBackupHandler}!DiscBackupHandler@{DiscBackupHandler}}
+\doxysubsubsection{\texorpdfstring{DiscBackupHandler()}{DiscBackupHandler()}}
+{\footnotesize\ttfamily \label{classDiscBackupHandler_a168deaa3705d9227e7cb7a26d882f624} 
+Disc\+Backup\+Handler\+::\+Disc\+Backup\+Handler (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classDiscBackupHandler}{Disc\+Backup\+Handler} instance. 
+
+Ensures the backup directory exists before performing any operations. 
+
+Definition at line \mbox{\hyperlink{DiscBackupHandler_8h_source_l00111}{111}} of file \mbox{\hyperlink{DiscBackupHandler_8h_source}{Disc\+Backup\+Handler.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00112\ \ \ \ \ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ std::filesystem::create\_directories(\textcolor{stringliteral}{"{}./backups"{}});}
+\DoxyCodeLine{00114\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classDiscBackupHandler_a4c2ae8132e674489e373aabfade1b429}\index{DiscBackupHandler@{DiscBackupHandler}!backup@{backup}}
+\index{backup@{backup}!DiscBackupHandler@{DiscBackupHandler}}
+\doxysubsubsection{\texorpdfstring{backup()}{backup()}}
+{\footnotesize\ttfamily \label{classDiscBackupHandler_a4c2ae8132e674489e373aabfade1b429} 
+bool Disc\+Backup\+Handler\+::backup (\begin{DoxyParamCaption}\item[{const unordered\+\_\+map$<$ string, string $>$ \&}]{map}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Initiates a backup of the given database map to a temporary file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em map} & The database contents to be backed up. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if backup was successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{DiscBackupHandler_8h_source_l00122}{122}} of file \mbox{\hyperlink{DiscBackupHandler_8h_source}{Disc\+Backup\+Handler.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00123\ \ \ \ \ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ backupFromMapToBufferFile(map);}
+\DoxyCodeLine{00125\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classDiscBackupHandler_a147c2463a854dd8ff5d7bda0ca1cfd7a}\index{DiscBackupHandler@{DiscBackupHandler}!checkBackupForKey@{checkBackupForKey}}
+\index{checkBackupForKey@{checkBackupForKey}!DiscBackupHandler@{DiscBackupHandler}}
+\doxysubsubsection{\texorpdfstring{checkBackupForKey()}{checkBackupForKey()}}
+{\footnotesize\ttfamily \label{classDiscBackupHandler_a147c2463a854dd8ff5d7bda0ca1cfd7a} 
+string Disc\+Backup\+Handler\+::check\+Backup\+For\+Key (\begin{DoxyParamCaption}\item[{const string \&}]{key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if a key exists in the disk backup and retrieves its value. 
+
+Searches for the key in the appropriate backup file ({\ttfamily 0.\+txt} to {\ttfamily 9.\+txt}) based on the first character of the key.
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key to search for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value associated with the key if found, "{}-\/1"{} if not found, "{}-\/2"{} if an error occurs. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{DiscBackupHandler_8h_source_l00161}{161}} of file \mbox{\hyperlink{DiscBackupHandler_8h_source}{Disc\+Backup\+Handler.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00162\ \ \ \ \ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ lock\_guard<mutex>\ lock(backupMutex);}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ filename\ =\ key.substr(0,\ 1)\ +\ \textcolor{stringliteral}{"{}.txt"{}};}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ ifstream\ backupBuffer(\textcolor{stringliteral}{"{}./backups/"{}}\ +\ filename);}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!backupBuffer.is\_open())}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}-\/2"{}};}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ line,\ foundValue\ =\ \textcolor{stringliteral}{"{}-\/1"{}};}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (getline(backupBuffer,\ line))}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (utils.startsWith(line,\ key))}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ pos\ =\ line.find(\textcolor{stringliteral}{"{}\ "{}});}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pos\ !=\ string::npos)}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ foundValue\ =\ line.substr(pos\ +\ 1);}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ foundValue;}
+\DoxyCodeLine{00185\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classDiscBackupHandler_a158d772e9a15d01585cceb5c06cd643d}\index{DiscBackupHandler@{DiscBackupHandler}!commitBackup@{commitBackup}}
+\index{commitBackup@{commitBackup}!DiscBackupHandler@{DiscBackupHandler}}
+\doxysubsubsection{\texorpdfstring{commitBackup()}{commitBackup()}}
+{\footnotesize\ttfamily \label{classDiscBackupHandler_a158d772e9a15d01585cceb5c06cd643d} 
+bool Disc\+Backup\+Handler\+::commit\+Backup (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Commits the buffered backup to permanent disk storage. 
+
+Transfers data from the temporary buffer file ({\ttfamily backup.\+txt}) to categorized backup files ({\ttfamily 0.\+txt} to {\ttfamily 9.\+txt}).
+
+\begin{DoxyReturn}{Returns}
+true if the commit was successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{DiscBackupHandler_8h_source_l00135}{135}} of file \mbox{\hyperlink{DiscBackupHandler_8h_source}{Disc\+Backup\+Handler.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00136\ \ \ \ \ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ backupFromBufferFileToDisc();}
+\DoxyCodeLine{00138\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classDiscBackupHandler_ab46ac78bae831343b85d5b38de3f9463}\index{DiscBackupHandler@{DiscBackupHandler}!terminate@{terminate}}
+\index{terminate@{terminate}!DiscBackupHandler@{DiscBackupHandler}}
+\doxysubsubsection{\texorpdfstring{terminate()}{terminate()}}
+{\footnotesize\ttfamily \label{classDiscBackupHandler_ab46ac78bae831343b85d5b38de3f9463} 
+bool Disc\+Backup\+Handler\+::terminate (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Deletes all backup files, effectively clearing the backup storage. 
+
+\begin{DoxyReturn}{Returns}
+true always. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{DiscBackupHandler_8h_source_l00145}{145}} of file \mbox{\hyperlink{DiscBackupHandler_8h_source}{Disc\+Backup\+Handler.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00146\ \ \ \ \ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ lock\_guard<mutex>\ lock(backupMutex);}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ std::filesystem::remove\_all(\textcolor{stringliteral}{"{}./backups"{}});}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00150\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Handlers/\mbox{\hyperlink{DiscBackupHandler_8h}{Disc\+Backup\+Handler.\+h}}\end{DoxyCompactItemize}

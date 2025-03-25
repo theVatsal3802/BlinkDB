@@ -1,0 +1,207 @@
+\begin{theindex}
+
+  \item {\texorpdfstring{$\sim$}{\string~}BlinkDB}
+    \subitem {BlinkDB}, \hyperpage{7}
+
+  \indexspace
+
+  \item {activeConnections}
+    \subitem {Server.cpp}, \hyperpage{46}
+  \item {APIGateway}, \hyperpage{5}
+    \subitem {APIGateway}, \hyperpage{5}
+    \subitem {executeCommand}, \hyperpage{6}
+  \item {apiGateway}
+    \subitem {REPL.cpp}, \hyperpage{42}
+    \subitem {Server.cpp}, \hyperpage{49}
+  \item {APIGateway/APIGateway.h}, \hyperpage{27}
+
+  \indexspace
+
+  \item {backup}
+    \subitem {DiscBackupHandler}, \hyperpage{16}
+  \item {BlinkDB}, \hyperpage{7}
+    \subitem {\texorpdfstring{$\sim$}{\string~}BlinkDB}, \hyperpage{7}
+    \subitem {BlinkDB}, \hyperpage{7}
+    \subitem {del}, \hyperpage{8}
+    \subitem {get}, \hyperpage{8}
+    \subitem {set}, \hyperpage{8}
+  \item {blinkDB}
+    \subitem {REPL.cpp}, \hyperpage{42}
+    \subitem {Server.cpp}, \hyperpage{49}
+
+  \indexspace
+
+  \item {Cache}, \hyperpage{9}
+    \subitem {clear}, \hyperpage{10}
+    \subitem {del}, \hyperpage{10}
+    \subitem {get}, \hyperpage{10}
+    \subitem {getSize}, \hyperpage{10}
+    \subitem {set}, \hyperpage{11}
+  \item {Cache/Cache.h}, \hyperpage{28}
+  \item {checkBackupForKey}
+    \subitem {DiscBackupHandler}, \hyperpage{16}
+  \item {clear}
+    \subitem {Cache}, \hyperpage{10}
+  \item {Client.cpp}, \hyperpage{29}
+    \subitem {fromRESP2}, \hyperpage{29}
+    \subitem {main}, \hyperpage{30}
+    \subitem {toRESP2}, \hyperpage{31}
+  \item {Command}, \hyperpage{11}
+    \subitem {Command}, \hyperpage{12}
+    \subitem {getCommand}, \hyperpage{13}
+    \subitem {getKey}, \hyperpage{13}
+    \subitem {getValue}, \hyperpage{13}
+  \item {command}
+    \subitem {REPL.cpp}, \hyperpage{43}
+    \subitem {Server.cpp}, \hyperpage{49}
+  \item {commitBackup}
+    \subitem {DiscBackupHandler}, \hyperpage{17}
+
+  \indexspace
+
+  \item {Database/BlinkDB.h}, \hyperpage{34}
+  \item {dbMutex}
+    \subitem {REPL.cpp}, \hyperpage{43}
+    \subitem {Server.cpp}, \hyperpage{49}
+  \item {del}
+    \subitem {BlinkDB}, \hyperpage{8}
+    \subitem {Cache}, \hyperpage{10}
+    \subitem {DelService}, \hyperpage{15}
+  \item {DelService}, \hyperpage{14}
+    \subitem {del}, \hyperpage{15}
+    \subitem {DelService}, \hyperpage{14}
+  \item {DiscBackupHandler}, \hyperpage{15}
+    \subitem {backup}, \hyperpage{16}
+    \subitem {checkBackupForKey}, \hyperpage{16}
+    \subitem {commitBackup}, \hyperpage{17}
+    \subitem {DiscBackupHandler}, \hyperpage{16}
+    \subitem {terminate}, \hyperpage{17}
+  \item {discBackupHandler}
+    \subitem {REPL.cpp}, \hyperpage{43}
+    \subitem {Server.cpp}, \hyperpage{50}
+
+  \indexspace
+
+  \item {executeCommand}
+    \subitem {APIGateway}, \hyperpage{6}
+    \subitem {REPL.cpp}, \hyperpage{40}
+
+  \indexspace
+
+  \item {fromRESP2}
+    \subitem {Client.cpp}, \hyperpage{29}
+    \subitem {Utils}, \hyperpage{23}
+
+  \indexspace
+
+  \item {get}
+    \subitem {BlinkDB}, \hyperpage{8}
+    \subitem {Cache}, \hyperpage{10}
+    \subitem {GetService}, \hyperpage{18}
+  \item {getCommand}
+    \subitem {Command}, \hyperpage{13}
+  \item {getKey}
+    \subitem {Command}, \hyperpage{13}
+  \item {GetService}, \hyperpage{18}
+    \subitem {get}, \hyperpage{18}
+    \subitem {GetService}, \hyperpage{18}
+  \item {getSize}
+    \subitem {Cache}, \hyperpage{10}
+  \item {getValue}
+    \subitem {Command}, \hyperpage{13}
+
+  \indexspace
+
+  \item {handleClient}
+    \subitem {Server.cpp}, \hyperpage{46}
+  \item {Handlers/DiscBackupHandler.h}, \hyperpage{35, 36}
+  \item {hash}
+    \subitem {Utils}, \hyperpage{23}
+
+  \indexspace
+
+  \item {main}
+    \subitem {Client.cpp}, \hyperpage{30}
+    \subitem {REPL.cpp}, \hyperpage{40}
+    \subitem {Server.cpp}, \hyperpage{48}
+    \subitem {TestGenerator.cpp}, \hyperpage{54}
+  \item {Models/Command.h}, \hyperpage{37}
+  \item {Models/Response.h}, \hyperpage{38}
+
+  \indexspace
+
+  \item {REPL}
+    \subitem {REPL.cpp}, \hyperpage{41}
+  \item {REPL.cpp}, \hyperpage{39}
+    \subitem {apiGateway}, \hyperpage{42}
+    \subitem {blinkDB}, \hyperpage{42}
+    \subitem {command}, \hyperpage{43}
+    \subitem {dbMutex}, \hyperpage{43}
+    \subitem {discBackupHandler}, \hyperpage{43}
+    \subitem {executeCommand}, \hyperpage{40}
+    \subitem {main}, \hyperpage{40}
+    \subitem {REPL}, \hyperpage{41}
+    \subitem {signalHandler}, \hyperpage{42}
+    \subitem {utils}, \hyperpage{43}
+  \item {Response}, \hyperpage{19}
+    \subitem {Response}, \hyperpage{20}
+    \subitem {to\_string}, \hyperpage{21}
+
+  \indexspace
+
+  \item {Server.cpp}, \hyperpage{46}
+    \subitem {activeConnections}, \hyperpage{46}
+    \subitem {apiGateway}, \hyperpage{49}
+    \subitem {blinkDB}, \hyperpage{49}
+    \subitem {command}, \hyperpage{49}
+    \subitem {dbMutex}, \hyperpage{49}
+    \subitem {discBackupHandler}, \hyperpage{50}
+    \subitem {handleClient}, \hyperpage{46}
+    \subitem {main}, \hyperpage{48}
+    \subitem {signalHandler}, \hyperpage{48}
+    \subitem {utils}, \hyperpage{50}
+  \item {Services/DelService.h}, \hyperpage{52}
+  \item {Services/GetService.h}, \hyperpage{53}
+  \item {Services/SetService.h}, \hyperpage{53, 54}
+  \item {set}
+    \subitem {BlinkDB}, \hyperpage{8}
+    \subitem {Cache}, \hyperpage{11}
+    \subitem {SetService}, \hyperpage{22}
+  \item {SetService}, \hyperpage{21}
+    \subitem {set}, \hyperpage{22}
+    \subitem {SetService}, \hyperpage{21}
+  \item {signalHandler}
+    \subitem {REPL.cpp}, \hyperpage{42}
+    \subitem {Server.cpp}, \hyperpage{48}
+  \item {splitCommand}
+    \subitem {Utils}, \hyperpage{23}
+  \item {startsWith}
+    \subitem {Utils}, \hyperpage{24}
+
+  \indexspace
+
+  \item {terminate}
+    \subitem {DiscBackupHandler}, \hyperpage{17}
+  \item {TestGenerator.cpp}
+    \subitem {main}, \hyperpage{54}
+  \item {Tests/TestGenerator.cpp}, \hyperpage{54, 55}
+  \item {to\_string}
+    \subitem {Response}, \hyperpage{21}
+  \item {toRESP2}
+    \subitem {Client.cpp}, \hyperpage{31}
+    \subitem {Utils}, \hyperpage{24}
+
+  \indexspace
+
+  \item {Utils}, \hyperpage{22}
+    \subitem {fromRESP2}, \hyperpage{23}
+    \subitem {hash}, \hyperpage{23}
+    \subitem {splitCommand}, \hyperpage{23}
+    \subitem {startsWith}, \hyperpage{24}
+    \subitem {toRESP2}, \hyperpage{24}
+  \item {utils}
+    \subitem {REPL.cpp}, \hyperpage{43}
+    \subitem {Server.cpp}, \hyperpage{50}
+  \item {Utils/Utils.h}, \hyperpage{56}
+
+\end{theindex}

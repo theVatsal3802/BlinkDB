@@ -1,72 +1,247 @@
 \doxysection{REPL.\+cpp File Reference}
 \hypertarget{REPL_8cpp}{}\label{REPL_8cpp}\index{REPL.cpp@{REPL.cpp}}
 {\ttfamily \#include $<$bits/stdc++.\+h$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
 {\ttfamily \#include $<$atomic$>$}\newline
 {\ttfamily \#include "{}./\+APIGateway/\+APIGateway.\+h"{}}\newline
 {\ttfamily \#include "{}./\+Models/\+Response.\+h"{}}\newline
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-APIGateway \mbox{\hyperlink{REPL_8cpp_a7867eefc542ad8c1973463493464694f}{api\+Gateway}} (\mbox{\hyperlink{REPL_8cpp_a402d683058e8918de804245d663a5b4c}{blink\+DB}})
-\begin{DoxyCompactList}\small\item\em Handles API requests for executing database commands. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{REPL_8cpp_ad2e59c7203b3bddc1bc9a2224b52e8e7}{signal\+Handler}} (int signal)
 \begin{DoxyCompactList}\small\item\em Handles termination signals (e.\+g., Ctrl+C). \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{REPL_8cpp_a588453b8580408ae03f07768e13b48d8}{REPL}} ()
+int \mbox{\hyperlink{REPL_8cpp_a5b9352503c4f11028bdf32bfd4a8a5a2}{execute\+Command}} (string input, string mode)
+\begin{DoxyCompactList}\small\item\em Parses and executes a given command. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{REPL_8cpp_a8d436a71c3ae388272351ec35fe662e1}{REPL}} (string mode, string filename="{}"{})
 \begin{DoxyCompactList}\small\item\em Read-\/\+Eval-\/\+Print Loop (REPL) for processing user commands. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{REPL_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
-\begin{DoxyCompactList}\small\item\em Entry point of the Blink\+DB server. \end{DoxyCompactList}\end{DoxyCompactItemize}
+int \mbox{\hyperlink{REPL_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Entry point of the \doxylink{classBlinkDB}{Blink\+DB} server. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-Blink\+DB \mbox{\hyperlink{REPL_8cpp_a402d683058e8918de804245d663a5b4c}{blink\+DB}}
+\mbox{\hyperlink{classBlinkDB}{Blink\+DB}} \mbox{\hyperlink{REPL_8cpp_a402d683058e8918de804245d663a5b4c}{blink\+DB}}
 \begin{DoxyCompactList}\small\item\em Represents the main database instance. \end{DoxyCompactList}\item 
-Command \mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}
+\mbox{\hyperlink{classCommand}{Command}} \mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}
 \begin{DoxyCompactList}\small\item\em Stores the command to be executed. \end{DoxyCompactList}\item 
-Disc\+Backup\+Handler \mbox{\hyperlink{REPL_8cpp_a3f7d9a523aae4471718c08c5427f95cb}{disc\+Backup\+Handler}}
+\mbox{\hyperlink{classAPIGateway}{APIGateway}} \mbox{\hyperlink{REPL_8cpp_a5303a76873839b12bb127f7e29ea998b}{api\+Gateway}} (\mbox{\hyperlink{REPL_8cpp_a402d683058e8918de804245d663a5b4c}{blink\+DB}})
+\begin{DoxyCompactList}\small\item\em Handles API requests for executing database commands. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classDiscBackupHandler}{Disc\+Backup\+Handler}} \mbox{\hyperlink{REPL_8cpp_a3f7d9a523aae4471718c08c5427f95cb}{disc\+Backup\+Handler}}
 \begin{DoxyCompactList}\small\item\em Manages disk backup operations. \end{DoxyCompactList}\item 
-Utils \mbox{\hyperlink{REPL_8cpp_a0a9c1f677277ebf123dd67dd754228ba}{utils}}
+\mbox{\hyperlink{classUtils}{Utils}} \mbox{\hyperlink{REPL_8cpp_a0a9c1f677277ebf123dd67dd754228ba}{utils}}
 \begin{DoxyCompactList}\small\item\em Utility class for helper functions. \end{DoxyCompactList}\item 
 mutex \mbox{\hyperlink{REPL_8cpp_ab8f5b274da3fd63bb861160625460c82}{db\+Mutex}}
 \begin{DoxyCompactList}\small\item\em Mutex to synchronize access to the database. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
-\Hypertarget{REPL_8cpp_a7867eefc542ad8c1973463493464694f}\index{REPL.cpp@{REPL.cpp}!apiGateway@{apiGateway}}
-\index{apiGateway@{apiGateway}!REPL.cpp@{REPL.cpp}}
-\doxysubsubsection{\texorpdfstring{apiGateway()}{apiGateway()}}
-{\footnotesize\ttfamily \label{REPL_8cpp_a7867eefc542ad8c1973463493464694f} 
-APIGateway api\+Gateway (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{REPL_8cpp_a402d683058e8918de804245d663a5b4c}{blink\+DB}}}]{}{}\end{DoxyParamCaption})}
+\Hypertarget{REPL_8cpp_a5b9352503c4f11028bdf32bfd4a8a5a2}\index{REPL.cpp@{REPL.cpp}!executeCommand@{executeCommand}}
+\index{executeCommand@{executeCommand}!REPL.cpp@{REPL.cpp}}
+\doxysubsubsection{\texorpdfstring{executeCommand()}{executeCommand()}}
+{\footnotesize\ttfamily \label{REPL_8cpp_a5b9352503c4f11028bdf32bfd4a8a5a2} 
+int execute\+Command (\begin{DoxyParamCaption}\item[{string}]{input}{, }\item[{string}]{mode}{}\end{DoxyParamCaption})}
 
 
 
-Handles API requests for executing database commands. 
+Parses and executes a given command. 
 
-\Hypertarget{REPL_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\index{REPL.cpp@{REPL.cpp}!main@{main}}
+This function tokenizes the input command, determines its validity, executes the appropriate API request, and returns the response.
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & The command entered by the user. \\
+\hline
+{\em mode} & Execution mode (interactive or batch file execution). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Returns -\/1 for exit, 0 for invalid command, otherwise continues execution. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{REPL_8cpp_source_l00068}{68}} of file \mbox{\hyperlink{REPL_8cpp_source}{REPL.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00069\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ vector<string>\ result\ =\ \mbox{\hyperlink{REPL_8cpp_a0a9c1f677277ebf123dd67dd754228ba}{utils}}.splitCommand(input);}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{comment}{//\ Process\ the\ command\ based\ on\ its\ type}}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{if}\ (result.size()\ ==\ 3\ \&\&\ result[0]\ ==\ \textcolor{stringliteral}{"{}set"{}})}
+\DoxyCodeLine{00074\ \ \ \ \ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}\ =\ \mbox{\hyperlink{classCommand}{Command}}(result[0],\ result[1],\ result[2]);}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (result.size()\ ==\ 2\ \&\&\ result[0]\ ==\ \textcolor{stringliteral}{"{}get"{}})}
+\DoxyCodeLine{00078\ \ \ \ \ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}\ =\ \mbox{\hyperlink{classCommand}{Command}}(result[0],\ result[1]);}
+\DoxyCodeLine{00080\ \ \ \ \ \}}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (result.size()\ ==\ 2\ \&\&\ result[0]\ ==\ \textcolor{stringliteral}{"{}del"{}})}
+\DoxyCodeLine{00082\ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}\ =\ \mbox{\hyperlink{classCommand}{Command}}(result[0],\ result[1]);}
+\DoxyCodeLine{00084\ \ \ \ \ \}}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (result[0]\ ==\ \textcolor{stringliteral}{"{}exit"{}})}
+\DoxyCodeLine{00086\ \ \ \ \ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00088\ \ \ \ \ \}}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00090\ \ \ \ \ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Invalid\ command"{}}\ <<\ endl;}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00093\ \ \ \ \ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{comment}{//\ Execute\ the\ command\ and\ retrieve\ the\ response}}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{string}\ apiResponse;}
+\DoxyCodeLine{00097\ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ lock\_guard<mutex>\ lock(\mbox{\hyperlink{REPL_8cpp_ab8f5b274da3fd63bb861160625460c82}{dbMutex}});\ \textcolor{comment}{//\ Ensures\ thread\ safety\ while\ accessing\ the\ database}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ apiResponse\ =\ \mbox{\hyperlink{REPL_8cpp_a5303a76873839b12bb127f7e29ea998b}{apiGateway}}.executeCommand(\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}});}
+\DoxyCodeLine{00100\ \ \ \ \ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{comment}{//\ Construct\ and\ print\ the\ response}}
+\DoxyCodeLine{00103\ \ \ \ \ \mbox{\hyperlink{classResponse}{Response}}\ response;}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordflow}{if}\ (apiResponse\ ==\ \textcolor{stringliteral}{"{}-\/1"{}}\ ||\ apiResponse\ ==\ \textcolor{stringliteral}{"{}-\/2"{}})}
+\DoxyCodeLine{00105\ \ \ \ \ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ response\ =\ \mbox{\hyperlink{classResponse}{Response}}(404,\ \textcolor{stringliteral}{"{}Not\ Found"{}},\ \{\textcolor{stringliteral}{"{}Data"{}},\ \textcolor{stringliteral}{"{}Key\ not\ found"{}}\});}
+\DoxyCodeLine{00107\ \ \ \ \ \}}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00109\ \ \ \ \ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ response\ =\ \mbox{\hyperlink{classResponse}{Response}}(200,\ \textcolor{stringliteral}{"{}Success"{}},\ \{\textcolor{stringliteral}{"{}Data"{}},\ apiResponse\});}
+\DoxyCodeLine{00111\ \ \ \ \ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{comment}{//\ Print\ response\ based\ on\ mode}}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordflow}{if}\ (mode\ ==\ \textcolor{stringliteral}{"{}1"{}}\ \&\&\ \mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.getCommand()\ ==\ \textcolor{stringliteral}{"{}get"{}})}
+\DoxyCodeLine{00115\ \ \ \ \ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Response:\ "{}}\ <<\ response.\mbox{\hyperlink{classResponse_ac39b6e8b87b8d363bdd6fc9c5110ce5d}{to\_string}}()\ <<\ endl;}
+\DoxyCodeLine{00117\ \ \ \ \ \}}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (mode\ ==\ \textcolor{stringliteral}{"{}0"{}})}
+\DoxyCodeLine{00119\ \ \ \ \ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Response:\ "{}}\ <<\ response.\mbox{\hyperlink{classResponse_ac39b6e8b87b8d363bdd6fc9c5110ce5d}{to\_string}}()\ <<\ endl;}
+\DoxyCodeLine{00121\ \ \ \ \ \}}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00123\ \}}
+
+\end{DoxyCode}
+\Hypertarget{REPL_8cpp_a0ddf1224851353fc92bfbff6f499fa97}\index{REPL.cpp@{REPL.cpp}!main@{main}}
 \index{main@{main}!REPL.cpp@{REPL.cpp}}
 \doxysubsubsection{\texorpdfstring{main()}{main()}}
-{\footnotesize\ttfamily \label{REPL_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
-int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{REPL_8cpp_a0ddf1224851353fc92bfbff6f499fa97} 
+int main (\begin{DoxyParamCaption}\item[{int}]{argc}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{argv}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})}
 
 
 
-Entry point of the Blink\+DB server. 
+Entry point of the \doxylink{classBlinkDB}{Blink\+DB} server. 
 
 This function initializes the server, sets up a signal handler for termination, starts the REPL loop, and gracefully shuts down the system.
 
 \begin{DoxyReturn}{Returns}
 int Exit status code. 
 \end{DoxyReturn}
-\Hypertarget{REPL_8cpp_a588453b8580408ae03f07768e13b48d8}\index{REPL.cpp@{REPL.cpp}!REPL@{REPL}}
+
+
+Definition at line \mbox{\hyperlink{REPL_8cpp_source_l00174}{174}} of file \mbox{\hyperlink{REPL_8cpp_source}{REPL.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00175\ \{}
+\DoxyCodeLine{00176\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Initializing\ BlinkDB\ server..."{}}\ <<\ endl;}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{comment}{//\ Register\ signal\ handler\ for\ graceful\ termination}}
+\DoxyCodeLine{00179\ \ \ \ \ signal(SIGINT,\ \mbox{\hyperlink{REPL_8cpp_ad2e59c7203b3bddc1bc9a2224b52e8e7}{signalHandler}});}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordflow}{if}\ (argc\ <\ 2)}
+\DoxyCodeLine{00181\ \ \ \ \ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Enter\ 0\ for\ interactive\ mode\ and\ 1\ for\ file\ mode\ in\ command\ line\ and\ a\ filename\ for\ file\ mode."{}}\ <<\ endl;}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{REPL_8cpp_a3f7d9a523aae4471718c08c5427f95cb}{discBackupHandler}}.terminate();}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exiting\ BlinkDB:\ Closing\ server..."{}}\ <<\ endl;}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exited"{}}\ <<\ endl;}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00187\ \ \ \ \ \}}
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keywordtype}{string}\ mode\ =\ string(argv[1]);}
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keywordtype}{string}\ filename\ =\ string(argv[2]\ !=\ NULL\ ?\ argv[2]\ :\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keywordflow}{if}\ (mode\ !=\ \textcolor{stringliteral}{"{}0"{}}\ \&\&\ mode\ !=\ \textcolor{stringliteral}{"{}1"{}})}
+\DoxyCodeLine{00191\ \ \ \ \ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Enter\ 0\ for\ interactive\ mode\ and\ 1\ for\ file\ mode"{}}\ <<\ endl;}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{REPL_8cpp_a3f7d9a523aae4471718c08c5427f95cb}{discBackupHandler}}.terminate();}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exiting\ BlinkDB:\ Closing\ server..."{}}\ <<\ endl;}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exited"{}}\ <<\ endl;}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00197\ \ \ \ \ \}}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{keywordflow}{if}\ (mode\ ==\ \textcolor{stringliteral}{"{}1"{}}\ \&\&\ filename\ ==\ \textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00200\ \ \ \ \ \{}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Please\ provide\ a\ filename\ for\ the\ test\ file"{}}\ <<\ endl;}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{REPL_8cpp_a3f7d9a523aae4471718c08c5427f95cb}{discBackupHandler}}.terminate();}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exiting\ BlinkDB:\ Closing\ server..."{}}\ <<\ endl;}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exited"{}}\ <<\ endl;}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00206\ \ \ \ \ \}}
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{comment}{//\ Start\ the\ Read-\/Eval-\/Print\ Loop}}
+\DoxyCodeLine{00208\ \ \ \ \ \mbox{\hyperlink{REPL_8cpp_a8d436a71c3ae388272351ec35fe662e1}{REPL}}(mode,\ filename);}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{comment}{//\ Cleanup\ before\ exiting}}
+\DoxyCodeLine{00211\ \ \ \ \ \mbox{\hyperlink{REPL_8cpp_a3f7d9a523aae4471718c08c5427f95cb}{discBackupHandler}}.terminate();}
+\DoxyCodeLine{00212\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exiting\ BlinkDB:\ Closing\ server..."{}}\ <<\ endl;}
+\DoxyCodeLine{00213\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exited"{}}\ <<\ endl;}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00216\ \}}
+
+\end{DoxyCode}
+\Hypertarget{REPL_8cpp_a8d436a71c3ae388272351ec35fe662e1}\index{REPL.cpp@{REPL.cpp}!REPL@{REPL}}
 \index{REPL@{REPL}!REPL.cpp@{REPL.cpp}}
 \doxysubsubsection{\texorpdfstring{REPL()}{REPL()}}
-{\footnotesize\ttfamily \label{REPL_8cpp_a588453b8580408ae03f07768e13b48d8} 
-void REPL (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{REPL_8cpp_a8d436a71c3ae388272351ec35fe662e1} 
+void REPL (\begin{DoxyParamCaption}\item[{string}]{mode}{, }\item[{string}]{filename}{ = {\ttfamily "{}"{}}}\end{DoxyParamCaption})}
 
 
 
 Read-\/\+Eval-\/\+Print Loop (REPL) for processing user commands. 
 
-This function continuously prompts the user for input, parses the command, executes it via the API Gateway, and prints the response. \Hypertarget{REPL_8cpp_ad2e59c7203b3bddc1bc9a2224b52e8e7}\index{REPL.cpp@{REPL.cpp}!signalHandler@{signalHandler}}
+This function continuously prompts the user for input, parses the command, executes it via the API Gateway, and prints the response. It supports both interactive and batch (file-\/based) execution modes.
+
+
+\begin{DoxyParams}{Parameters}
+{\em mode} & Execution mode ("{}0"{} for interactive, "{}1"{} for batch processing). \\
+\hline
+{\em filename} & Optional filename for batch execution. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{REPL_8cpp_source_l00135}{135}} of file \mbox{\hyperlink{REPL_8cpp_source}{REPL.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00136\ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordflow}{if}\ (mode\ ==\ \textcolor{stringliteral}{"{}1"{}})}
+\DoxyCodeLine{00138\ \ \ \ \ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ chrono::high\_resolution\_clock::time\_point\ start\ =\ chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ ifstream\ testFile(filename);}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ line;}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (getline(testFile,\ line))}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{REPL_8cpp_a5b9352503c4f11028bdf32bfd4a8a5a2}{executeCommand}}(line,\ mode);}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ chrono::high\_resolution\_clock::time\_point\ end\ =\ chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ chrono::duration<double>\ elapsed\ =\ end\ -\/\ start;}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Time\ taken\ to\ execute\ all\ commands:\ "{}}\ <<\ elapsed.count()\ <<\ \textcolor{stringliteral}{"{}s"{}}\ <<\ endl;}
+\DoxyCodeLine{00149\ \ \ \ \ \}}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (mode\ ==\ \textcolor{stringliteral}{"{}0"{}})}
+\DoxyCodeLine{00151\ \ \ \ \ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{true})}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}User\ >\ "{}};}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ input;}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ getline(cin,\ input);}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ result\ =\ \mbox{\hyperlink{REPL_8cpp_a5b9352503c4f11028bdf32bfd4a8a5a2}{executeCommand}}(input,\ mode);}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ ==\ -\/1)}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00163\ \ \ \ \ \}}
+\DoxyCodeLine{00164\ \}}
+
+\end{DoxyCode}
+\Hypertarget{REPL_8cpp_ad2e59c7203b3bddc1bc9a2224b52e8e7}\index{REPL.cpp@{REPL.cpp}!signalHandler@{signalHandler}}
 \index{signalHandler@{signalHandler}!REPL.cpp@{REPL.cpp}}
 \doxysubsubsection{\texorpdfstring{signalHandler()}{signalHandler()}}
 {\footnotesize\ttfamily \label{REPL_8cpp_ad2e59c7203b3bddc1bc9a2224b52e8e7} 
@@ -76,6 +251,8 @@ void signal\+Handler (\begin{DoxyParamCaption}\item[{int}]{signal}{}\end{DoxyPar
 
 Handles termination signals (e.\+g., Ctrl+C). 
 
+This function ensures a graceful shutdown of \doxylink{classBlinkDB}{Blink\+DB} by cleaning up backups and closing the server safely before exiting the program.
+
 
 \begin{DoxyParams}{Parameters}
 {\em signal} & The received signal code. \\
@@ -83,26 +260,60 @@ Handles termination signals (e.\+g., Ctrl+C).
 \end{DoxyParams}
 
 
+Definition at line \mbox{\hyperlink{REPL_8cpp_source_l00048}{48}} of file \mbox{\hyperlink{REPL_8cpp_source}{REPL.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00049\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exiting\ BlinkDB:\ Deleting\ Backups..."{}}\ <<\ endl;}
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{REPL_8cpp_a3f7d9a523aae4471718c08c5427f95cb}{discBackupHandler}}.terminate();}
+\DoxyCodeLine{00052\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exiting\ BlinkDB:\ Deleting\ Backups...\ Done"{}}\ <<\ endl;}
+\DoxyCodeLine{00053\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exiting\ BlinkDB:\ Closing\ server..."{}}\ <<\ endl;}
+\DoxyCodeLine{00054\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exited"{}}\ <<\ endl;}
+\DoxyCodeLine{00055\ \ \ \ \ exit(0);}
+\DoxyCodeLine{00056\ \}}
+
+\end{DoxyCode}
+
+
 \doxysubsection{Variable Documentation}
+\Hypertarget{REPL_8cpp_a5303a76873839b12bb127f7e29ea998b}\index{REPL.cpp@{REPL.cpp}!apiGateway@{apiGateway}}
+\index{apiGateway@{apiGateway}!REPL.cpp@{REPL.cpp}}
+\doxysubsubsection{\texorpdfstring{apiGateway}{apiGateway}}
+{\footnotesize\ttfamily \label{REPL_8cpp_a5303a76873839b12bb127f7e29ea998b} 
+\mbox{\hyperlink{classAPIGateway}{APIGateway}} api\+Gateway(\mbox{\hyperlink{REPL_8cpp_a402d683058e8918de804245d663a5b4c}{blink\+DB}}) (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{REPL_8cpp_a402d683058e8918de804245d663a5b4c}{blink\+DB}}}]{}{}\end{DoxyParamCaption})}
+
+
+
+Handles API requests for executing database commands. 
+
 \Hypertarget{REPL_8cpp_a402d683058e8918de804245d663a5b4c}\index{REPL.cpp@{REPL.cpp}!blinkDB@{blinkDB}}
 \index{blinkDB@{blinkDB}!REPL.cpp@{REPL.cpp}}
 \doxysubsubsection{\texorpdfstring{blinkDB}{blinkDB}}
 {\footnotesize\ttfamily \label{REPL_8cpp_a402d683058e8918de804245d663a5b4c} 
-Blink\+DB blink\+DB}
+\mbox{\hyperlink{classBlinkDB}{Blink\+DB}} blink\+DB}
 
 
 
 Represents the main database instance. 
 
+
+
+Definition at line \mbox{\hyperlink{REPL_8cpp_source_l00013}{13}} of file \mbox{\hyperlink{REPL_8cpp_source}{REPL.\+cpp}}.
+
 \Hypertarget{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}\index{REPL.cpp@{REPL.cpp}!command@{command}}
 \index{command@{command}!REPL.cpp@{REPL.cpp}}
 \doxysubsubsection{\texorpdfstring{command}{command}}
 {\footnotesize\ttfamily \label{REPL_8cpp_a252cf30305a23a874371ecc779fab24b} 
-Command command}
+\mbox{\hyperlink{classCommand}{Command}} command}
 
 
 
 Stores the command to be executed. 
+
+
+
+Definition at line \mbox{\hyperlink{REPL_8cpp_source_l00018}{18}} of file \mbox{\hyperlink{REPL_8cpp_source}{REPL.\+cpp}}.
 
 \Hypertarget{REPL_8cpp_ab8f5b274da3fd63bb861160625460c82}\index{REPL.cpp@{REPL.cpp}!dbMutex@{dbMutex}}
 \index{dbMutex@{dbMutex}!REPL.cpp@{REPL.cpp}}
@@ -114,23 +325,35 @@ mutex db\+Mutex}
 
 Mutex to synchronize access to the database. 
 
+
+
+Definition at line \mbox{\hyperlink{REPL_8cpp_source_l00038}{38}} of file \mbox{\hyperlink{REPL_8cpp_source}{REPL.\+cpp}}.
+
 \Hypertarget{REPL_8cpp_a3f7d9a523aae4471718c08c5427f95cb}\index{REPL.cpp@{REPL.cpp}!discBackupHandler@{discBackupHandler}}
 \index{discBackupHandler@{discBackupHandler}!REPL.cpp@{REPL.cpp}}
 \doxysubsubsection{\texorpdfstring{discBackupHandler}{discBackupHandler}}
 {\footnotesize\ttfamily \label{REPL_8cpp_a3f7d9a523aae4471718c08c5427f95cb} 
-Disc\+Backup\+Handler disc\+Backup\+Handler}
+\mbox{\hyperlink{classDiscBackupHandler}{Disc\+Backup\+Handler}} disc\+Backup\+Handler}
 
 
 
 Manages disk backup operations. 
 
+
+
+Definition at line \mbox{\hyperlink{REPL_8cpp_source_l00028}{28}} of file \mbox{\hyperlink{REPL_8cpp_source}{REPL.\+cpp}}.
+
 \Hypertarget{REPL_8cpp_a0a9c1f677277ebf123dd67dd754228ba}\index{REPL.cpp@{REPL.cpp}!utils@{utils}}
 \index{utils@{utils}!REPL.cpp@{REPL.cpp}}
 \doxysubsubsection{\texorpdfstring{utils}{utils}}
 {\footnotesize\ttfamily \label{REPL_8cpp_a0a9c1f677277ebf123dd67dd754228ba} 
-Utils utils}
+\mbox{\hyperlink{classUtils}{Utils}} utils}
 
 
 
 Utility class for helper functions. 
+
+
+
+Definition at line \mbox{\hyperlink{REPL_8cpp_source_l00033}{33}} of file \mbox{\hyperlink{REPL_8cpp_source}{REPL.\+cpp}}.
 

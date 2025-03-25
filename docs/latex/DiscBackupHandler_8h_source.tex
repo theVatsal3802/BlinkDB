@@ -1,0 +1,127 @@
+\doxysection{Disc\+Backup\+Handler.\+h}
+\hypertarget{DiscBackupHandler_8h_source}{}\label{DiscBackupHandler_8h_source}\index{Handlers/DiscBackupHandler.h@{Handlers/DiscBackupHandler.h}}
+\mbox{\hyperlink{DiscBackupHandler_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <bits/stdc++.h>}}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <filesystem>}}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Utils_8h}{../Utils/Utils.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00007}00007\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00016}\mbox{\hyperlink{classDiscBackupHandler}{00016}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classDiscBackupHandler_a168deaa3705d9227e7cb7a26d882f624}{DiscBackupHandler}}}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00017}00017\ \{}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00018}00018\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00024}00024\ \ \ \ \ \textcolor{keywordtype}{string}\ backupFiles[10]\ =\ \{\textcolor{stringliteral}{"{}0"{}},\ \textcolor{stringliteral}{"{}1"{}},\ \textcolor{stringliteral}{"{}2"{}},\ \textcolor{stringliteral}{"{}3"{}},\ \textcolor{stringliteral}{"{}4"{}},\ \textcolor{stringliteral}{"{}5"{}},\ \textcolor{stringliteral}{"{}6"{}},\ \textcolor{stringliteral}{"{}7"{}},\ \textcolor{stringliteral}{"{}8"{}},\ \textcolor{stringliteral}{"{}9"{}}\};}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00029}00029\ \ \ \ \ \mbox{\hyperlink{classUtils}{Utils}}\ utils;}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00034}00034\ \ \ \ \ mutex\ backupMutex;}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00042}00042\ \ \ \ \ \textcolor{keywordtype}{bool}\ backupFromMapToBufferFile(\textcolor{keyword}{const}\ unordered\_map<string,\ string>\ \&map)}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00043}00043\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00044}00044\ \ \ \ \ \ \ \ \ lock\_guard<mutex>\ lock(backupMutex);}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00045}00045\ \ \ \ \ \ \ \ \ ofstream\ file(\textcolor{stringliteral}{"{}./backups/backup.txt"{}},\ ios::app);}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00046}00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!file.is\_open())}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00047}00047\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00049}00049\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00050}00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&entry\ :\ map)}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00051}00051\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ file\ <<\ entry.first\ <<\ \textcolor{stringliteral}{"{}\ "{}}\ <<\ entry.second\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00053}00053\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00055}00055\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00065}00065\ \ \ \ \ \textcolor{keywordtype}{bool}\ backupFromBufferFileToDisc()}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00066}00066\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00067}00067\ \ \ \ \ \ \ \ \ lock\_guard<mutex>\ lock(backupMutex);}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00068}00068\ \ \ \ \ \ \ \ \ ifstream\ backupBuffer(\textcolor{stringliteral}{"{}./backups/backup.txt"{}});}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00069}00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!backupBuffer.is\_open())}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00070}00070\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00072}00072\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00074}00074\ \ \ \ \ \ \ \ \ vector<string>\ lines;}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00075}00075\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ line;}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00076}00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (getline(backupBuffer,\ line))}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00077}00077\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ lines.push\_back(line);}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00079}00079\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00080}00080\ \ \ \ \ \ \ \ \ backupBuffer.close();}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00082}00082\ \ \ \ \ \ \ \ \ sort(lines.begin(),\ lines.end());}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00084}00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 10;\ i++)}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00085}00085\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ ofstream\ file(\textcolor{stringliteral}{"{}./backups/"{}}\ +\ backupFiles[i]\ +\ \textcolor{stringliteral}{"{}.txt"{}},\ ios::out);}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!file.is\_open())}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&entry\ :\ lines)}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (utils.startsWith(entry,\ backupFiles[i]))}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ file\ <<\ entry\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00098}00098\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00100}00100\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Clear\ buffer\ file}}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00101}00101\ \ \ \ \ \ \ \ \ ofstream\ clearBuffer(\textcolor{stringliteral}{"{}./backups/backup.txt"{}},\ ios::out);}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00102}00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00103}00103\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00105}00105\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00111}\mbox{\hyperlink{classDiscBackupHandler_a168deaa3705d9227e7cb7a26d882f624}{00111}}\ \ \ \ \ \mbox{\hyperlink{classDiscBackupHandler_a168deaa3705d9227e7cb7a26d882f624}{DiscBackupHandler}}()}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00112}00112\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00113}00113\ \ \ \ \ \ \ \ \ std::filesystem::create\_directories(\textcolor{stringliteral}{"{}./backups"{}});}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00114}00114\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00122}\mbox{\hyperlink{classDiscBackupHandler_a4c2ae8132e674489e373aabfade1b429}{00122}}\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classDiscBackupHandler_a4c2ae8132e674489e373aabfade1b429}{backup}}(\textcolor{keyword}{const}\ unordered\_map<string,\ string>\ \&map)}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00123}00123\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00124}00124\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ backupFromMapToBufferFile(map);}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00125}00125\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00126}00126\ }
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00135}\mbox{\hyperlink{classDiscBackupHandler_a158d772e9a15d01585cceb5c06cd643d}{00135}}\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classDiscBackupHandler_a158d772e9a15d01585cceb5c06cd643d}{commitBackup}}()}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00136}00136\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00137}00137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ backupFromBufferFileToDisc();}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00138}00138\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00145}\mbox{\hyperlink{classDiscBackupHandler_ab46ac78bae831343b85d5b38de3f9463}{00145}}\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classDiscBackupHandler_ab46ac78bae831343b85d5b38de3f9463}{terminate}}()}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00146}00146\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00147}00147\ \ \ \ \ \ \ \ \ lock\_guard<mutex>\ lock(backupMutex);}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00148}00148\ \ \ \ \ \ \ \ \ std::filesystem::remove\_all(\textcolor{stringliteral}{"{}./backups"{}});}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00149}00149\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00150}00150\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00161}\mbox{\hyperlink{classDiscBackupHandler_a147c2463a854dd8ff5d7bda0ca1cfd7a}{00161}}\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classDiscBackupHandler_a147c2463a854dd8ff5d7bda0ca1cfd7a}{checkBackupForKey}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&key)}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00162}00162\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00163}00163\ \ \ \ \ \ \ \ \ lock\_guard<mutex>\ lock(backupMutex);}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00164}00164\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ filename\ =\ key.substr(0,\ 1)\ +\ \textcolor{stringliteral}{"{}.txt"{}};}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00165}00165\ \ \ \ \ \ \ \ \ ifstream\ backupBuffer(\textcolor{stringliteral}{"{}./backups/"{}}\ +\ filename);}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00166}00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!backupBuffer.is\_open())}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00167}00167\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}-\/2"{}};}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00169}00169\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00170}00170\ }
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00171}00171\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ line,\ foundValue\ =\ \textcolor{stringliteral}{"{}-\/1"{}};}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00172}00172\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (getline(backupBuffer,\ line))}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00173}00173\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (utils.startsWith(line,\ key))}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ pos\ =\ line.find(\textcolor{stringliteral}{"{}\ "{}});}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pos\ !=\ string::npos)}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ foundValue\ =\ line.substr(pos\ +\ 1);}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00183}00183\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00184}00184\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ foundValue;}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00185}00185\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{DiscBackupHandler_8h_source_l00186}00186\ \};}
+
+\end{DoxyCode}

@@ -1,0 +1,90 @@
+\doxysection{Blink\+DB.\+h}
+\hypertarget{BlinkDB_8h_source}{}\label{BlinkDB_8h_source}\index{Database/BlinkDB.h@{Database/BlinkDB.h}}
+\mbox{\hyperlink{BlinkDB_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <bits/stdc++.h>}}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{DiscBackupHandler_8h}{../Handlers/DiscBackupHandler.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00005}00005\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00014}\mbox{\hyperlink{classBlinkDB}{00014}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classBlinkDB_a69140f26047029abd72d3e3354af0727}{BlinkDB}}}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00015}00015\ \{}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00016}00016\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00020}00020\ \ \ \ \ unordered\_map<string,\ string>\ database;}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00025}00025\ \ \ \ \ unordered\_map<string,\ string>\ buffer;}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00030}00030\ \ \ \ \ \mbox{\hyperlink{classDiscBackupHandler}{DiscBackupHandler}}\ discBackupHandler;}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00035}00035\ \ \ \ \ mutex\ dbMutex;}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00040}00040\ \ \ \ \ mutex\ bufferMutex;}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00045}00045\ \ \ \ \ thread\ backupThread;}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00050}00050\ \ \ \ \ \textcolor{keywordtype}{bool}\ stopBackup\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00058}00058\ \ \ \ \ \textcolor{keywordtype}{void}\ backupWorker()}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00059}00059\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00060}00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!stopBackup)}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00061}00061\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ this\_thread::sleep\_for(chrono::seconds(5));}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (database.size()\ >\ 100000000)}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dbMutex.lock();}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ buffer\ =\ database;}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dbMutex.unlock();}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bufferMutex.lock();}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ performBackup();}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ buffer.clear();}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bufferMutex.unlock();}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00074}00074\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00075}00075\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00084}00084\ \ \ \ \ \textcolor{keywordtype}{bool}\ performBackup()}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00085}00085\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00086}00086\ \ \ \ \ \ \ \ \ discBackupHandler.\mbox{\hyperlink{classDiscBackupHandler_a4c2ae8132e674489e373aabfade1b429}{backup}}(database);}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00087}00087\ \ \ \ \ \ \ \ \ discBackupHandler.commitBackup();}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00088}00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00089}00089\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00091}00091\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00097}\mbox{\hyperlink{classBlinkDB_a69140f26047029abd72d3e3354af0727}{00097}}\ \ \ \ \ \mbox{\hyperlink{classBlinkDB_a69140f26047029abd72d3e3354af0727}{BlinkDB}}()}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00098}00098\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00099}00099\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDiscBackupHandler}{DiscBackupHandler}}\ discBackupHandler\ =\ \mbox{\hyperlink{classDiscBackupHandler}{DiscBackupHandler}}();}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00100}00100\ \ \ \ \ \ \ \ \ database\ =\ unordered\_map<string,\ string>();}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00101}00101\ \ \ \ \ \ \ \ \ backupThread\ =\ thread(\&BlinkDB::backupWorker,\ \textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00102}00102\ \ \ \ \ \ \ \ \ buffer\ =\ unordered\_map<string,\ string>();}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00103}00103\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00110}\mbox{\hyperlink{classBlinkDB_a2bf225df41dbb50b8c6950cdcecde9ae}{00110}}\ \ \ \ \ \mbox{\hyperlink{classBlinkDB_a2bf225df41dbb50b8c6950cdcecde9ae}{\string~BlinkDB}}()}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00111}00111\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00112}00112\ \ \ \ \ \ \ \ \ stopBackup\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00113}00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (backupThread.joinable())}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ backupThread.join();}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00115}00115\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00125}\mbox{\hyperlink{classBlinkDB_a20996e688afda9735a3309071afd0db2}{00125}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classBlinkDB_a20996e688afda9735a3309071afd0db2}{set}}(\textcolor{keywordtype}{string}\ key,\ \textcolor{keywordtype}{string}\ value)}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00126}00126\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00127}00127\ \ \ \ \ \ \ \ \ database[key]\ =\ value;}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00128}00128\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00129}00129\ }
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00139}\mbox{\hyperlink{classBlinkDB_a399dd136d713f56df9c0475ab1fd8148}{00139}}\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classBlinkDB_a399dd136d713f56df9c0475ab1fd8148}{get}}(\textcolor{keywordtype}{string}\ key)}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00140}00140\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00141}00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (database.find(key)\ !=\ database.end())}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00142}00142\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ database[key];}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00144}00144\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00145}00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ discBackupHandler.checkBackupForKey(key);}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00146}00146\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00147}00147\ }
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00155}\mbox{\hyperlink{classBlinkDB_a80be853e5882022fc21ea69f5be510ce}{00155}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classBlinkDB_a80be853e5882022fc21ea69f5be510ce}{del}}(\textcolor{keywordtype}{string}\ key)}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00156}00156\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00157}00157\ \ \ \ \ \ \ \ \ database.erase(key);}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00158}00158\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{BlinkDB_8h_source_l00159}00159\ \};}
+
+\end{DoxyCode}

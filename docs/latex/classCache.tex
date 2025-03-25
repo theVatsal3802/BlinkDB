@@ -1,0 +1,181 @@
+\doxysection{Cache Class Reference}
+\hypertarget{classCache}{}\label{classCache}\index{Cache@{Cache}}
+
+
+Provides an in-\/memory key-\/value store.  
+
+
+
+
+{\ttfamily \#include $<$Cache.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classCache_ab86488ee11fd38e51e47ec844e998abc}{set}} (string key, string value)
+\begin{DoxyCompactList}\small\item\em Stores a key-\/value pair in the cache. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classCache_a3b2cc90502006d50a315b554788e0f8e}{get}} (string key)
+\begin{DoxyCompactList}\small\item\em Retrieves a value associated with the given key. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCache_a27978fa2dbbf78f9dc8ca48df58cd8e2}{del}} (string key)
+\begin{DoxyCompactList}\small\item\em Deletes a key-\/value pair from the cache. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classCache_aad94e5d44d10429d198ea024ac92697f}{get\+Size}} ()
+\begin{DoxyCompactList}\small\item\em Gets the current size of the cache. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCache_aaadc276ecc25d2e9270410c36d2a733e}{clear}} ()
+\begin{DoxyCompactList}\small\item\em Clears all key-\/value pairs from the cache. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Provides an in-\/memory key-\/value store. 
+
+The \doxylink{classCache}{Cache} class is designed to store frequently accessed key-\/value pairs to improve performance by reducing direct database queries. 
+
+Definition at line \mbox{\hyperlink{Cache_8h_source_l00013}{13}} of file \mbox{\hyperlink{Cache_8h_source}{Cache.\+h}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classCache_aaadc276ecc25d2e9270410c36d2a733e}\index{Cache@{Cache}!clear@{clear}}
+\index{clear@{clear}!Cache@{Cache}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily \label{classCache_aaadc276ecc25d2e9270410c36d2a733e} 
+void Cache\+::clear (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Clears all key-\/value pairs from the cache. 
+
+This function removes all stored entries, effectively resetting the cache. 
+
+Definition at line \mbox{\hyperlink{Cache_8h_source_l00085}{85}} of file \mbox{\hyperlink{Cache_8h_source}{Cache.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00086\ \ \ \ \ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ cache.clear();}
+\DoxyCodeLine{00088\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classCache_a27978fa2dbbf78f9dc8ca48df58cd8e2}\index{Cache@{Cache}!del@{del}}
+\index{del@{del}!Cache@{Cache}}
+\doxysubsubsection{\texorpdfstring{del()}{del()}}
+{\footnotesize\ttfamily \label{classCache_a27978fa2dbbf78f9dc8ca48df58cd8e2} 
+void Cache\+::del (\begin{DoxyParamCaption}\item[{string}]{key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Deletes a key-\/value pair from the cache. 
+
+If the key exists in the cache, it is removed.
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key to be deleted. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{Cache_8h_source_l00063}{63}} of file \mbox{\hyperlink{Cache_8h_source}{Cache.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00064\ \ \ \ \ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ cache.erase(key);}
+\DoxyCodeLine{00066\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classCache_a3b2cc90502006d50a315b554788e0f8e}\index{Cache@{Cache}!get@{get}}
+\index{get@{get}!Cache@{Cache}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily \label{classCache_a3b2cc90502006d50a315b554788e0f8e} 
+string Cache\+::get (\begin{DoxyParamCaption}\item[{string}]{key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retrieves a value associated with the given key. 
+
+This function looks up a key in the cache and returns the associated value. If the key is not found, it returns "{}-\/1"{}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key to search for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::string The corresponding value if found, otherwise "{}-\/1"{}. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{Cache_8h_source_l00047}{47}} of file \mbox{\hyperlink{Cache_8h_source}{Cache.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00048\ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (cache.find(key)\ ==\ cache.end())}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}-\/1"{}};}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ cache[key];}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classCache_aad94e5d44d10429d198ea024ac92697f}\index{Cache@{Cache}!getSize@{getSize}}
+\index{getSize@{getSize}!Cache@{Cache}}
+\doxysubsubsection{\texorpdfstring{getSize()}{getSize()}}
+{\footnotesize\ttfamily \label{classCache_aad94e5d44d10429d198ea024ac92697f} 
+size\+\_\+t Cache\+::get\+Size (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the current size of the cache. 
+
+This function returns the number of key-\/value pairs currently stored in the cache.
+
+\begin{DoxyReturn}{Returns}
+size\+\_\+t The total number of stored key-\/value pairs. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{Cache_8h_source_l00075}{75}} of file \mbox{\hyperlink{Cache_8h_source}{Cache.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00076\ \ \ \ \ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ cache.size();}
+\DoxyCodeLine{00078\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classCache_ab86488ee11fd38e51e47ec844e998abc}\index{Cache@{Cache}!set@{set}}
+\index{set@{set}!Cache@{Cache}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily \label{classCache_ab86488ee11fd38e51e47ec844e998abc} 
+void Cache\+::set (\begin{DoxyParamCaption}\item[{string}]{key}{, }\item[{string}]{value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Stores a key-\/value pair in the cache. 
+
+This function inserts a new key-\/value pair into the cache. If the key already exists, its value is updated.
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key to be stored. \\
+\hline
+{\em value} & The corresponding value. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{Cache_8h_source_l00033}{33}} of file \mbox{\hyperlink{Cache_8h_source}{Cache.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00034\ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ cache[key]\ =\ value;}
+\DoxyCodeLine{00036\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Cache/\mbox{\hyperlink{Cache_8h}{Cache.\+h}}\end{DoxyCompactItemize}

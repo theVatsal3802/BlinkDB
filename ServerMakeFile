@@ -1,0 +1,18 @@
+CXX = g++
+CXXFLAGS = -std=c++23 -Wall
+
+SERVER_SRC = Server.cpp
+SERVER_OBJ = $(SERVER_SRC:.cpp=.o)
+SERVER_BIN = server
+
+all: $(SERVER_BIN)
+
+$(SERVER_BIN): $(SERVER_OBJ)
+	$(CXX) $(CXXFLAGS) -o $(SERVER_BIN) $(SERVER_OBJ)
+
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+clean:
+	rm -f $(SERVER_OBJ)
+	rm -f $(SERVER_BIN)

@@ -11,23 +11,23 @@ class Utils
 {
 public:
     /**
-     * @brief Generates a hash value for a given key.
+     * @brief Hashes a string using Boost's hash function.
      *
      * @param key The input string to hash.
-     * @return A string representing the hashed value.
+     * @return The hashed string value.
      */
-    string hashKey(string key)
+    string hash(const string &key)
     {
-        hash<string> hash_fn;
+        boost::hash<string> hash_fn;
         size_t hash = hash_fn(key);
         return to_string(hash);
     }
 
     /**
-     * @brief Splits a command string into separate parts based on spaces.
+     * @brief Splits a command string into at most three parts (command, key, and value).
      *
      * @param command The input command string.
-     * @return A vector containing the split components of the command.
+     * @return A vector containing the split components (command, key, and optionally value).
      */
     vector<string> splitCommand(string command)
     {
@@ -63,8 +63,49 @@ public:
      * @param prefix The prefix to compare.
      * @return true if the string starts with the prefix, false otherwise.
      */
-    bool startsWith(string str, string prefix)
+    bool startsWith(const string &str, const string &prefix)
     {
         return str.rfind(prefix, 0) == 0;
+    }
+
+    /**
+     * @brief Converts a string to Redis Serialization Protocol (RESP2) format.
+     *
+     * @param data The input string.
+     * @return The RESP2 formatted string.
+     */
+    string toRESP2(const string &data)
+    {
+        return "$" + to_string(data.size()) + "\r\n" + data + "\r\n";
+    }
+
+    /**
+     * @brief Parses a RESP2-formatted string back to a normal string.
+     *
+     * @param resp The RESP2-formatted string.
+     * @return The extracted string data.
+     */
+    string fromRESP2(const string &resp)
+    {
+        if (resp.empty() || resp[0] != '$')
+            return "";
+
+        istringstream stream(resp);
+        string lengthLine, data;
+
+        getline(stream, lengthLine); // Read first line ($length)
+        getline(stream, data);       // Read actual string
+
+        // Trim trailing \r if present
+        if (!lengthLine.empty() && lengthLine.back() == '\r')
+        {
+            lengthLine.pop_back();
+        }
+        if (!data.empty() && data.back() == '\r')
+        {
+            data.pop_back();
+        }
+
+        return data;
     }
 };

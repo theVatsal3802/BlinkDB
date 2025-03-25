@@ -1,0 +1,226 @@
+\doxysection{Utils Class Reference}
+\hypertarget{classUtils}{}\label{classUtils}\index{Utils@{Utils}}
+
+
+Utility class providing helper functions for hashing, string manipulation, and pattern matching.  
+
+
+
+
+{\ttfamily \#include $<$Utils.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{classUtils_aa1d553caf53f915881b47c961dd7ef2e}{hash}} (const string \&key)
+\begin{DoxyCompactList}\small\item\em Hashes a string using Boost\textquotesingle{}s hash function. \end{DoxyCompactList}\item 
+vector$<$ string $>$ \mbox{\hyperlink{classUtils_a6f265fd8a4fcb74fc25b0d1a00e8d553}{split\+Command}} (const string \&\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}})
+\begin{DoxyCompactList}\small\item\em Splits a command string into at most three parts (command, key, and value). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classUtils_a53bf7de5e9b7bc2da2231e3ecac93543}{starts\+With}} (const string \&str, const string \&prefix)
+\begin{DoxyCompactList}\small\item\em Checks if a given string starts with a specified prefix. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classUtils_a74638524efa66fa47ba86bfd8c233ac2}{to\+RESP2}} (const string \&data)
+\begin{DoxyCompactList}\small\item\em Converts a string to Redis Serialization Protocol (RESP2) format. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classUtils_aa418bf6958923361fe5746687abd8b70}{from\+RESP2}} (const string \&resp)
+\begin{DoxyCompactList}\small\item\em Parses a RESP2-\/formatted string back to a normal string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Utility class providing helper functions for hashing, string manipulation, and pattern matching. 
+
+Definition at line \mbox{\hyperlink{Utils_8h_source_l00010}{10}} of file \mbox{\hyperlink{Utils_8h_source}{Utils.\+h}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classUtils_aa418bf6958923361fe5746687abd8b70}\index{Utils@{Utils}!fromRESP2@{fromRESP2}}
+\index{fromRESP2@{fromRESP2}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{fromRESP2()}{fromRESP2()}}
+{\footnotesize\ttfamily \label{classUtils_aa418bf6958923361fe5746687abd8b70} 
+string Utils\+::from\+RESP2 (\begin{DoxyParamCaption}\item[{const string \&}]{resp}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Parses a RESP2-\/formatted string back to a normal string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em resp} & The RESP2-\/formatted string. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The extracted string data. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{Utils_8h_source_l00085}{85}} of file \mbox{\hyperlink{Utils_8h_source}{Utils.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00086\ \ \ \ \ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (resp.empty()\ ||\ resp[0]\ !=\ \textcolor{charliteral}{'\$'})}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ istringstream\ stream(resp);}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ lengthLine,\ data;}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ getline(stream,\ lengthLine);\ \textcolor{comment}{//\ Read\ first\ line\ (\$length)}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ getline(stream,\ data);\ \ \ \ \ \ \ \textcolor{comment}{//\ Read\ actual\ string}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Trim\ trailing\ \(\backslash\)r\ if\ present}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!lengthLine.empty()\ \&\&\ lengthLine.back()\ ==\ \textcolor{charliteral}{'\(\backslash\)r'})}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ lengthLine.pop\_back();}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!data.empty()\ \&\&\ data.back()\ ==\ \textcolor{charliteral}{'\(\backslash\)r'})}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ data.pop\_back();}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ data;}
+\DoxyCodeLine{00107\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classUtils_aa1d553caf53f915881b47c961dd7ef2e}\index{Utils@{Utils}!hash@{hash}}
+\index{hash@{hash}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{hash()}{hash()}}
+{\footnotesize\ttfamily \label{classUtils_aa1d553caf53f915881b47c961dd7ef2e} 
+string Utils\+::hash (\begin{DoxyParamCaption}\item[{const string \&}]{key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Hashes a string using Boost\textquotesingle{}s hash function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The input string to hash. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The hashed string value. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{Utils_8h_source_l00019}{19}} of file \mbox{\hyperlink{Utils_8h_source}{Utils.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00020\ \ \ \ \ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ boost::hash<string>\ hash\_fn;}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classUtils_aa1d553caf53f915881b47c961dd7ef2e}{hash}}\ =\ hash\_fn(key);}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ to\_string(\mbox{\hyperlink{classUtils_aa1d553caf53f915881b47c961dd7ef2e}{hash}});}
+\DoxyCodeLine{00024\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classUtils_a6f265fd8a4fcb74fc25b0d1a00e8d553}\index{Utils@{Utils}!splitCommand@{splitCommand}}
+\index{splitCommand@{splitCommand}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{splitCommand()}{splitCommand()}}
+{\footnotesize\ttfamily \label{classUtils_a6f265fd8a4fcb74fc25b0d1a00e8d553} 
+vector$<$ string $>$ Utils\+::split\+Command (\begin{DoxyParamCaption}\item[{const string \&}]{command}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Splits a command string into at most three parts (command, key, and value). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em command} & The input command string. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector containing the split components (command, key, and optionally value). 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{Utils_8h_source_l00032}{32}} of file \mbox{\hyperlink{Utils_8h_source}{Utils.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00033\ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ vector<string>\ result;}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ stringstream\ ss(\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}});}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ word;}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ count\ =\ 2;\ \textcolor{comment}{//\ Limit\ to\ three\ parts\ (command,\ key,\ value)}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (ss\ >>\ word\ \&\&\ count\ >\ 0)}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ result.push\_back(word);}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ count-\/-\/;}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ the\ remaining\ part\ as\ a\ single\ value}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ss.rdbuf()-\/>in\_avail()\ >\ 0)}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ remaining;}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ getline(ss,\ remaining);}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ result.push\_back(remaining);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classUtils_a53bf7de5e9b7bc2da2231e3ecac93543}\index{Utils@{Utils}!startsWith@{startsWith}}
+\index{startsWith@{startsWith}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{startsWith()}{startsWith()}}
+{\footnotesize\ttfamily \label{classUtils_a53bf7de5e9b7bc2da2231e3ecac93543} 
+bool Utils\+::starts\+With (\begin{DoxyParamCaption}\item[{const string \&}]{str}{, }\item[{const string \&}]{prefix}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if a given string starts with a specified prefix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The main string to check. \\
+\hline
+{\em prefix} & The prefix to compare. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the string starts with the prefix, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{Utils_8h_source_l00063}{63}} of file \mbox{\hyperlink{Utils_8h_source}{Utils.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00064\ \ \ \ \ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ str.rfind(prefix,\ 0)\ ==\ 0;}
+\DoxyCodeLine{00066\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classUtils_a74638524efa66fa47ba86bfd8c233ac2}\index{Utils@{Utils}!toRESP2@{toRESP2}}
+\index{toRESP2@{toRESP2}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{toRESP2()}{toRESP2()}}
+{\footnotesize\ttfamily \label{classUtils_a74638524efa66fa47ba86bfd8c233ac2} 
+string Utils\+::to\+RESP2 (\begin{DoxyParamCaption}\item[{const string \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Converts a string to Redis Serialization Protocol (RESP2) format. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The input string. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The RESP2 formatted string. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{Utils_8h_source_l00074}{74}} of file \mbox{\hyperlink{Utils_8h_source}{Utils.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00075\ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}\$"{}}\ +\ to\_string(data.size())\ +\ \textcolor{stringliteral}{"{}\(\backslash\)r\(\backslash\)n"{}}\ +\ data\ +\ \textcolor{stringliteral}{"{}\(\backslash\)r\(\backslash\)n"{}};}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Utils/\mbox{\hyperlink{Utils_8h}{Utils.\+h}}\end{DoxyCompactItemize}

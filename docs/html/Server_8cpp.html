@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>BlinkDB: a Fast, Efficient and In-Memory Database: Server.cpp File Reference</title>
+<title>BlinkDB: Server.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -32,8 +32,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">BlinkDB: a Fast, Efficient and In-Memory Database
+   <div id="projectname">BlinkDB<span id="projectnumber">&#160;1.0</span>
    </div>
+   <div id="projectbrief">An in-memory database with disk backup</div>
   </td>
     <td>        <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -117,14 +118,13 @@ $(function(){initNavTree('Server_8cpp.html',''); initResizable(true); });
 <code>#include &lt;thread&gt;</code><br />
 <code>#include &lt;atomic&gt;</code><br />
 <code>#include &lt;csignal&gt;</code><br />
-<code>#include &quot;./APIGateway/APIGateway.h&quot;</code><br />
-<code>#include &quot;./Models/Response.h&quot;</code><br />
-</div><table class="memberdecls">
+<code>#include &quot;<a class="el" href="APIGateway_8h_source.html">./APIGateway/APIGateway.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Response_8h_source.html">./Models/Response.h</a>&quot;</code><br />
+</div>
+<p><a href="Server_8cpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a7867eefc542ad8c1973463493464694f" id="r_a7867eefc542ad8c1973463493464694f"><td class="memItemLeft" align="right" valign="top">APIGateway&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7867eefc542ad8c1973463493464694f">apiGateway</a> (<a class="el" href="REPL_8cpp.html#a402d683058e8918de804245d663a5b4c">blinkDB</a>)</td></tr>
-<tr class="memdesc:a7867eefc542ad8c1973463493464694f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles API requests for executing database commands.  <br /></td></tr>
-<tr class="separator:a7867eefc542ad8c1973463493464694f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1316d6efd1a452dcf543f6339b346adf" id="r_a1316d6efd1a452dcf543f6339b346adf"><td class="memItemLeft" align="right" valign="top">atomic&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1316d6efd1a452dcf543f6339b346adf">activeConnections</a> (0)</td></tr>
 <tr class="memdesc:a1316d6efd1a452dcf543f6339b346adf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tracks the number of active client connections.  <br /></td></tr>
 <tr class="separator:a1316d6efd1a452dcf543f6339b346adf"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -135,21 +135,24 @@ Functions</h2></td></tr>
 <tr class="memdesc:a28ce186ce771194512785b1d1d5310c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles an individual client connection.  <br /></td></tr>
 <tr class="separator:a28ce186ce771194512785b1d1d5310c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4" id="r_ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
-<tr class="memdesc:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Entry point of the BlinkDB server.  <br /></td></tr>
+<tr class="memdesc:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Entry point of the <a class="el" href="classBlinkDB.html" title="Implements an in-memory key-value database with periodic disk backups.">BlinkDB</a> server.  <br /></td></tr>
 <tr class="separator:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a402d683058e8918de804245d663a5b4c" id="r_a402d683058e8918de804245d663a5b4c"><td class="memItemLeft" align="right" valign="top">BlinkDB&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a402d683058e8918de804245d663a5b4c">blinkDB</a></td></tr>
+<tr class="memitem:a402d683058e8918de804245d663a5b4c" id="r_a402d683058e8918de804245d663a5b4c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBlinkDB.html">BlinkDB</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a402d683058e8918de804245d663a5b4c">blinkDB</a></td></tr>
 <tr class="memdesc:a402d683058e8918de804245d663a5b4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the main database instance.  <br /></td></tr>
 <tr class="separator:a402d683058e8918de804245d663a5b4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a252cf30305a23a874371ecc779fab24b" id="r_a252cf30305a23a874371ecc779fab24b"><td class="memItemLeft" align="right" valign="top">Command&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a252cf30305a23a874371ecc779fab24b">command</a></td></tr>
+<tr class="memitem:a252cf30305a23a874371ecc779fab24b" id="r_a252cf30305a23a874371ecc779fab24b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCommand.html">Command</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a252cf30305a23a874371ecc779fab24b">command</a></td></tr>
 <tr class="memdesc:a252cf30305a23a874371ecc779fab24b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the command to be executed.  <br /></td></tr>
 <tr class="separator:a252cf30305a23a874371ecc779fab24b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f7d9a523aae4471718c08c5427f95cb" id="r_a3f7d9a523aae4471718c08c5427f95cb"><td class="memItemLeft" align="right" valign="top">DiscBackupHandler&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3f7d9a523aae4471718c08c5427f95cb">discBackupHandler</a></td></tr>
+<tr class="memitem:a5303a76873839b12bb127f7e29ea998b" id="r_a5303a76873839b12bb127f7e29ea998b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAPIGateway.html">APIGateway</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5303a76873839b12bb127f7e29ea998b">apiGateway</a> (<a class="el" href="REPL_8cpp.html#a402d683058e8918de804245d663a5b4c">blinkDB</a>)</td></tr>
+<tr class="memdesc:a5303a76873839b12bb127f7e29ea998b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles API requests for executing database commands.  <br /></td></tr>
+<tr class="separator:a5303a76873839b12bb127f7e29ea998b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f7d9a523aae4471718c08c5427f95cb" id="r_a3f7d9a523aae4471718c08c5427f95cb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDiscBackupHandler.html">DiscBackupHandler</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3f7d9a523aae4471718c08c5427f95cb">discBackupHandler</a></td></tr>
 <tr class="memdesc:a3f7d9a523aae4471718c08c5427f95cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manages disk backup operations.  <br /></td></tr>
 <tr class="separator:a3f7d9a523aae4471718c08c5427f95cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a9c1f677277ebf123dd67dd754228ba" id="r_a0a9c1f677277ebf123dd67dd754228ba"><td class="memItemLeft" align="right" valign="top">Utils&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a9c1f677277ebf123dd67dd754228ba">utils</a></td></tr>
+<tr class="memitem:a0a9c1f677277ebf123dd67dd754228ba" id="r_a0a9c1f677277ebf123dd67dd754228ba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUtils.html">Utils</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a9c1f677277ebf123dd67dd754228ba">utils</a></td></tr>
 <tr class="memdesc:a0a9c1f677277ebf123dd67dd754228ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utility class for helper functions.  <br /></td></tr>
 <tr class="separator:a0a9c1f677277ebf123dd67dd754228ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8f5b274da3fd63bb861160625460c82" id="r_ab8f5b274da3fd63bb861160625460c82"><td class="memItemLeft" align="right" valign="top">mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab8f5b274da3fd63bb861160625460c82">dbMutex</a></td></tr>
@@ -173,25 +176,6 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Tracks the number of active client connections. </p>
-
-</div>
-</div>
-<a id="a7867eefc542ad8c1973463493464694f" name="a7867eefc542ad8c1973463493464694f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7867eefc542ad8c1973463493464694f">&#9670;&#160;</a></span>apiGateway()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">APIGateway apiGateway </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="REPL_8cpp.html#a402d683058e8918de804245d663a5b4c">blinkDB</a></td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Handles API requests for executing database commands. </p>
 
 </div>
 </div>
@@ -219,6 +203,84 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="Server_8cpp_source.html#l00075">75</a> of file <a class="el" href="Server_8cpp_source.html">Server.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   76</span>{</div>
+<div class="line"><span class="lineno">   77</span>    <a class="code hl_function" href="#a1316d6efd1a452dcf543f6339b346adf">activeConnections</a>++;</div>
+<div class="line"><span class="lineno">   78</span>    cout &lt;&lt; <span class="stringliteral">&quot;New client connected. Active clients: &quot;</span> &lt;&lt; <a class="code hl_function" href="#a1316d6efd1a452dcf543f6339b346adf">activeConnections</a> &lt;&lt; endl;</div>
+<div class="line"><span class="lineno">   79</span> </div>
+<div class="line"><span class="lineno">   80</span>    <span class="keywordtype">char</span> buffer[512];</div>
+<div class="line"><span class="lineno">   81</span>    <span class="keywordflow">while</span> (<span class="keyword">true</span>)</div>
+<div class="line"><span class="lineno">   82</span>    {</div>
+<div class="line"><span class="lineno">   83</span>        memset(buffer, 0, <span class="keyword">sizeof</span>(buffer));</div>
+<div class="line"><span class="lineno">   84</span>        <span class="keywordtype">int</span> bytesReceived = recv(clientSocket, buffer, <span class="keyword">sizeof</span>(buffer), 0);</div>
+<div class="line"><span class="lineno">   85</span>        <span class="keywordflow">if</span> (bytesReceived &lt;= 0)</div>
+<div class="line"><span class="lineno">   86</span>        {</div>
+<div class="line"><span class="lineno">   87</span>            cout &lt;&lt; <span class="stringliteral">&quot;Client disconnected. Active clients: &quot;</span> &lt;&lt; --<a class="code hl_function" href="#a1316d6efd1a452dcf543f6339b346adf">activeConnections</a> &lt;&lt; endl;</div>
+<div class="line"><span class="lineno">   88</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">   89</span>        }</div>
+<div class="line"><span class="lineno">   90</span>        <span class="keywordtype">string</span> commandString = <a class="code hl_variable" href="REPL_8cpp.html#a0a9c1f677277ebf123dd67dd754228ba">utils</a>.fromRESP2(buffer);</div>
+<div class="line"><span class="lineno">   91</span> </div>
+<div class="line"><span class="lineno">   92</span>        vector&lt;string&gt; result = <a class="code hl_variable" href="REPL_8cpp.html#a0a9c1f677277ebf123dd67dd754228ba">utils</a>.splitCommand(commandString);</div>
+<div class="line"><span class="lineno">   93</span> </div>
+<div class="line"><span class="lineno">   94</span>        <span class="keywordflow">if</span> (result.size() == 3 &amp;&amp; result[0] == <span class="stringliteral">&quot;set&quot;</span>)</div>
+<div class="line"><span class="lineno">   95</span>        {</div>
+<div class="line"><span class="lineno">   96</span>            <a class="code hl_variable" href="REPL_8cpp.html#a252cf30305a23a874371ecc779fab24b">command</a> = <a class="code hl_class" href="classCommand.html">Command</a>(result[0], result[1], result[2]);</div>
+<div class="line"><span class="lineno">   97</span>        }</div>
+<div class="line"><span class="lineno">   98</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (result.size() == 2 &amp;&amp; result[0] == <span class="stringliteral">&quot;get&quot;</span>)</div>
+<div class="line"><span class="lineno">   99</span>        {</div>
+<div class="line"><span class="lineno">  100</span>            <a class="code hl_variable" href="REPL_8cpp.html#a252cf30305a23a874371ecc779fab24b">command</a> = <a class="code hl_class" href="classCommand.html">Command</a>(result[0], result[1]);</div>
+<div class="line"><span class="lineno">  101</span>        }</div>
+<div class="line"><span class="lineno">  102</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (result.size() == 2 &amp;&amp; result[0] == <span class="stringliteral">&quot;del&quot;</span>)</div>
+<div class="line"><span class="lineno">  103</span>        {</div>
+<div class="line"><span class="lineno">  104</span>            <a class="code hl_variable" href="REPL_8cpp.html#a252cf30305a23a874371ecc779fab24b">command</a> = <a class="code hl_class" href="classCommand.html">Command</a>(result[0], result[1]);</div>
+<div class="line"><span class="lineno">  105</span>        }</div>
+<div class="line"><span class="lineno">  106</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (result[0] == <span class="stringliteral">&quot;exit&quot;</span>)</div>
+<div class="line"><span class="lineno">  107</span>        {</div>
+<div class="line"><span class="lineno">  108</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  109</span>        }</div>
+<div class="line"><span class="lineno">  110</span>        <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  111</span>        {</div>
+<div class="line"><span class="lineno">  112</span>            cout &lt;&lt; <span class="stringliteral">&quot;Invalid command&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><span class="lineno">  113</span>            <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  114</span>        }</div>
+<div class="line"><span class="lineno">  115</span> </div>
+<div class="line"><span class="lineno">  116</span>        <span class="keywordtype">string</span> apiResponse;</div>
+<div class="line"><span class="lineno">  117</span>        {</div>
+<div class="line"><span class="lineno">  118</span>            lock_guard&lt;mutex&gt; lock(<a class="code hl_variable" href="REPL_8cpp.html#ab8f5b274da3fd63bb861160625460c82">dbMutex</a>);</div>
+<div class="line"><span class="lineno">  119</span>            apiResponse = <a class="code hl_variable" href="REPL_8cpp.html#a5303a76873839b12bb127f7e29ea998b">apiGateway</a>.executeCommand(<a class="code hl_variable" href="REPL_8cpp.html#a252cf30305a23a874371ecc779fab24b">command</a>);</div>
+<div class="line"><span class="lineno">  120</span>        }</div>
+<div class="line"><span class="lineno">  121</span>        <a class="code hl_class" href="classResponse.html">Response</a> response;</div>
+<div class="line"><span class="lineno">  122</span> </div>
+<div class="line"><span class="lineno">  123</span>        <span class="keywordflow">if</span> (apiResponse == <span class="stringliteral">&quot;-1&quot;</span> || apiResponse == <span class="stringliteral">&quot;-2&quot;</span>)</div>
+<div class="line"><span class="lineno">  124</span>        {</div>
+<div class="line"><span class="lineno">  125</span>            response = <a class="code hl_class" href="classResponse.html">Response</a>(404, <span class="stringliteral">&quot;Not Found&quot;</span>, {<span class="stringliteral">&quot;Data&quot;</span>, <span class="stringliteral">&quot;Key not found&quot;</span>});</div>
+<div class="line"><span class="lineno">  126</span>        }</div>
+<div class="line"><span class="lineno">  127</span>        <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  128</span>        {</div>
+<div class="line"><span class="lineno">  129</span>            response = <a class="code hl_class" href="classResponse.html">Response</a>(200, <span class="stringliteral">&quot;Success&quot;</span>, {<span class="stringliteral">&quot;Data&quot;</span>, apiResponse});</div>
+<div class="line"><span class="lineno">  130</span>        }</div>
+<div class="line"><span class="lineno">  131</span>        memset(buffer, 0, <span class="keyword">sizeof</span>(buffer));</div>
+<div class="line"><span class="lineno">  132</span>        strcpy(buffer, response.<a class="code hl_function" href="classResponse.html#ac39b6e8b87b8d363bdd6fc9c5110ce5d">to_string</a>().c_str());</div>
+<div class="line"><span class="lineno">  133</span>        <span class="keywordtype">string</span> temp = <a class="code hl_variable" href="REPL_8cpp.html#a0a9c1f677277ebf123dd67dd754228ba">utils</a>.toRESP2(response.<a class="code hl_function" href="classResponse.html#ac39b6e8b87b8d363bdd6fc9c5110ce5d">to_string</a>());</div>
+<div class="line"><span class="lineno">  134</span>        temp = temp.substr(0, temp.size() - 1).c_str();</div>
+<div class="line"><span class="lineno">  135</span>        strcpy(buffer, temp.c_str());</div>
+<div class="line"><span class="lineno">  136</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="REPL_8cpp.html#a252cf30305a23a874371ecc779fab24b">command</a>.getCommand() == <span class="stringliteral">&quot;get&quot;</span>)</div>
+<div class="line"><span class="lineno">  137</span>        {</div>
+<div class="line"><span class="lineno">  138</span>            send(clientSocket, buffer, strlen(buffer), 0);</div>
+<div class="line"><span class="lineno">  139</span>        }</div>
+<div class="line"><span class="lineno">  140</span>    }</div>
+<div class="line"><span class="lineno">  141</span> </div>
+<div class="line"><span class="lineno">  142</span>    close(clientSocket);</div>
+<div class="line"><span class="lineno">  143</span>}</div>
+<div class="ttc" id="aREPL_8cpp_html_a0a9c1f677277ebf123dd67dd754228ba"><div class="ttname"><a href="REPL_8cpp.html#a0a9c1f677277ebf123dd67dd754228ba">utils</a></div><div class="ttdeci">Utils utils</div><div class="ttdoc">Utility class for helper functions.</div><div class="ttdef"><b>Definition</b> <a href="REPL_8cpp_source.html#l00033">REPL.cpp:33</a></div></div>
+<div class="ttc" id="aREPL_8cpp_html_a252cf30305a23a874371ecc779fab24b"><div class="ttname"><a href="REPL_8cpp.html#a252cf30305a23a874371ecc779fab24b">command</a></div><div class="ttdeci">Command command</div><div class="ttdoc">Stores the command to be executed.</div><div class="ttdef"><b>Definition</b> <a href="REPL_8cpp_source.html#l00018">REPL.cpp:18</a></div></div>
+<div class="ttc" id="aREPL_8cpp_html_a5303a76873839b12bb127f7e29ea998b"><div class="ttname"><a href="REPL_8cpp.html#a5303a76873839b12bb127f7e29ea998b">apiGateway</a></div><div class="ttdeci">APIGateway apiGateway(blinkDB)</div><div class="ttdoc">Handles API requests for executing database commands.</div></div>
+<div class="ttc" id="aREPL_8cpp_html_ab8f5b274da3fd63bb861160625460c82"><div class="ttname"><a href="REPL_8cpp.html#ab8f5b274da3fd63bb861160625460c82">dbMutex</a></div><div class="ttdeci">mutex dbMutex</div><div class="ttdoc">Mutex to synchronize access to the database.</div><div class="ttdef"><b>Definition</b> <a href="REPL_8cpp_source.html#l00038">REPL.cpp:38</a></div></div>
+<div class="ttc" id="aServer_8cpp_html_a1316d6efd1a452dcf543f6339b346adf"><div class="ttname"><a href="#a1316d6efd1a452dcf543f6339b346adf">activeConnections</a></div><div class="ttdeci">atomic&lt; int &gt; activeConnections(0)</div><div class="ttdoc">Tracks the number of active client connections.</div></div>
+<div class="ttc" id="aclassCommand_html"><div class="ttname"><a href="classCommand.html">Command</a></div><div class="ttdoc">Represents a user command in BlinkDB.</div><div class="ttdef"><b>Definition</b> <a href="Command_8h_source.html#l00011">Command.h:12</a></div></div>
+<div class="ttc" id="aclassResponse_html"><div class="ttname"><a href="classResponse.html">Response</a></div><div class="ttdoc">Represents an API response in BlinkDB.</div><div class="ttdef"><b>Definition</b> <a href="Response_8h_source.html#l00011">Response.h:12</a></div></div>
+<div class="ttc" id="aclassResponse_html_ac39b6e8b87b8d363bdd6fc9c5110ce5d"><div class="ttname"><a href="classResponse.html#ac39b6e8b87b8d363bdd6fc9c5110ce5d">Response::to_string</a></div><div class="ttdeci">string to_string()</div><div class="ttdoc">Converts the response to a string representation.</div><div class="ttdef"><b>Definition</b> <a href="Response_8h_source.html#l00074">Response.h:74</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ae66f6b31b5ad750f1fe042a706a4e3d4" name="ae66f6b31b5ad750f1fe042a706a4e3d4"></a>
@@ -236,10 +298,72 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Entry point of the BlinkDB server. </p>
+<p>Entry point of the <a class="el" href="classBlinkDB.html" title="Implements an in-memory key-value database with periodic disk backups.">BlinkDB</a> server. </p>
 <p>Initializes the server, sets up a signal handler for termination, starts listening for client connections, and creates separate threads for each connected client.</p>
 <dl class="section return"><dt>Returns</dt><dd>int Exit status code. </dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="Server_8cpp_source.html#l00153">153</a> of file <a class="el" href="Server_8cpp_source.html">Server.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  154</span>{</div>
+<div class="line"><span class="lineno">  155</span>    cout &lt;&lt; <span class="stringliteral">&quot;Initializing BlinkDB server...&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><span class="lineno">  156</span> </div>
+<div class="line"><span class="lineno">  157</span>    <span class="comment">// Register signal handler for graceful termination</span></div>
+<div class="line"><span class="lineno">  158</span>    signal(SIGINT, <a class="code hl_function" href="REPL_8cpp.html#ad2e59c7203b3bddc1bc9a2224b52e8e7">signalHandler</a>);</div>
+<div class="line"><span class="lineno">  159</span> </div>
+<div class="line"><span class="lineno">  160</span>    <span class="comment">// Create a server socket</span></div>
+<div class="line"><span class="lineno">  161</span>    <span class="keywordtype">int</span> serverSocket = socket(AF_INET, SOCK_STREAM, 0);</div>
+<div class="line"><span class="lineno">  162</span>    <span class="keywordflow">if</span> (serverSocket == -1)</div>
+<div class="line"><span class="lineno">  163</span>    {</div>
+<div class="line"><span class="lineno">  164</span>        cerr &lt;&lt; <span class="stringliteral">&quot;Socket creation failed&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><span class="lineno">  165</span>        <span class="keywordflow">return</span> -1;</div>
+<div class="line"><span class="lineno">  166</span>    }</div>
+<div class="line"><span class="lineno">  167</span> </div>
+<div class="line"><span class="lineno">  168</span>    <span class="comment">// Configure server address settings</span></div>
+<div class="line"><span class="lineno">  169</span>    sockaddr_in serverAddress;</div>
+<div class="line"><span class="lineno">  170</span>    serverAddress.sin_family = AF_INET;</div>
+<div class="line"><span class="lineno">  171</span>    serverAddress.sin_port = htons(5000);</div>
+<div class="line"><span class="lineno">  172</span>    serverAddress.sin_addr.s_addr = INADDR_ANY;</div>
+<div class="line"><span class="lineno">  173</span> </div>
+<div class="line"><span class="lineno">  174</span>    <span class="comment">// Bind the socket to the port</span></div>
+<div class="line"><span class="lineno">  175</span>    <span class="keywordtype">int</span> bindStatus = bind(serverSocket, (sockaddr *)&amp;serverAddress, <span class="keyword">sizeof</span>(serverAddress));</div>
+<div class="line"><span class="lineno">  176</span>    <span class="keywordflow">if</span> (bindStatus == -1)</div>
+<div class="line"><span class="lineno">  177</span>    {</div>
+<div class="line"><span class="lineno">  178</span>        cerr &lt;&lt; <span class="stringliteral">&quot;Binding to port 5000 failed.&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><span class="lineno">  179</span>        <span class="keywordflow">return</span> -2;</div>
+<div class="line"><span class="lineno">  180</span>    }</div>
+<div class="line"><span class="lineno">  181</span> </div>
+<div class="line"><span class="lineno">  182</span>    <span class="comment">// Start listening for client connections</span></div>
+<div class="line"><span class="lineno">  183</span>    <span class="keywordtype">int</span> listenStatus = listen(serverSocket, 100000);</div>
+<div class="line"><span class="lineno">  184</span>    <span class="keywordflow">if</span> (listenStatus == -1)</div>
+<div class="line"><span class="lineno">  185</span>    {</div>
+<div class="line"><span class="lineno">  186</span>        cerr &lt;&lt; <span class="stringliteral">&quot;Listening on port 5000 failed.&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><span class="lineno">  187</span>        <span class="keywordflow">return</span> -3;</div>
+<div class="line"><span class="lineno">  188</span>    }</div>
+<div class="line"><span class="lineno">  189</span> </div>
+<div class="line"><span class="lineno">  190</span>    cout &lt;&lt; <span class="stringliteral">&quot;Initialized BlinkDB server.&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><span class="lineno">  191</span>    cout &lt;&lt; <span class="stringliteral">&quot;Listening on port 5000...&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><span class="lineno">  192</span>    cout &lt;&lt; <span class="stringliteral">&quot;Press Ctrl+C to exit.&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><span class="lineno">  193</span> </div>
+<div class="line"><span class="lineno">  194</span>    <span class="comment">// Accept and handle client connections in separate threads</span></div>
+<div class="line"><span class="lineno">  195</span>    <span class="keywordflow">while</span> (<span class="keyword">true</span>)</div>
+<div class="line"><span class="lineno">  196</span>    {</div>
+<div class="line"><span class="lineno">  197</span>        sockaddr_in clientAddress;</div>
+<div class="line"><span class="lineno">  198</span>        socklen_t clientAddressSize = <span class="keyword">sizeof</span>(clientAddress);</div>
+<div class="line"><span class="lineno">  199</span>        <span class="keywordtype">int</span> clientSocket = accept(serverSocket, (sockaddr *)&amp;clientAddress, &amp;clientAddressSize);</div>
+<div class="line"><span class="lineno">  200</span>        <span class="keywordflow">if</span> (clientSocket == -1)</div>
+<div class="line"><span class="lineno">  201</span>        {</div>
+<div class="line"><span class="lineno">  202</span>            cerr &lt;&lt; <span class="stringliteral">&quot;Accepting connection failed.&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><span class="lineno">  203</span>            <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  204</span>        }</div>
+<div class="line"><span class="lineno">  205</span> </div>
+<div class="line"><span class="lineno">  206</span>        thread(<a class="code hl_function" href="#a28ce186ce771194512785b1d1d5310c0">handleClient</a>, clientSocket).detach();</div>
+<div class="line"><span class="lineno">  207</span>    }</div>
+<div class="line"><span class="lineno">  208</span> </div>
+<div class="line"><span class="lineno">  209</span>    close(serverSocket);</div>
+<div class="line"><span class="lineno">  210</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">  211</span>}</div>
+<div class="ttc" id="aREPL_8cpp_html_ad2e59c7203b3bddc1bc9a2224b52e8e7"><div class="ttname"><a href="REPL_8cpp.html#ad2e59c7203b3bddc1bc9a2224b52e8e7">signalHandler</a></div><div class="ttdeci">void signalHandler(int signal)</div><div class="ttdoc">Handles termination signals (e.g., Ctrl+C).</div><div class="ttdef"><b>Definition</b> <a href="REPL_8cpp_source.html#l00048">REPL.cpp:48</a></div></div>
+<div class="ttc" id="aServer_8cpp_html_a28ce186ce771194512785b1d1d5310c0"><div class="ttname"><a href="#a28ce186ce771194512785b1d1d5310c0">handleClient</a></div><div class="ttdeci">void handleClient(int clientSocket)</div><div class="ttdoc">Handles an individual client connection.</div><div class="ttdef"><b>Definition</b> <a href="Server_8cpp_source.html#l00075">Server.cpp:75</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ad2e59c7203b3bddc1bc9a2224b52e8e7" name="ad2e59c7203b3bddc1bc9a2224b52e8e7"></a>
@@ -266,9 +390,39 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="Server_8cpp_source.html#l00057">57</a> of file <a class="el" href="Server_8cpp_source.html">Server.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   58</span>{</div>
+<div class="line"><span class="lineno">   59</span>    cout &lt;&lt; <span class="stringliteral">&quot;Exiting BlinkDB: Deleting Backups...&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><span class="lineno">   60</span>    <a class="code hl_variable" href="REPL_8cpp.html#a3f7d9a523aae4471718c08c5427f95cb">discBackupHandler</a>.terminate();</div>
+<div class="line"><span class="lineno">   61</span>    cout &lt;&lt; <span class="stringliteral">&quot;Exiting BlinkDB: Deleting Backups... Done&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><span class="lineno">   62</span>    cout &lt;&lt; <span class="stringliteral">&quot;Exiting BlinkDB: Closing server...&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><span class="lineno">   63</span>    cout &lt;&lt; <span class="stringliteral">&quot;Exited&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><span class="lineno">   64</span>    exit(signal);</div>
+<div class="line"><span class="lineno">   65</span>}</div>
+<div class="ttc" id="aREPL_8cpp_html_a3f7d9a523aae4471718c08c5427f95cb"><div class="ttname"><a href="REPL_8cpp.html#a3f7d9a523aae4471718c08c5427f95cb">discBackupHandler</a></div><div class="ttdeci">DiscBackupHandler discBackupHandler</div><div class="ttdoc">Manages disk backup operations.</div><div class="ttdef"><b>Definition</b> <a href="REPL_8cpp_source.html#l00028">REPL.cpp:28</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
+<a id="a5303a76873839b12bb127f7e29ea998b" name="a5303a76873839b12bb127f7e29ea998b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5303a76873839b12bb127f7e29ea998b">&#9670;&#160;</a></span>apiGateway</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classAPIGateway.html">APIGateway</a> apiGateway(<a class="el" href="REPL_8cpp.html#a402d683058e8918de804245d663a5b4c">blinkDB</a>) </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="REPL_8cpp.html#a402d683058e8918de804245d663a5b4c">blinkDB</a></td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Handles API requests for executing database commands. </p>
+
+</div>
+</div>
 <a id="a402d683058e8918de804245d663a5b4c" name="a402d683058e8918de804245d663a5b4c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a402d683058e8918de804245d663a5b4c">&#9670;&#160;</a></span>blinkDB</h2>
 
@@ -276,12 +430,14 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">BlinkDB blinkDB</td>
+          <td class="memname"><a class="el" href="classBlinkDB.html">BlinkDB</a> blinkDB</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Represents the main database instance. </p>
+
+<p class="definition">Definition at line <a class="el" href="Server_8cpp_source.html#l00018">18</a> of file <a class="el" href="Server_8cpp_source.html">Server.cpp</a>.</p>
 
 </div>
 </div>
@@ -292,12 +448,14 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Command command</td>
+          <td class="memname"><a class="el" href="classCommand.html">Command</a> command</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Stores the command to be executed. </p>
+
+<p class="definition">Definition at line <a class="el" href="Server_8cpp_source.html#l00023">23</a> of file <a class="el" href="Server_8cpp_source.html">Server.cpp</a>.</p>
 
 </div>
 </div>
@@ -315,6 +473,8 @@ Variables</h2></td></tr>
 
 <p>Mutex to synchronize access to the database. </p>
 
+<p class="definition">Definition at line <a class="el" href="Server_8cpp_source.html#l00048">48</a> of file <a class="el" href="Server_8cpp_source.html">Server.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a3f7d9a523aae4471718c08c5427f95cb" name="a3f7d9a523aae4471718c08c5427f95cb"></a>
@@ -324,12 +484,14 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">DiscBackupHandler discBackupHandler</td>
+          <td class="memname"><a class="el" href="classDiscBackupHandler.html">DiscBackupHandler</a> discBackupHandler</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Manages disk backup operations. </p>
+
+<p class="definition">Definition at line <a class="el" href="Server_8cpp_source.html#l00033">33</a> of file <a class="el" href="Server_8cpp_source.html">Server.cpp</a>.</p>
 
 </div>
 </div>
@@ -340,12 +502,14 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Utils utils</td>
+          <td class="memname"><a class="el" href="classUtils.html">Utils</a> utils</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Utility class for helper functions. </p>
+
+<p class="definition">Definition at line <a class="el" href="Server_8cpp_source.html#l00038">38</a> of file <a class="el" href="Server_8cpp_source.html">Server.cpp</a>.</p>
 
 </div>
 </div>

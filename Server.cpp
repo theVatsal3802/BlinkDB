@@ -87,13 +87,9 @@ void handleClient(int clientSocket)
             cout << "Client disconnected. Active clients: " << --activeConnections << endl;
             break;
         }
+        string commandString = utils.fromRESP2(buffer);
 
-        vector<string> result = utils.splitCommand(buffer);
-
-        if (result.size() > 1)
-        {
-            result[1] = utils.hashKey(result[1]);
-        }
+        vector<string> result = utils.splitCommand(commandString);
 
         if (result.size() == 3 && result[0] == "set")
         {
@@ -124,13 +120,9 @@ void handleClient(int clientSocket)
         }
         Response response;
 
-        if (apiResponse == "-1")
+        if (apiResponse == "-1" || apiResponse == "-2")
         {
             response = Response(404, "Not Found", {"Data", "Key not found"});
-        }
-        else if (apiResponse == "-2")
-        {
-            response = Response(500, "Internal Server Error", {"Data", "Error occurred"});
         }
         else
         {
@@ -138,10 +130,10 @@ void handleClient(int clientSocket)
         }
         memset(buffer, 0, sizeof(buffer));
         strcpy(buffer, response.to_string().c_str());
-        if (command.getCommand() == "get")
-        {
-            send(clientSocket, buffer, strlen(buffer), 0);
-        }
+        string temp = utils.toRESP2(response.to_string());
+        temp = temp.substr(0, temp.size() - 1).c_str();
+        strcpy(buffer, temp.c_str());
+        send(clientSocket, buffer, strlen(buffer), 0);
     }
 
     close(clientSocket);
@@ -184,13 +176,8 @@ int main()
         return -2;
     }
 
-    // Accept the maximum number of connections from the user
-    cout << "Enter maximum number of connections: ";
-    int maxConnections;
-    cin >> maxConnections;
-
     // Start listening for client connections
-    int listenStatus = listen(serverSocket, maxConnections);
+    int listenStatus = listen(serverSocket, 100000);
     if (listenStatus == -1)
     {
         cerr << "Listening on port 5000 failed." << endl;

@@ -1,0 +1,184 @@
+\doxysection{Blink\+DB Class Reference}
+\hypertarget{classBlinkDB}{}\label{classBlinkDB}\index{BlinkDB@{BlinkDB}}
+
+
+Implements an in-\/memory key-\/value database with periodic disk backups.  
+
+
+
+
+{\ttfamily \#include $<$Blink\+DB.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classBlinkDB_a69140f26047029abd72d3e3354af0727}{Blink\+DB}} ()
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classBlinkDB}{Blink\+DB} instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classBlinkDB_a2bf225df41dbb50b8c6950cdcecde9ae}{\texorpdfstring{$\sim$}{\string~}\+Blink\+DB}} ()
+\begin{DoxyCompactList}\small\item\em Destructor that ensures cleanup of resources. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBlinkDB_a20996e688afda9735a3309071afd0db2}{set}} (string key, string value)
+\begin{DoxyCompactList}\small\item\em Stores a key-\/value pair in the database. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classBlinkDB_a399dd136d713f56df9c0475ab1fd8148}{get}} (string key)
+\begin{DoxyCompactList}\small\item\em Retrieves the value associated with a key. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBlinkDB_a80be853e5882022fc21ea69f5be510ce}{del}} (string key)
+\begin{DoxyCompactList}\small\item\em Deletes a key-\/value pair from the database. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implements an in-\/memory key-\/value database with periodic disk backups. 
+
+This class provides functionality to store, retrieve, and delete key-\/value pairs efficiently. It also manages background backups to disk for data persistence. 
+
+Definition at line \mbox{\hyperlink{BlinkDB_8h_source_l00014}{14}} of file \mbox{\hyperlink{BlinkDB_8h_source}{Blink\+DB.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classBlinkDB_a69140f26047029abd72d3e3354af0727}\index{BlinkDB@{BlinkDB}!BlinkDB@{BlinkDB}}
+\index{BlinkDB@{BlinkDB}!BlinkDB@{BlinkDB}}
+\doxysubsubsection{\texorpdfstring{BlinkDB()}{BlinkDB()}}
+{\footnotesize\ttfamily \label{classBlinkDB_a69140f26047029abd72d3e3354af0727} 
+Blink\+DB\+::\+Blink\+DB (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classBlinkDB}{Blink\+DB} instance. 
+
+Initializes the in-\/memory database and starts the background backup thread. 
+
+Definition at line \mbox{\hyperlink{BlinkDB_8h_source_l00097}{97}} of file \mbox{\hyperlink{BlinkDB_8h_source}{Blink\+DB.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00098\ \ \ \ \ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ DiscBackupHandler\ discBackupHandler\ =\ DiscBackupHandler();}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ database\ =\ unordered\_map<string,\ string>();}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ backupThread\ =\ thread(\&BlinkDB::backupWorker,\ \textcolor{keyword}{this});}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ buffer\ =\ unordered\_map<string,\ string>();}
+\DoxyCodeLine{00103\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classBlinkDB_a2bf225df41dbb50b8c6950cdcecde9ae}\index{BlinkDB@{BlinkDB}!````~BlinkDB@{\texorpdfstring{$\sim$}{\string~}BlinkDB}}
+\index{````~BlinkDB@{\texorpdfstring{$\sim$}{\string~}BlinkDB}!BlinkDB@{BlinkDB}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}BlinkDB()}{\string~BlinkDB()}}
+{\footnotesize\ttfamily \label{classBlinkDB_a2bf225df41dbb50b8c6950cdcecde9ae} 
+Blink\+DB\+::\texorpdfstring{$\sim$}{\string~}\+Blink\+DB (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Destructor that ensures cleanup of resources. 
+
+Stops the background backup worker thread before shutting down. 
+
+Definition at line \mbox{\hyperlink{BlinkDB_8h_source_l00110}{110}} of file \mbox{\hyperlink{BlinkDB_8h_source}{Blink\+DB.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00111\ \ \ \ \ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ stopBackup\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (backupThread.joinable())}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ backupThread.join();}
+\DoxyCodeLine{00115\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classBlinkDB_a80be853e5882022fc21ea69f5be510ce}\index{BlinkDB@{BlinkDB}!del@{del}}
+\index{del@{del}!BlinkDB@{BlinkDB}}
+\doxysubsubsection{\texorpdfstring{del()}{del()}}
+{\footnotesize\ttfamily \label{classBlinkDB_a80be853e5882022fc21ea69f5be510ce} 
+void Blink\+DB\+::del (\begin{DoxyParamCaption}\item[{string}]{key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Deletes a key-\/value pair from the database. 
+
+If the key exists, it is removed from the in-\/memory store.
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key to be deleted. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{BlinkDB_8h_source_l00155}{155}} of file \mbox{\hyperlink{BlinkDB_8h_source}{Blink\+DB.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00156\ \ \ \ \ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ database.erase(key);}
+\DoxyCodeLine{00158\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classBlinkDB_a399dd136d713f56df9c0475ab1fd8148}\index{BlinkDB@{BlinkDB}!get@{get}}
+\index{get@{get}!BlinkDB@{BlinkDB}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily \label{classBlinkDB_a399dd136d713f56df9c0475ab1fd8148} 
+string Blink\+DB\+::get (\begin{DoxyParamCaption}\item[{string}]{key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retrieves the value associated with a key. 
+
+First, it checks the in-\/memory database. If not found, it attempts to retrieve the value from the disk backup.
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key to look up. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string The corresponding value if found, otherwise an empty string. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{BlinkDB_8h_source_l00139}{139}} of file \mbox{\hyperlink{BlinkDB_8h_source}{Blink\+DB.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00140\ \ \ \ \ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (database.find(key)\ !=\ database.end())}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ database[key];}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ discBackupHandler.checkBackupForKey(key);}
+\DoxyCodeLine{00146\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classBlinkDB_a20996e688afda9735a3309071afd0db2}\index{BlinkDB@{BlinkDB}!set@{set}}
+\index{set@{set}!BlinkDB@{BlinkDB}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily \label{classBlinkDB_a20996e688afda9735a3309071afd0db2} 
+void Blink\+DB\+::set (\begin{DoxyParamCaption}\item[{string}]{key}{, }\item[{string}]{value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Stores a key-\/value pair in the database. 
+
+If the key already exists, its value is updated.
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key to store. \\
+\hline
+{\em value} & The associated value. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{BlinkDB_8h_source_l00125}{125}} of file \mbox{\hyperlink{BlinkDB_8h_source}{Blink\+DB.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00126\ \ \ \ \ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ database[key]\ =\ value;}
+\DoxyCodeLine{00128\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Database/\mbox{\hyperlink{BlinkDB_8h}{Blink\+DB.\+h}}\end{DoxyCompactItemize}

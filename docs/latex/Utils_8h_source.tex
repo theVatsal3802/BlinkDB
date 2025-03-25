@@ -1,0 +1,80 @@
+\doxysection{Utils.\+h}
+\hypertarget{Utils_8h_source}{}\label{Utils_8h_source}\index{Utils/Utils.h@{Utils/Utils.h}}
+\mbox{\hyperlink{Utils_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <boost/container\_hash/hash.hpp>}}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <bits/stdc++.h>}}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00005}00005\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00010}\mbox{\hyperlink{classUtils}{00010}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classUtils}{Utils}}}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00011}00011\ \{}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00012}00012\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00019}\mbox{\hyperlink{classUtils_aa1d553caf53f915881b47c961dd7ef2e}{00019}}\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classUtils_aa1d553caf53f915881b47c961dd7ef2e}{hash}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&key)}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00020}00020\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00021}00021\ \ \ \ \ \ \ \ \ boost::hash<string>\ hash\_fn;}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00022}00022\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classUtils_aa1d553caf53f915881b47c961dd7ef2e}{hash}}\ =\ hash\_fn(key);}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00023}00023\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ to\_string(\mbox{\hyperlink{classUtils_aa1d553caf53f915881b47c961dd7ef2e}{hash}});}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00024}00024\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00032}\mbox{\hyperlink{classUtils_a6f265fd8a4fcb74fc25b0d1a00e8d553}{00032}}\ \ \ \ \ vector<string>\ \mbox{\hyperlink{classUtils_a6f265fd8a4fcb74fc25b0d1a00e8d553}{splitCommand}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}})}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00033}00033\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00034}00034\ \ \ \ \ \ \ \ \ vector<string>\ result;}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00035}00035\ \ \ \ \ \ \ \ \ stringstream\ ss(\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}});}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ word;}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00037}00037\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ count\ =\ 2;\ \textcolor{comment}{//\ Limit\ to\ three\ parts\ (command,\ key,\ value)}}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00039}00039\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (ss\ >>\ word\ \&\&\ count\ >\ 0)}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00040}00040\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ result.push\_back(word);}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ count-\/-\/;}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00043}00043\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00045}00045\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ the\ remaining\ part\ as\ a\ single\ value}}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00046}00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ss.rdbuf()-\/>in\_avail()\ >\ 0)}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00047}00047\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ remaining;}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ getline(ss,\ remaining);}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ result.push\_back(remaining);}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00051}00051\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00054}00054\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00063}\mbox{\hyperlink{classUtils_a53bf7de5e9b7bc2da2231e3ecac93543}{00063}}\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classUtils_a53bf7de5e9b7bc2da2231e3ecac93543}{startsWith}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&str,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&prefix)}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00064}00064\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00065}00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ str.rfind(prefix,\ 0)\ ==\ 0;}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00066}00066\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00074}\mbox{\hyperlink{classUtils_a74638524efa66fa47ba86bfd8c233ac2}{00074}}\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classUtils_a74638524efa66fa47ba86bfd8c233ac2}{toRESP2}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&data)}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00075}00075\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00076}00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}\$"{}}\ +\ to\_string(data.size())\ +\ \textcolor{stringliteral}{"{}\(\backslash\)r\(\backslash\)n"{}}\ +\ data\ +\ \textcolor{stringliteral}{"{}\(\backslash\)r\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00077}00077\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00085}\mbox{\hyperlink{classUtils_aa418bf6958923361fe5746687abd8b70}{00085}}\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classUtils_aa418bf6958923361fe5746687abd8b70}{fromRESP2}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&resp)}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00086}00086\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00087}00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (resp.empty()\ ||\ resp[0]\ !=\ \textcolor{charliteral}{'\$'})}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00090}00090\ \ \ \ \ \ \ \ \ istringstream\ stream(resp);}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00091}00091\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ lengthLine,\ data;}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00093}00093\ \ \ \ \ \ \ \ \ getline(stream,\ lengthLine);\ \textcolor{comment}{//\ Read\ first\ line\ (\$length)}}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00094}00094\ \ \ \ \ \ \ \ \ getline(stream,\ data);\ \ \ \ \ \ \ \textcolor{comment}{//\ Read\ actual\ string}}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00096}00096\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Trim\ trailing\ \(\backslash\)r\ if\ present}}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00097}00097\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!lengthLine.empty()\ \&\&\ lengthLine.back()\ ==\ \textcolor{charliteral}{'\(\backslash\)r'})}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00098}00098\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ lengthLine.pop\_back();}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00100}00100\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00101}00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!data.empty()\ \&\&\ data.back()\ ==\ \textcolor{charliteral}{'\(\backslash\)r'})}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00102}00102\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ data.pop\_back();}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00104}00104\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00106}00106\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ data;}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00107}00107\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Utils_8h_source_l00108}00108\ \};}
+
+\end{DoxyCode}

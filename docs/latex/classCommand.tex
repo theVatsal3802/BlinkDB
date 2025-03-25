@@ -1,0 +1,203 @@
+\doxysection{Command Class Reference}
+\hypertarget{classCommand}{}\label{classCommand}\index{Command@{Command}}
+
+
+Represents a user command in \doxylink{classBlinkDB}{Blink\+DB}.  
+
+
+
+
+{\ttfamily \#include $<$Command.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCommand_a18df2d81039392daeb0b78c346a70537}{Command}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor initializing empty command, key, and value. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classCommand_ade17bd14e36063dfef94693db3eddd25}{Command}} (string command, string key, string value)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classCommand}{Command} with a specified command type, key, and value. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classCommand_aa87f677785cbcc44a4266175047d020c}{Command}} (string command, string key)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classCommand}{Command} with a command type and key (for "{}get"{} and "{}del"{} commands). \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classCommand_abdd31f136459c4aeaabcac39ec21bbf1}{get\+Command}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the command type. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classCommand_a684ed199358c644a0766d91e8c903ee8}{get\+Key}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the key associated with the command. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classCommand_a7f13017cfdbbc43288aa28adb553e2cd}{get\+Value}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the value associated with the command (only relevant for "{}set"{}). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a user command in \doxylink{classBlinkDB}{Blink\+DB}. 
+
+This class encapsulates a database command with a command type, key, and optional value. 
+
+Definition at line \mbox{\hyperlink{Command_8h_source_l00011}{11}} of file \mbox{\hyperlink{Command_8h_source}{Command.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classCommand_a18df2d81039392daeb0b78c346a70537}\index{Command@{Command}!Command@{Command}}
+\index{Command@{Command}!Command@{Command}}
+\doxysubsubsection{\texorpdfstring{Command()}{Command()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{classCommand_a18df2d81039392daeb0b78c346a70537} 
+Command\+::\+Command (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor initializing empty command, key, and value. 
+
+
+
+Definition at line \mbox{\hyperlink{Command_8h_source_l00033}{33}} of file \mbox{\hyperlink{Command_8h_source}{Command.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00034\ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ command\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ key\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ value\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00038\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classCommand_ade17bd14e36063dfef94693db3eddd25}\index{Command@{Command}!Command@{Command}}
+\index{Command@{Command}!Command@{Command}}
+\doxysubsubsection{\texorpdfstring{Command()}{Command()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{classCommand_ade17bd14e36063dfef94693db3eddd25} 
+Command\+::\+Command (\begin{DoxyParamCaption}\item[{string}]{command}{, }\item[{string}]{key}{, }\item[{string}]{value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classCommand}{Command} with a specified command type, key, and value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em command} & The command type (e.\+g., "{}set"{}). \\
+\hline
+{\em key} & The key to be used in the operation. \\
+\hline
+{\em value} & The value to be set (only relevant for "{}set"{} commands). \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{Command_8h_source_l00047}{47}} of file \mbox{\hyperlink{Command_8h_source}{Command.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00048\ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ this-\/>command\ =\ command;}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ this-\/>key\ =\ key;}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ this-\/>value\ =\ value;}
+\DoxyCodeLine{00052\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classCommand_aa87f677785cbcc44a4266175047d020c}\index{Command@{Command}!Command@{Command}}
+\index{Command@{Command}!Command@{Command}}
+\doxysubsubsection{\texorpdfstring{Command()}{Command()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{classCommand_aa87f677785cbcc44a4266175047d020c} 
+Command\+::\+Command (\begin{DoxyParamCaption}\item[{string}]{command}{, }\item[{string}]{key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classCommand}{Command} with a command type and key (for "{}get"{} and "{}del"{} commands). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em command} & The command type (e.\+g., "{}get"{}, "{}del"{}). \\
+\hline
+{\em key} & The key associated with the operation. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{Command_8h_source_l00060}{60}} of file \mbox{\hyperlink{Command_8h_source}{Command.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00061\ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ this-\/>command\ =\ command;}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ this-\/>key\ =\ key;}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ this-\/>value\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00065\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classCommand_abdd31f136459c4aeaabcac39ec21bbf1}\index{Command@{Command}!getCommand@{getCommand}}
+\index{getCommand@{getCommand}!Command@{Command}}
+\doxysubsubsection{\texorpdfstring{getCommand()}{getCommand()}}
+{\footnotesize\ttfamily \label{classCommand_abdd31f136459c4aeaabcac39ec21bbf1} 
+string Command\+::get\+Command (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retrieves the command type. 
+
+\begin{DoxyReturn}{Returns}
+The command type as a string. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{Command_8h_source_l00072}{72}} of file \mbox{\hyperlink{Command_8h_source}{Command.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00073\ \ \ \ \ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ command;}
+\DoxyCodeLine{00075\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classCommand_a684ed199358c644a0766d91e8c903ee8}\index{Command@{Command}!getKey@{getKey}}
+\index{getKey@{getKey}!Command@{Command}}
+\doxysubsubsection{\texorpdfstring{getKey()}{getKey()}}
+{\footnotesize\ttfamily \label{classCommand_a684ed199358c644a0766d91e8c903ee8} 
+string Command\+::get\+Key (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retrieves the key associated with the command. 
+
+\begin{DoxyReturn}{Returns}
+The key as a string. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{Command_8h_source_l00082}{82}} of file \mbox{\hyperlink{Command_8h_source}{Command.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00083\ \ \ \ \ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ key;}
+\DoxyCodeLine{00085\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classCommand_a7f13017cfdbbc43288aa28adb553e2cd}\index{Command@{Command}!getValue@{getValue}}
+\index{getValue@{getValue}!Command@{Command}}
+\doxysubsubsection{\texorpdfstring{getValue()}{getValue()}}
+{\footnotesize\ttfamily \label{classCommand_a7f13017cfdbbc43288aa28adb553e2cd} 
+string Command\+::get\+Value (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retrieves the value associated with the command (only relevant for "{}set"{}). 
+
+\begin{DoxyReturn}{Returns}
+The value as a string. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{Command_8h_source_l00092}{92}} of file \mbox{\hyperlink{Command_8h_source}{Command.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00093\ \ \ \ \ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ value;}
+\DoxyCodeLine{00095\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Models/\mbox{\hyperlink{Command_8h}{Command.\+h}}\end{DoxyCompactItemize}

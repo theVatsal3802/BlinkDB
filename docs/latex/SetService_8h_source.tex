@@ -1,0 +1,24 @@
+\doxysection{Set\+Service.\+h}
+\hypertarget{SetService_8h_source}{}\label{SetService_8h_source}\index{Services/SetService.h@{Services/SetService.h}}
+\mbox{\hyperlink{SetService_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{SetService_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{SetService_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{BlinkDB_8h}{../Database/BlinkDB.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{SetService_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{SetService_8h_source_l00004}00004\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{\Hypertarget{SetService_8h_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{SetService_8h_source_l00011}\mbox{\hyperlink{classSetService}{00011}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSetService_a46efa328eaa22de384f326fce848ec62}{SetService}}}
+\DoxyCodeLine{\Hypertarget{SetService_8h_source_l00012}00012\ \{}
+\DoxyCodeLine{\Hypertarget{SetService_8h_source_l00013}00013\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{SetService_8h_source_l00017}00017\ \ \ \ \ \mbox{\hyperlink{classBlinkDB}{BlinkDB}}\ \&blinkDB;}
+\DoxyCodeLine{\Hypertarget{SetService_8h_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{SetService_8h_source_l00019}00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{SetService_8h_source_l00025}\mbox{\hyperlink{classSetService_a46efa328eaa22de384f326fce848ec62}{00025}}\ \ \ \ \ \mbox{\hyperlink{classSetService_a46efa328eaa22de384f326fce848ec62}{SetService}}(\mbox{\hyperlink{classBlinkDB}{BlinkDB}}\ \&blinkDB)\ :\ blinkDB(blinkDB)\ \{\}}
+\DoxyCodeLine{\Hypertarget{SetService_8h_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{SetService_8h_source_l00033}\mbox{\hyperlink{classSetService_a7c918775cd2f5d8c1e45f1fbb8297c44}{00033}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSetService_a7c918775cd2f5d8c1e45f1fbb8297c44}{set}}(\textcolor{keywordtype}{string}\ key,\ \textcolor{keywordtype}{string}\ value)}
+\DoxyCodeLine{\Hypertarget{SetService_8h_source_l00034}00034\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{SetService_8h_source_l00035}00035\ \ \ \ \ \ \ \ \ blinkDB.set(key,\ value);}
+\DoxyCodeLine{\Hypertarget{SetService_8h_source_l00036}00036\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{SetService_8h_source_l00037}00037\ \};}
+
+\end{DoxyCode}

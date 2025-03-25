@@ -1,0 +1,73 @@
+\doxysection{APIGateway.\+h}
+\hypertarget{APIGateway_8h_source}{}\label{APIGateway_8h_source}\index{APIGateway/APIGateway.h@{APIGateway/APIGateway.h}}
+\mbox{\hyperlink{APIGateway_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <bits/stdc++.h>}}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Command_8h}{../Models/Command.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{SetService_8h}{../Services/SetService.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{GetService_8h}{../Services/GetService.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{DelService_8h}{../Services/DelService.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Cache_8h}{../Cache/Cache.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00010}00010\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00019}\mbox{\hyperlink{classAPIGateway}{00019}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classAPIGateway_a2b39180cf4a7f9172d8e5a3623d9a6dc}{APIGateway}}}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00020}00020\ \{}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00021}00021\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00027}00027\ \ \ \ \ \mbox{\hyperlink{classCache}{Cache}}\ L1Cache;}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00034}00034\ \ \ \ \ \mbox{\hyperlink{classBlinkDB}{BlinkDB}}\ \&blinkDB;}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00041}00041\ \ \ \ \ \mbox{\hyperlink{classSetService}{SetService}}\ setService;}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00048}00048\ \ \ \ \ \mbox{\hyperlink{classGetService}{GetService}}\ getService;}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00055}00055\ \ \ \ \ \mbox{\hyperlink{classDelService}{DelService}}\ delService;}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00057}00057\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00066}\mbox{\hyperlink{classAPIGateway_a2b39180cf4a7f9172d8e5a3623d9a6dc}{00066}}\ \ \ \ \ \mbox{\hyperlink{classAPIGateway_a2b39180cf4a7f9172d8e5a3623d9a6dc}{APIGateway}}(\mbox{\hyperlink{classBlinkDB}{BlinkDB}}\ \&blinkDB)\ :\ blinkDB(blinkDB),\ setService(blinkDB),\ getService(blinkDB),\ delService(blinkDB)}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00067}00067\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00068}00068\ \ \ \ \ \ \ \ \ L1Cache\ =\ \mbox{\hyperlink{classCache}{Cache}}();}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00069}00069\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00084}\mbox{\hyperlink{classAPIGateway_a7b560b881c96a25943ad753dfc76b100}{00084}}\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classAPIGateway_a7b560b881c96a25943ad753dfc76b100}{executeCommand}}(\mbox{\hyperlink{classCommand}{Command}}\ \mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}})}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00085}00085\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.getCommand()\ ==\ \textcolor{stringliteral}{"{}set"{}})}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00087}00087\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Clear\ cache\ if\ size\ exceeds\ limit}}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (L1Cache.getSize()\ >=\ 100000000)}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ L1Cache.clear();}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Store\ in\ cache\ and\ database}}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ L1Cache.set(\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.getKey(),\ \mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.getValue());}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ setService.set(\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.getKey(),\ \mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.getValue());}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Set\ Success"{}};}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00097}00097\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00098}00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.getCommand()\ ==\ \textcolor{stringliteral}{"{}get"{}})}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00099}00099\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ cache\ first}}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ cacheCheckResult\ =\ L1Cache.get(\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.getKey());}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (cacheCheckResult\ ==\ \textcolor{stringliteral}{"{}-\/1"{}})}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ getService.get(\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.getKey());}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ cacheCheckResult;}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00110}00110\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00111}00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.getCommand()\ ==\ \textcolor{stringliteral}{"{}del"{}})}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00112}00112\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Remove\ from\ cache\ and\ database}}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ L1Cache.del(\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.getKey());}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ delService.del(\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.getKey());}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Deletion\ Success"{}};}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00117}00117\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00118}00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Invalid\ Command"{}};}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00119}00119\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00120}00120\ \};}
+
+\end{DoxyCode}

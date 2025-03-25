@@ -1,0 +1,155 @@
+\doxysection{Response Class Reference}
+\hypertarget{classResponse}{}\label{classResponse}\index{Response@{Response}}
+
+
+Represents an API response in \doxylink{classBlinkDB}{Blink\+DB}.  
+
+
+
+
+{\ttfamily \#include $<$Response.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classResponse_aa9b6e391d77fce8daca8bac13730ec8e}{Response}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor initializing an empty response. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classResponse_a9b2814c72b7a5134bbd74d94dc995029}{Response}} (int status\+Code, string message, pair$<$ string, string $>$ data)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classResponse}{Response} with a status code, message, and data. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classResponse_a52f10f6412f59a6aac0c4b01a4d62206}{Response}} (int status\+Code, string key, string value, string message)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classResponse}{Response} with a status code, key, value, and message. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classResponse_ac39b6e8b87b8d363bdd6fc9c5110ce5d}{to\+\_\+string}} ()
+\begin{DoxyCompactList}\small\item\em Converts the response to a string representation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents an API response in \doxylink{classBlinkDB}{Blink\+DB}. 
+
+This class encapsulates the response status, message, and optional key-\/value data. 
+
+Definition at line \mbox{\hyperlink{Response_8h_source_l00011}{11}} of file \mbox{\hyperlink{Response_8h_source}{Response.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classResponse_aa9b6e391d77fce8daca8bac13730ec8e}\index{Response@{Response}!Response@{Response}}
+\index{Response@{Response}!Response@{Response}}
+\doxysubsubsection{\texorpdfstring{Response()}{Response()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{classResponse_aa9b6e391d77fce8daca8bac13730ec8e} 
+Response\+::\+Response (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor initializing an empty response. 
+
+
+
+Definition at line \mbox{\hyperlink{Response_8h_source_l00033}{33}} of file \mbox{\hyperlink{Response_8h_source}{Response.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00034\ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ statusCode\ =\ 0;}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ message\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ data\ =\ pair<string,\ string>(\textcolor{stringliteral}{"{}Data"{}},\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00038\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classResponse_a9b2814c72b7a5134bbd74d94dc995029}\index{Response@{Response}!Response@{Response}}
+\index{Response@{Response}!Response@{Response}}
+\doxysubsubsection{\texorpdfstring{Response()}{Response()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{classResponse_a9b2814c72b7a5134bbd74d94dc995029} 
+Response\+::\+Response (\begin{DoxyParamCaption}\item[{int}]{status\+Code}{, }\item[{string}]{message}{, }\item[{pair$<$ string, string $>$}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classResponse}{Response} with a status code, message, and data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em status\+Code} & The status code of the response. \\
+\hline
+{\em message} & The response message. \\
+\hline
+{\em data} & The key-\/value pair representing data. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{Response_8h_source_l00047}{47}} of file \mbox{\hyperlink{Response_8h_source}{Response.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00048\ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ this-\/>statusCode\ =\ statusCode;}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ this-\/>message\ =\ message;}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ this-\/>data\ =\ data;}
+\DoxyCodeLine{00052\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classResponse_a52f10f6412f59a6aac0c4b01a4d62206}\index{Response@{Response}!Response@{Response}}
+\index{Response@{Response}!Response@{Response}}
+\doxysubsubsection{\texorpdfstring{Response()}{Response()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{classResponse_a52f10f6412f59a6aac0c4b01a4d62206} 
+Response\+::\+Response (\begin{DoxyParamCaption}\item[{int}]{status\+Code}{, }\item[{string}]{key}{, }\item[{string}]{value}{, }\item[{string}]{message}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classResponse}{Response} with a status code, key, value, and message. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em status\+Code} & The status code of the response. \\
+\hline
+{\em key} & The key associated with the data. \\
+\hline
+{\em value} & The value associated with the key. \\
+\hline
+{\em message} & The response message. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{Response_8h_source_l00062}{62}} of file \mbox{\hyperlink{Response_8h_source}{Response.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00063\ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ this-\/>statusCode\ =\ statusCode;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ this-\/>message\ =\ message;}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ this-\/>data\ =\ pair<string,\ string>(key,\ value);}
+\DoxyCodeLine{00067\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classResponse_ac39b6e8b87b8d363bdd6fc9c5110ce5d}\index{Response@{Response}!to\_string@{to\_string}}
+\index{to\_string@{to\_string}!Response@{Response}}
+\doxysubsubsection{\texorpdfstring{to\_string()}{to\_string()}}
+{\footnotesize\ttfamily \label{classResponse_ac39b6e8b87b8d363bdd6fc9c5110ce5d} 
+string Response\+::to\+\_\+string (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Converts the response to a string representation. 
+
+\begin{DoxyReturn}{Returns}
+A formatted string containing the status code, message, and data. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{Response_8h_source_l00074}{74}} of file \mbox{\hyperlink{Response_8h_source}{Response.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00075\ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Status\ Code:\ "{}}\ +\ std::to\_string(statusCode)\ +\ \textcolor{stringliteral}{"{},\ Message:\ "{}}\ +\ message\ +\ \textcolor{stringliteral}{"{},\ Data:\ "{}}\ +\ data.second;}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Models/\mbox{\hyperlink{Response_8h}{Response.\+h}}\end{DoxyCompactItemize}

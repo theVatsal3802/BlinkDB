@@ -1,0 +1,94 @@
+\doxysection{Tests/\+Test\+Generator.cpp File Reference}
+\hypertarget{TestGenerator_8cpp}{}\label{TestGenerator_8cpp}\index{Tests/TestGenerator.cpp@{Tests/TestGenerator.cpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{TestGenerator_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{TestGenerator_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\index{TestGenerator.cpp@{TestGenerator.cpp}!main@{main}}
+\index{main@{main}!TestGenerator.cpp@{TestGenerator.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{TestGenerator_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{TestGenerator_8cpp_source_l00008}{8}} of file \mbox{\hyperlink{TestGenerator_8cpp_source}{Test\+Generator.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ vector<string>\ commandType\ =\ \{\textcolor{stringliteral}{"{}set"{}},\ \textcolor{stringliteral}{"{}get"{}},\ \textcolor{stringliteral}{"{}del"{}},\ \textcolor{stringliteral}{"{}set"{}},\ \textcolor{stringliteral}{"{}get"{}},\ \textcolor{stringliteral}{"{}del"{}}\};}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{string}\ key[]\ =\ \{\textcolor{stringliteral}{"{}key1"{}},\ \textcolor{stringliteral}{"{}key2"{}},\ \textcolor{stringliteral}{"{}key3"{}},\ \textcolor{stringliteral}{"{}key4"{}},\ \textcolor{stringliteral}{"{}key5"{}},\ \textcolor{stringliteral}{"{}key6"{}},\ \textcolor{stringliteral}{"{}key7"{}},\ \textcolor{stringliteral}{"{}key8"{}},\ \textcolor{stringliteral}{"{}key9"{}},\ \textcolor{stringliteral}{"{}key10"{}}\};}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{string}\ value[]\ =\ \{\textcolor{stringliteral}{"{}value1"{}},\ \textcolor{stringliteral}{"{}value2"{}},\ \textcolor{stringliteral}{"{}value3"{}},\ \textcolor{stringliteral}{"{}value4"{}},\ \textcolor{stringliteral}{"{}value5"{}},\ \textcolor{stringliteral}{"{}value6"{}},\ \textcolor{stringliteral}{"{}value7"{}},\ \textcolor{stringliteral}{"{}value8"{}},\ \textcolor{stringliteral}{"{}value9"{}},\ \textcolor{stringliteral}{"{}value10"{}}\};}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}};}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{string}\ keyName;}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{string}\ keyValue;}
+\DoxyCodeLine{00016\ \ \ \ \ ofstream\ output;}
+\DoxyCodeLine{00017\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Enter\ the\ type\ of\ workload\ you\ want\ to\ generate"{}}\ <<\ endl;}
+\DoxyCodeLine{00018\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Read\ Heavy:\ 1"{}}\ <<\ endl;}
+\DoxyCodeLine{00019\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Write\ Heavy:\ 2"{}}\ <<\ endl;}
+\DoxyCodeLine{00020\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Balanced:\ 3"{}}\ <<\ endl;}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{int}\ workloadType;}
+\DoxyCodeLine{00023\ \ \ \ \ cin\ >>\ workloadType;}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Enter\ the\ number\ of\ commands\ you\ want\ to\ generate"{}}\ <<\ endl;}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{int}\ numCommands;}
+\DoxyCodeLine{00027\ \ \ \ \ cin\ >>\ numCommands;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordflow}{if}\ (workloadType\ ==\ 1)}
+\DoxyCodeLine{00030\ \ \ \ \ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ commandType[0]\ =\ \textcolor{stringliteral}{"{}get"{}};}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ commandType[1]\ =\ \textcolor{stringliteral}{"{}get"{}};}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ commandType[2]\ =\ \textcolor{stringliteral}{"{}get"{}};}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ commandType[3]\ =\ \textcolor{stringliteral}{"{}get"{}};}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ commandType[4]\ =\ \textcolor{stringliteral}{"{}set"{}};}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ commandType[5]\ =\ \textcolor{stringliteral}{"{}del"{}};}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ output.open(\textcolor{stringliteral}{"{}readHeavy\_"{}}\ +\ to\_string(numCommands)\ +\ \textcolor{stringliteral}{"{}.txt"{}},\ ios::out);}
+\DoxyCodeLine{00038\ \ \ \ \ \}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (workloadType\ ==\ 2)}
+\DoxyCodeLine{00040\ \ \ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ commandType[0]\ =\ \textcolor{stringliteral}{"{}set"{}};}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ commandType[1]\ =\ \textcolor{stringliteral}{"{}set"{}};}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ commandType[2]\ =\ \textcolor{stringliteral}{"{}set"{}};}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ commandType[3]\ =\ \textcolor{stringliteral}{"{}set"{}};}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ commandType[4]\ =\ \textcolor{stringliteral}{"{}get"{}};}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ commandType[5]\ =\ \textcolor{stringliteral}{"{}del"{}};}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ output.open(\textcolor{stringliteral}{"{}writeHeavy\_"{}}\ +\ to\_string(numCommands)\ +\ \textcolor{stringliteral}{"{}.txt"{}},\ ios::out);}
+\DoxyCodeLine{00048\ \ \ \ \ \}}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00050\ \ \ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ output.open(\textcolor{stringliteral}{"{}balanced\_"{}}\ +\ to\_string(numCommands)\ +\ \textcolor{stringliteral}{"{}.txt"{}},\ ios::out);}
+\DoxyCodeLine{00052\ \ \ \ \ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ numCommands;\ i++)}
+\DoxyCodeLine{00055\ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}\ =\ commandType[rand()\ \%\ commandType.size()];}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ keyName\ =\ key[rand()\ \%\ 10];}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ keyValue\ =\ value[rand()\ \%\ 10];}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!output.is\_open())}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ cerr\ <<\ \textcolor{stringliteral}{"{}Unable\ to\ open\ file"{}}\ <<\ endl;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}\ ==\ \textcolor{stringliteral}{"{}set"{}})}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ output\ <<\ \mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}\ <<\ \textcolor{stringliteral}{"{}\ "{}}\ <<\ keyName\ <<\ \textcolor{stringliteral}{"{}\ "{}}\ <<\ keyValue\ <<\ endl;}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ output\ <<\ \mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}\ <<\ \textcolor{stringliteral}{"{}\ "{}}\ <<\ keyName\ <<\ endl;}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00072\ \ \ \ \ \}}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00074\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,46 @@
+\doxysection{Cache.\+h}
+\hypertarget{Cache_8h_source}{}\label{Cache_8h_source}\index{Cache/Cache.h@{Cache/Cache.h}}
+\mbox{\hyperlink{Cache_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <bits/stdc++.h>}}
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00004}00004\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00013}\mbox{\hyperlink{classCache}{00013}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCache}{Cache}}}
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00014}00014\ \{}
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00015}00015\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00021}00021\ \ \ \ \ unordered\_map<string,\ string>\ cache;}
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00023}00023\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00033}\mbox{\hyperlink{classCache_ab86488ee11fd38e51e47ec844e998abc}{00033}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classCache_ab86488ee11fd38e51e47ec844e998abc}{set}}(\textcolor{keywordtype}{string}\ key,\ \textcolor{keywordtype}{string}\ value)}
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00034}00034\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00035}00035\ \ \ \ \ \ \ \ \ cache[key]\ =\ value;}
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00036}00036\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00047}\mbox{\hyperlink{classCache_a3b2cc90502006d50a315b554788e0f8e}{00047}}\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classCache_a3b2cc90502006d50a315b554788e0f8e}{get}}(\textcolor{keywordtype}{string}\ key)}
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00048}00048\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (cache.find(key)\ ==\ cache.end())}
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00050}00050\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}-\/1"{}};}
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00052}00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ cache[key];}
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00054}00054\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00063}\mbox{\hyperlink{classCache_a27978fa2dbbf78f9dc8ca48df58cd8e2}{00063}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classCache_a27978fa2dbbf78f9dc8ca48df58cd8e2}{del}}(\textcolor{keywordtype}{string}\ key)}
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00064}00064\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00065}00065\ \ \ \ \ \ \ \ \ cache.erase(key);}
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00066}00066\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00075}\mbox{\hyperlink{classCache_aad94e5d44d10429d198ea024ac92697f}{00075}}\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classCache_aad94e5d44d10429d198ea024ac92697f}{getSize}}()}
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00076}00076\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ cache.size();}
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00078}00078\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00085}\mbox{\hyperlink{classCache_aaadc276ecc25d2e9270410c36d2a733e}{00085}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classCache_aaadc276ecc25d2e9270410c36d2a733e}{clear}}()}
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00086}00086\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00087}00087\ \ \ \ \ \ \ \ \ cache.clear();}
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00088}00088\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Cache_8h_source_l00089}00089\ \};}
+
+\end{DoxyCode}
