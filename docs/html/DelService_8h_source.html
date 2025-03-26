@@ -119,20 +119,27 @@ $(function(){initNavTree('DelService_8h_source.html',''); initResizable(true); }
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <a class="code hl_class" href="classBlinkDB.html">BlinkDB</a> &amp;blinkDB;</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classDelService.html#a36a34fe9e62de6caf4e4f1a0d2a338b1">   26</a></span>    <a class="code hl_function" href="classDelService.html#a36a34fe9e62de6caf4e4f1a0d2a338b1">DelService</a>(<a class="code hl_class" href="classBlinkDB.html">BlinkDB</a> &amp;blinkDB) : blinkDB(blinkDB) {}</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classDelService.html#a36a34fe9e62de6caf4e4f1a0d2a338b1">   26</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classDelService.html#a36a34fe9e62de6caf4e4f1a0d2a338b1">DelService</a>(<a class="code hl_class" href="classBlinkDB.html">BlinkDB</a> &amp;blinkDB) : blinkDB(blinkDB) {}</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span></div>
 <div class="foldopen" id="foldopen00033" data-start="{" data-end="}">
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classDelService.html#a31480079f7045fe1e41e19c6498f9c69">   33</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classDelService.html#a31480079f7045fe1e41e19c6498f9c69">del</a>(<span class="keywordtype">string</span> key)</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classDelService.html#a9f610dcf3b883b0c3add7afd26121feb">   33</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classDelService.html#a9f610dcf3b883b0c3add7afd26121feb">del</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;key)</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    {</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        blinkDB.del(key);</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    }</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keywordflow">try</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>            blinkDB.del(key);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        }</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="keywordflow">catch</span> (<span class="keyword">const</span> exception &amp;e)</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        {</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>            cerr &lt;&lt; <span class="stringliteral">&quot;Error deleting key &#39;&quot;</span> &lt;&lt; key &lt;&lt; <span class="stringliteral">&quot;&#39;: &quot;</span> &lt;&lt; e.what() &lt;&lt; endl;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        }</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    }</div>
 </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>};</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>};</div>
 </div>
 <div class="ttc" id="aBlinkDB_8h_html"><div class="ttname"><a href="BlinkDB_8h.html">BlinkDB.h</a></div></div>
 <div class="ttc" id="aclassBlinkDB_html"><div class="ttname"><a href="classBlinkDB.html">BlinkDB</a></div><div class="ttdoc">Implements an in-memory key-value database with periodic disk backups.</div><div class="ttdef"><b>Definition</b> <a href="BlinkDB_8h_source.html#l00014">BlinkDB.h:15</a></div></div>
-<div class="ttc" id="aclassDelService_html_a31480079f7045fe1e41e19c6498f9c69"><div class="ttname"><a href="classDelService.html#a31480079f7045fe1e41e19c6498f9c69">DelService::del</a></div><div class="ttdeci">void del(string key)</div><div class="ttdoc">Deletes a key from BlinkDB.</div><div class="ttdef"><b>Definition</b> <a href="#l00033">DelService.h:33</a></div></div>
 <div class="ttc" id="aclassDelService_html_a36a34fe9e62de6caf4e4f1a0d2a338b1"><div class="ttname"><a href="classDelService.html#a36a34fe9e62de6caf4e4f1a0d2a338b1">DelService::DelService</a></div><div class="ttdeci">DelService(BlinkDB &amp;blinkDB)</div><div class="ttdoc">Constructs a DelService instance.</div><div class="ttdef"><b>Definition</b> <a href="#l00026">DelService.h:26</a></div></div>
+<div class="ttc" id="aclassDelService_html_a9f610dcf3b883b0c3add7afd26121feb"><div class="ttname"><a href="classDelService.html#a9f610dcf3b883b0c3add7afd26121feb">DelService::del</a></div><div class="ttdeci">void del(const string &amp;key)</div><div class="ttdoc">Deletes a key from BlinkDB.</div><div class="ttdef"><b>Definition</b> <a href="#l00033">DelService.h:33</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

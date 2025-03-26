@@ -118,20 +118,27 @@ $(function(){initNavTree('SetService_8h_source.html',''); initResizable(true); }
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <a class="code hl_class" href="classBlinkDB.html">BlinkDB</a> &amp;blinkDB;</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classSetService.html#a46efa328eaa22de384f326fce848ec62">   25</a></span>    <a class="code hl_function" href="classSetService.html#a46efa328eaa22de384f326fce848ec62">SetService</a>(<a class="code hl_class" href="classBlinkDB.html">BlinkDB</a> &amp;blinkDB) : blinkDB(blinkDB) {}</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classSetService.html#a46efa328eaa22de384f326fce848ec62">   25</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classSetService.html#a46efa328eaa22de384f326fce848ec62">SetService</a>(<a class="code hl_class" href="classBlinkDB.html">BlinkDB</a> &amp;blinkDB) : blinkDB(blinkDB) {}</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span></div>
 <div class="foldopen" id="foldopen00033" data-start="{" data-end="}">
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classSetService.html#a7c918775cd2f5d8c1e45f1fbb8297c44">   33</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSetService.html#a7c918775cd2f5d8c1e45f1fbb8297c44">set</a>(<span class="keywordtype">string</span> key, <span class="keywordtype">string</span> value)</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classSetService.html#a6a3af6952f88c044efc6f42d667b5c80">   33</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSetService.html#a6a3af6952f88c044efc6f42d667b5c80">set</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;key, <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;value)</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    {</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        blinkDB.set(key, value);</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    }</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keywordflow">try</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>            blinkDB.set(key, value);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        }</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="keywordflow">catch</span> (<span class="keyword">const</span> exception &amp;e)</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        {</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>            cerr &lt;&lt; <span class="stringliteral">&quot;Error setting key &#39;&quot;</span> &lt;&lt; key &lt;&lt; <span class="stringliteral">&quot;&#39;: &quot;</span> &lt;&lt; e.what() &lt;&lt; endl;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        }</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    }</div>
 </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>};</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>};</div>
 </div>
 <div class="ttc" id="aBlinkDB_8h_html"><div class="ttname"><a href="BlinkDB_8h.html">BlinkDB.h</a></div></div>
 <div class="ttc" id="aclassBlinkDB_html"><div class="ttname"><a href="classBlinkDB.html">BlinkDB</a></div><div class="ttdoc">Implements an in-memory key-value database with periodic disk backups.</div><div class="ttdef"><b>Definition</b> <a href="BlinkDB_8h_source.html#l00014">BlinkDB.h:15</a></div></div>
 <div class="ttc" id="aclassSetService_html_a46efa328eaa22de384f326fce848ec62"><div class="ttname"><a href="classSetService.html#a46efa328eaa22de384f326fce848ec62">SetService::SetService</a></div><div class="ttdeci">SetService(BlinkDB &amp;blinkDB)</div><div class="ttdoc">Constructs a SetService instance.</div><div class="ttdef"><b>Definition</b> <a href="#l00025">SetService.h:25</a></div></div>
-<div class="ttc" id="aclassSetService_html_a7c918775cd2f5d8c1e45f1fbb8297c44"><div class="ttname"><a href="classSetService.html#a7c918775cd2f5d8c1e45f1fbb8297c44">SetService::set</a></div><div class="ttdeci">void set(string key, string value)</div><div class="ttdoc">Stores a key-value pair in BlinkDB.</div><div class="ttdef"><b>Definition</b> <a href="#l00033">SetService.h:33</a></div></div>
+<div class="ttc" id="aclassSetService_html_a6a3af6952f88c044efc6f42d667b5c80"><div class="ttname"><a href="classSetService.html#a6a3af6952f88c044efc6f42d667b5c80">SetService::set</a></div><div class="ttdeci">void set(const string &amp;key, const string &amp;value)</div><div class="ttdoc">Stores a key-value pair in BlinkDB.</div><div class="ttdef"><b>Definition</b> <a href="#l00033">SetService.h:33</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

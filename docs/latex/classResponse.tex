@@ -19,7 +19,9 @@ Represents an API response in \doxylink{classBlinkDB}{Blink\+DB}.
 \mbox{\hyperlink{classResponse_a52f10f6412f59a6aac0c4b01a4d62206}{Response}} (int status\+Code, string key, string value, string message)
 \begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classResponse}{Response} with a status code, key, value, and message. \end{DoxyCompactList}\item 
 string \mbox{\hyperlink{classResponse_ac39b6e8b87b8d363bdd6fc9c5110ce5d}{to\+\_\+string}} ()
-\begin{DoxyCompactList}\small\item\em Converts the response to a string representation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Converts the response to a string representation. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classResponse_a90db3bfe03b4b2d4bab3f3d104da8007}{get\+Value}} ()
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -124,6 +126,27 @@ Definition at line \mbox{\hyperlink{Response_8h_source_l00062}{62}} of file \mbo
 
 
 \doxysubsection{Member Function Documentation}
+\Hypertarget{classResponse_a90db3bfe03b4b2d4bab3f3d104da8007}\index{Response@{Response}!getValue@{getValue}}
+\index{getValue@{getValue}!Response@{Response}}
+\doxysubsubsection{\texorpdfstring{getValue()}{getValue()}}
+{\footnotesize\ttfamily \label{classResponse_a90db3bfe03b4b2d4bab3f3d104da8007} 
+string Response\+::get\+Value (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{Response_8h_source_l00079}{79}} of file \mbox{\hyperlink{Response_8h_source}{Response.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00080\ \ \ \ \ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (data.first\ ==\ \textcolor{stringliteral}{"{}Data"{}})}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ data.second;}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}-\/1"{}};}
+\DoxyCodeLine{00086\ \ \ \ \ \}}
+
+\end{DoxyCode}
 \Hypertarget{classResponse_ac39b6e8b87b8d363bdd6fc9c5110ce5d}\index{Response@{Response}!to\_string@{to\_string}}
 \index{to\_string@{to\_string}!Response@{Response}}
 \doxysubsubsection{\texorpdfstring{to\_string()}{to\_string()}}

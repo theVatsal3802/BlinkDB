@@ -120,9 +120,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a36a34fe9e62de6caf4e4f1a0d2a338b1" id="r_a36a34fe9e62de6caf4e4f1a0d2a338b1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a36a34fe9e62de6caf4e4f1a0d2a338b1">DelService</a> (<a class="el" href="classBlinkDB.html">BlinkDB</a> &amp;blinkDB)</td></tr>
 <tr class="memdesc:a36a34fe9e62de6caf4e4f1a0d2a338b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classDelService.html" title="Service class for handling key deletion in BlinkDB.">DelService</a> instance.  <br /></td></tr>
 <tr class="separator:a36a34fe9e62de6caf4e4f1a0d2a338b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a31480079f7045fe1e41e19c6498f9c69" id="r_a31480079f7045fe1e41e19c6498f9c69"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a31480079f7045fe1e41e19c6498f9c69">del</a> (string key)</td></tr>
-<tr class="memdesc:a31480079f7045fe1e41e19c6498f9c69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes a key from <a class="el" href="classBlinkDB.html" title="Implements an in-memory key-value database with periodic disk backups.">BlinkDB</a>.  <br /></td></tr>
-<tr class="separator:a31480079f7045fe1e41e19c6498f9c69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f610dcf3b883b0c3add7afd26121feb" id="r_a9f610dcf3b883b0c3add7afd26121feb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f610dcf3b883b0c3add7afd26121feb">del</a> (const string &amp;key)</td></tr>
+<tr class="memdesc:a9f610dcf3b883b0c3add7afd26121feb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes a key from <a class="el" href="classBlinkDB.html" title="Implements an in-memory key-value database with periodic disk backups.">BlinkDB</a>.  <br /></td></tr>
+<tr class="separator:a9f610dcf3b883b0c3add7afd26121feb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Service class for handling key deletion in <a class="el" href="classBlinkDB.html" title="Implements an in-memory key-value database with periodic disk backups.">BlinkDB</a>. </p>
@@ -148,7 +148,7 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel explicit">explicit</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -167,8 +167,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a31480079f7045fe1e41e19c6498f9c69" name="a31480079f7045fe1e41e19c6498f9c69"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a31480079f7045fe1e41e19c6498f9c69">&#9670;&#160;</a></span>del()</h2>
+<a id="a9f610dcf3b883b0c3add7afd26121feb" name="a9f610dcf3b883b0c3add7afd26121feb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f610dcf3b883b0c3add7afd26121feb">&#9670;&#160;</a></span>del()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -179,7 +179,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void DelService::del </td>
           <td>(</td>
-          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td class="paramtype">const string &amp;</td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -200,8 +200,15 @@ Public Member Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="DelService_8h_source.html#l00033">33</a> of file <a class="el" href="DelService_8h_source.html">DelService.h</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   34</span>    {</div>
-<div class="line"><span class="lineno">   35</span>        blinkDB.del(key);</div>
-<div class="line"><span class="lineno">   36</span>    }</div>
+<div class="line"><span class="lineno">   35</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">   36</span>        {</div>
+<div class="line"><span class="lineno">   37</span>            blinkDB.del(key);</div>
+<div class="line"><span class="lineno">   38</span>        }</div>
+<div class="line"><span class="lineno">   39</span>        <span class="keywordflow">catch</span> (<span class="keyword">const</span> exception &amp;e)</div>
+<div class="line"><span class="lineno">   40</span>        {</div>
+<div class="line"><span class="lineno">   41</span>            cerr &lt;&lt; <span class="stringliteral">&quot;Error deleting key &#39;&quot;</span> &lt;&lt; key &lt;&lt; <span class="stringliteral">&quot;&#39;: &quot;</span> &lt;&lt; e.what() &lt;&lt; endl;</div>
+<div class="line"><span class="lineno">   42</span>        }</div>
+<div class="line"><span class="lineno">   43</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>

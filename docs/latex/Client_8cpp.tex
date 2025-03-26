@@ -13,51 +13,71 @@
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-string \mbox{\hyperlink{Client_8cpp_add88fa84019131b67d72162722eafa96}{to\+RESP2}} (const string \&data)
-\begin{DoxyCompactList}\small\item\em Converts a string into RESP2 protocol format. \end{DoxyCompactList}\item 
-string \mbox{\hyperlink{Client_8cpp_a2f5edd46c776c8aa8fef1c6178b50210}{from\+RESP2}} (const string \&resp)
-\begin{DoxyCompactList}\small\item\em Extracts the actual response from a RESP2 formatted string. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{Client_8cpp_add2d5323005c8220f5b4d5f89fbad4b2}{to\+RESP2}} (const string \&\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}})
+\begin{DoxyCompactList}\small\item\em Converts a string to Redis Serialization Protocol (RESP2) format. \end{DoxyCompactList}\item 
+vector$<$ string $>$ \mbox{\hyperlink{Client_8cpp_a28d45d845cfebeaca828094718709c77}{from\+RESP2}} (const string \&resp)
+\begin{DoxyCompactList}\small\item\em Parses a RESP2-\/formatted string back to a normal string. \end{DoxyCompactList}\item 
+vector$<$ string $>$ \mbox{\hyperlink{Client_8cpp_aea022c8ab34c70c831d38ccf32ed99f2}{split\+Command}} (string \mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}})
+\begin{DoxyCompactList}\small\item\em Splits a command string into at most three parts (command, key, and value). \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{Client_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
 \begin{DoxyCompactList}\small\item\em Main function to establish a connection with the \doxylink{classBlinkDB}{Blink\+DB} server and send commands. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
-\Hypertarget{Client_8cpp_a2f5edd46c776c8aa8fef1c6178b50210}\index{Client.cpp@{Client.cpp}!fromRESP2@{fromRESP2}}
+\Hypertarget{Client_8cpp_a28d45d845cfebeaca828094718709c77}\index{Client.cpp@{Client.cpp}!fromRESP2@{fromRESP2}}
 \index{fromRESP2@{fromRESP2}!Client.cpp@{Client.cpp}}
 \doxysubsubsection{\texorpdfstring{fromRESP2()}{fromRESP2()}}
-{\footnotesize\ttfamily \label{Client_8cpp_a2f5edd46c776c8aa8fef1c6178b50210} 
-string from\+RESP2 (\begin{DoxyParamCaption}\item[{const string \&}]{resp}{}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{Client_8cpp_a28d45d845cfebeaca828094718709c77} 
+vector$<$ string $>$ from\+RESP2 (\begin{DoxyParamCaption}\item[{const string \&}]{resp}{}\end{DoxyParamCaption})}
 
 
 
-Extracts the actual response from a RESP2 formatted string. 
+Parses a RESP2-\/formatted string back to a normal string. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em resp} & The RESP2 formatted response string received from the server. \\
+{\em resp} & The RESP2-\/formatted string. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The extracted response string. 
+The extracted string data. 
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{Client_8cpp_source_l00034}{34}} of file \mbox{\hyperlink{Client_8cpp_source}{Client.\+cpp}}.
+Definition at line \mbox{\hyperlink{Client_8cpp_source_l00051}{51}} of file \mbox{\hyperlink{Client_8cpp_source}{Client.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00035\ \{}
-\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordflow}{if}\ (resp.empty()\ ||\ resp[0]\ !=\ \textcolor{charliteral}{'\$'})}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
-\DoxyCodeLine{00038\ }
-\DoxyCodeLine{00039\ \ \ \ \ istringstream\ stream(resp);}
-\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{string}\ lengthLine,\ data;}
-\DoxyCodeLine{00041\ }
-\DoxyCodeLine{00042\ \ \ \ \ getline(stream,\ lengthLine);\ \textcolor{comment}{//\ Read\ first\ line\ (\$length)}}
-\DoxyCodeLine{00043\ \ \ \ \ getline(stream,\ data);\ \ \ \ \ \ \ \textcolor{comment}{//\ Read\ actual\ string}}
-\DoxyCodeLine{00044\ }
-\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordflow}{return}\ data;}
-\DoxyCodeLine{00046\ \}}
+\DoxyCodeLine{00052\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ vector<string>\ result;}
+\DoxyCodeLine{00054\ \ \ \ \ istringstream\ stream(resp);}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{string}\ line;}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ getline(stream,\ line,\ \textcolor{charliteral}{'\(\backslash\)r'});}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordflow}{if}\ (line[0]\ !=\ \textcolor{charliteral}{'*'})}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\};\ \textcolor{comment}{//\ Must\ start\ with\ '*'}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{int}\ numArgs\ =\ stoi(line.substr(1));\ \textcolor{comment}{//\ Number\ of\ arguments}}
+\DoxyCodeLine{00062\ \ \ \ \ stream.ignore(1);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ignore\ '\(\backslash\)n'}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ numArgs;\ i++)}
+\DoxyCodeLine{00065\ \ \ \ \ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ getline(stream,\ line,\ \textcolor{charliteral}{'\(\backslash\)r'});}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line[0]\ !=\ \textcolor{charliteral}{'\$'})}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\};\ \textcolor{comment}{//\ Must\ start\ with\ '\$'}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ len\ =\ stoi(line.substr(1));\ \textcolor{comment}{//\ Get\ length\ of\ argument}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ stream.ignore(1);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ignore\ '\(\backslash\)n'}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ arg(len,\ \textcolor{charliteral}{'\ '});}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ stream.read(\&arg[0],\ len);\ \textcolor{comment}{//\ Read\ the\ argument}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ result.push\_back(arg);}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ stream.ignore(2);\ \textcolor{comment}{//\ Ignore\ '\(\backslash\)r\(\backslash\)n'}}
+\DoxyCodeLine{00078\ \ \ \ \ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00081\ \}}
 
 \end{DoxyCode}
 \Hypertarget{Client_8cpp_a0ddf1224851353fc92bfbff6f499fa97}\index{Client.cpp@{Client.cpp}!main@{main}}
@@ -75,145 +95,208 @@ int Returns 0 on successful execution, -\/1 if socket creation fails, and -\/2 i
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{Client_8cpp_source_l00052}{52}} of file \mbox{\hyperlink{Client_8cpp_source}{Client.\+cpp}}.
+Definition at line \mbox{\hyperlink{Client_8cpp_source_l00120}{120}} of file \mbox{\hyperlink{Client_8cpp_source}{Client.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00053\ \{}
-\DoxyCodeLine{00054\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Connecting\ to\ BlinkDB\ server..."{}}\ <<\ endl;}
-\DoxyCodeLine{00055\ }
-\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ Check\ if\ sufficient\ arguments\ are\ provided}}
-\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordflow}{if}\ (argc\ <\ 2)}
-\DoxyCodeLine{00058\ \ \ \ \ \{}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Enter\ 0\ for\ interactive\ mode\ and\ 1\ for\ file\ mode\ in\ command\ line\ and\ a\ filename\ for\ file\ mode."{}}\ <<\ endl;}
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exiting\ BlinkDB:\ Closing\ server..."{}}\ <<\ endl;}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exited"{}}\ <<\ endl;}
-\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{00063\ \ \ \ \ \}}
-\DoxyCodeLine{00064\ }
-\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{//\ Create\ a\ TCP\ socket}}
-\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{int}\ clientSocket\ =\ socket(AF\_INET,\ SOCK\_STREAM,\ 0);}
-\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordflow}{if}\ (clientSocket\ ==\ -\/1)}
-\DoxyCodeLine{00068\ \ \ \ \ \{}
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ cerr\ <<\ \textcolor{stringliteral}{"{}Socket\ creation\ failed"{}}\ <<\ endl;}
-\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
-\DoxyCodeLine{00071\ \ \ \ \ \}}
-\DoxyCodeLine{00072\ }
-\DoxyCodeLine{00073\ \ \ \ \ \textcolor{comment}{//\ Define\ server\ address}}
-\DoxyCodeLine{00074\ \ \ \ \ sockaddr\_in\ serverAddress;}
-\DoxyCodeLine{00075\ \ \ \ \ serverAddress.sin\_family\ =\ AF\_INET;}
-\DoxyCodeLine{00076\ \ \ \ \ serverAddress.sin\_port\ =\ htons(5000);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Port\ number}}
-\DoxyCodeLine{00077\ \ \ \ \ serverAddress.sin\_addr.s\_addr\ =\ inet\_addr(\textcolor{stringliteral}{"{}127.0.0.1"{}});\ \textcolor{comment}{//\ Localhost}}
-\DoxyCodeLine{00078\ }
-\DoxyCodeLine{00079\ \ \ \ \ \textcolor{comment}{//\ Attempt\ to\ connect\ to\ the\ BlinkDB\ server}}
-\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{int}\ connectionStatus\ =\ connect(clientSocket,\ (sockaddr\ *)\&serverAddress,\ \textcolor{keyword}{sizeof}(serverAddress));}
-\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordflow}{if}\ (connectionStatus\ ==\ -\/1)}
-\DoxyCodeLine{00082\ \ \ \ \ \{}
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ cerr\ <<\ \textcolor{stringliteral}{"{}Connection\ to\ BlinkDB\ failed."{}}\ <<\ endl;}
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/2;}
-\DoxyCodeLine{00085\ \ \ \ \ \}}
-\DoxyCodeLine{00086\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Connected\ to\ BlinkDB\ server."{}}\ <<\ endl;}
-\DoxyCodeLine{00087\ }
-\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{string}\ mode\ =\ string(argv[1]);}
-\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{string}\ filename\ =\ string(argv[2]\ !=\ NULL\ ?\ argv[2]\ :\ \textcolor{stringliteral}{"{}"{}});}
-\DoxyCodeLine{00090\ }
-\DoxyCodeLine{00091\ \ \ \ \ \textcolor{comment}{//\ Validate\ mode\ input}}
-\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordflow}{if}\ (mode\ !=\ \textcolor{stringliteral}{"{}0"{}}\ \&\&\ mode\ !=\ \textcolor{stringliteral}{"{}1"{}})}
-\DoxyCodeLine{00093\ \ \ \ \ \{}
-\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Enter\ 0\ for\ interactive\ mode\ and\ 1\ for\ file\ mode"{}}\ <<\ endl;}
-\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exiting\ BlinkDB:\ Closing\ server..."{}}\ <<\ endl;}
-\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exited"{}}\ <<\ endl;}
-\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{00098\ \ \ \ \ \}}
-\DoxyCodeLine{00099\ }
-\DoxyCodeLine{00100\ \ \ \ \ \textcolor{comment}{//\ Validate\ filename\ in\ file\ mode}}
-\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordflow}{if}\ (mode\ ==\ \textcolor{stringliteral}{"{}1"{}}\ \&\&\ filename\ ==\ \textcolor{stringliteral}{"{}"{}})}
-\DoxyCodeLine{00102\ \ \ \ \ \{}
-\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Please\ provide\ a\ filename\ for\ the\ test\ file"{}}\ <<\ endl;}
-\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exiting\ BlinkDB:\ Closing\ server..."{}}\ <<\ endl;}
-\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exited"{}}\ <<\ endl;}
-\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{00107\ \ \ \ \ \}}
-\DoxyCodeLine{00108\ }
-\DoxyCodeLine{00109\ \ \ \ \ \textcolor{comment}{//\ File\ mode\ execution}}
-\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordflow}{if}\ (mode\ ==\ \textcolor{stringliteral}{"{}1"{}})}
-\DoxyCodeLine{00111\ \ \ \ \ \{}
-\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ chrono::high\_resolution\_clock::time\_point\ start\ =\ chrono::high\_resolution\_clock::now();}
-\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ ifstream\ testFile(filename);}
-\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ line;}
-\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (getline(testFile,\ line))}
-\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Convert\ command\ to\ RESP2\ format\ and\ send\ it}}
-\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ resp\ =\ \mbox{\hyperlink{Client_8cpp_add88fa84019131b67d72162722eafa96}{toRESP2}}(line);}
-\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ send(clientSocket,\ resp.substr(0,\ resp.size()\ -\/\ 1).c\_str(),\ resp.size(),\ 0);}
-\DoxyCodeLine{00120\ }
-\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Receive\ response\ from\ server}}
-\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ response[512];}
-\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ memset(response,\ 0,\ \textcolor{keyword}{sizeof}(response));}
-\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ recv(clientSocket,\ response,\ \textcolor{keyword}{sizeof}(response),\ 0);}
-\DoxyCodeLine{00125\ }
-\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Process\ and\ display\ response}}
-\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ responseStr\ =\ \mbox{\hyperlink{Client_8cpp_a2f5edd46c776c8aa8fef1c6178b50210}{fromRESP2}}(response);}
-\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Server\ >\ "{}}\ <<\ responseStr\ <<\ endl;}
-\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ chrono::high\_resolution\_clock::time\_point\ end\ =\ chrono::high\_resolution\_clock::now();}
-\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ chrono::duration<double>\ elapsed\ =\ end\ -\/\ start;}
-\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Time\ taken\ to\ execute\ all\ commands:\ "{}}\ <<\ elapsed.count()\ <<\ \textcolor{stringliteral}{"{}s"{}}\ <<\ endl;}
-\DoxyCodeLine{00133\ \ \ \ \ \}}
-\DoxyCodeLine{00134\ \ \ \ \ \textcolor{comment}{//\ Interactive\ mode\ execution}}
-\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (mode\ ==\ \textcolor{stringliteral}{"{}0"{}})}
+\DoxyCodeLine{00121\ \{}
+\DoxyCodeLine{00122\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Connecting\ to\ BlinkDB\ server..."{}}\ <<\ endl;}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{comment}{//\ Check\ if\ sufficient\ arguments\ are\ provided}}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordflow}{if}\ (argc\ <\ 2)}
+\DoxyCodeLine{00126\ \ \ \ \ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Enter\ 0\ for\ interactive\ mode\ and\ 1\ for\ file\ mode\ in\ command\ line\ and\ a\ filename\ for\ file\ mode."{}}\ <<\ endl;}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exiting\ BlinkDB:\ Closing\ server..."{}}\ <<\ endl;}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exited"{}}\ <<\ endl;}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00131\ \ \ \ \ \}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{comment}{//\ Create\ a\ TCP\ socket}}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordtype}{int}\ clientSocket\ =\ socket(AF\_INET,\ SOCK\_STREAM,\ 0);}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordflow}{if}\ (clientSocket\ ==\ -\/1)}
 \DoxyCodeLine{00136\ \ \ \ \ \{}
-\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{true})}
-\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}User\ >\ "{}};}
-\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ input;}
-\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ getline(cin,\ input);}
-\DoxyCodeLine{00142\ }
-\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Validate\ user\ input}}
-\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (input.empty())}
-\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Invalid\ Command\(\backslash\)n"{}};}
-\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
-\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00149\ }
-\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Send\ command\ to\ server}}
-\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ resp\ =\ \mbox{\hyperlink{Client_8cpp_add88fa84019131b67d72162722eafa96}{toRESP2}}(input);}
-\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ send(clientSocket,\ resp.substr(0,\ resp.size()\ -\/\ 1).c\_str(),\ resp.size(),\ 0);}
-\DoxyCodeLine{00153\ }
-\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Handle\ exit\ command}}
-\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (input\ ==\ \textcolor{stringliteral}{"{}exit"{}})}
-\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ close(clientSocket);}
-\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exiting\ BlinkDB..."{}}\ <<\ endl;}
-\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00161\ }
-\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Receive\ and\ display\ server\ response}}
-\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ response[512];}
-\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ memset(response,\ 0,\ \textcolor{keyword}{sizeof}(response));}
-\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ recv(clientSocket,\ response,\ \textcolor{keyword}{sizeof}(response),\ 0);}
-\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ responseStr\ =\ \mbox{\hyperlink{Client_8cpp_a2f5edd46c776c8aa8fef1c6178b50210}{fromRESP2}}(response);}
-\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Server\ >\ "{}}\ <<\ responseStr\ <<\ endl;}
-\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00169\ \ \ \ \ \}}
-\DoxyCodeLine{00170\ }
-\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{00172\ \}}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ cerr\ <<\ \textcolor{stringliteral}{"{}Socket\ creation\ failed"{}}\ <<\ endl;}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00139\ \ \ \ \ \}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{comment}{//\ Define\ server\ address}}
+\DoxyCodeLine{00142\ \ \ \ \ sockaddr\_in\ serverAddress;}
+\DoxyCodeLine{00143\ \ \ \ \ serverAddress.sin\_family\ =\ AF\_INET;}
+\DoxyCodeLine{00144\ \ \ \ \ serverAddress.sin\_port\ =\ htons(5000);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Port\ number}}
+\DoxyCodeLine{00145\ \ \ \ \ serverAddress.sin\_addr.s\_addr\ =\ inet\_addr(\textcolor{stringliteral}{"{}127.0.0.1"{}});\ \textcolor{comment}{//\ Localhost}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{comment}{//\ Attempt\ to\ connect\ to\ the\ BlinkDB\ server}}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordtype}{int}\ connectionStatus\ =\ connect(clientSocket,\ (sockaddr\ *)\&serverAddress,\ \textcolor{keyword}{sizeof}(serverAddress));}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordflow}{if}\ (connectionStatus\ ==\ -\/1)}
+\DoxyCodeLine{00150\ \ \ \ \ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ cerr\ <<\ \textcolor{stringliteral}{"{}Connection\ to\ BlinkDB\ failed."{}}\ <<\ endl;}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/2;}
+\DoxyCodeLine{00153\ \ \ \ \ \}}
+\DoxyCodeLine{00154\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Connected\ to\ BlinkDB\ server."{}}\ <<\ endl;}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordtype}{string}\ mode\ =\ string(argv[1]);}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{string}\ filename\ =\ string(argv[2]\ !=\ NULL\ ?\ argv[2]\ :\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{comment}{//\ Validate\ mode\ input}}
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keywordflow}{if}\ (mode\ !=\ \textcolor{stringliteral}{"{}0"{}}\ \&\&\ mode\ !=\ \textcolor{stringliteral}{"{}1"{}})}
+\DoxyCodeLine{00161\ \ \ \ \ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Enter\ 0\ for\ interactive\ mode\ and\ 1\ for\ file\ mode"{}}\ <<\ endl;}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exiting\ BlinkDB:\ Closing\ server..."{}}\ <<\ endl;}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exited"{}}\ <<\ endl;}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00166\ \ \ \ \ \}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{comment}{//\ Validate\ filename\ in\ file\ mode}}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordflow}{if}\ (mode\ ==\ \textcolor{stringliteral}{"{}1"{}}\ \&\&\ filename\ ==\ \textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00170\ \ \ \ \ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Please\ provide\ a\ filename\ for\ the\ test\ file"{}}\ <<\ endl;}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exiting\ BlinkDB:\ Closing\ server..."{}}\ <<\ endl;}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exited"{}}\ <<\ endl;}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00175\ \ \ \ \ \}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{comment}{//\ File\ mode\ execution}}
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keywordflow}{if}\ (mode\ ==\ \textcolor{stringliteral}{"{}1"{}})}
+\DoxyCodeLine{00179\ \ \ \ \ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ chrono::high\_resolution\_clock::time\_point\ start\ =\ chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ ifstream\ testFile(filename);}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ line;}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Executing\ commands\ from\ "{}}\ <<\ filename\ <<\ \textcolor{stringliteral}{"{}...\ Please\ wait..."{}}\ <<\ endl;}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (getline(testFile,\ line))}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Convert\ command\ to\ RESP2\ format\ and\ send\ it}}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }timeval\ timeout;}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ timeout.tv\_sec\ =\ 5;\ \textcolor{comment}{//\ Set\ timeout\ to\ 5\ seconds}}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ timeout.tv\_usec\ =\ 0;}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ setsockopt(clientSocket,\ SOL\_SOCKET,\ SO\_RCVTIMEO,\ \&timeout,\ \textcolor{keyword}{sizeof}(timeout));}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ resp\ =\ \mbox{\hyperlink{Client_8cpp_add2d5323005c8220f5b4d5f89fbad4b2}{toRESP2}}(line);}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ send(clientSocket,\ resp.substr(0,\ resp.size()\ -\/\ 1).c\_str(),\ resp.size(),\ 0);}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Receive\ response\ from\ server}}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ response[512];}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ memset(response,\ 0,\ \textcolor{keyword}{sizeof}(response));}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ recv(clientSocket,\ response,\ \textcolor{keyword}{sizeof}(response),\ 0);}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ chrono::high\_resolution\_clock::time\_point\ end\ =\ chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ chrono::duration<double>\ elapsed\ =\ end\ -\/\ start;}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Time\ taken\ to\ execute\ all\ commands:\ "{}}\ <<\ elapsed.count()\ <<\ \textcolor{stringliteral}{"{}s"{}}\ <<\ endl;}
+\DoxyCodeLine{00203\ \ \ \ \ \}}
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{comment}{//\ Interactive\ mode\ execution}}
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (mode\ ==\ \textcolor{stringliteral}{"{}0"{}})}
+\DoxyCodeLine{00206\ \ \ \ \ \{}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{true})}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}User\ >\ "{}};}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ input;}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ getline(cin,\ input);}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Validate\ user\ input}}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (input.empty())}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Invalid\ Command\(\backslash\)n"{}};}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Send\ command\ to\ server}}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }timeval\ timeout;}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ timeout.tv\_sec\ =\ 5;\ \textcolor{comment}{//\ Set\ timeout\ to\ 5\ seconds}}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ timeout.tv\_usec\ =\ 0;}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ setsockopt(clientSocket,\ SOL\_SOCKET,\ SO\_RCVTIMEO,\ \&timeout,\ \textcolor{keyword}{sizeof}(timeout));}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ resp\ =\ \mbox{\hyperlink{Client_8cpp_add2d5323005c8220f5b4d5f89fbad4b2}{toRESP2}}(input);}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ send(clientSocket,\ resp.substr(0,\ resp.size()\ -\/\ 1).c\_str(),\ resp.size(),\ 0);}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Handle\ exit\ command}}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (input\ ==\ \textcolor{stringliteral}{"{}exit"{}})}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ close(clientSocket);}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exiting\ BlinkDB..."{}}\ <<\ endl;}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Receive\ and\ display\ server\ response}}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ response[512];}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ memset(response,\ 0,\ \textcolor{keyword}{sizeof}(response));}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ recv(clientSocket,\ response,\ \textcolor{keyword}{sizeof}(response),\ 0);}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ vector<string>\ responseStr\ =\ \mbox{\hyperlink{Client_8cpp_a28d45d845cfebeaca828094718709c77}{fromRESP2}}(response);}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Server\ >\ "{}};}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ word\ :\ responseStr)}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ word\ <<\ \textcolor{stringliteral}{"{}\ "{}};}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ endl;}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00249\ \ \ \ \ \}}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00252\ \}}
 
 \end{DoxyCode}
-\Hypertarget{Client_8cpp_add88fa84019131b67d72162722eafa96}\index{Client.cpp@{Client.cpp}!toRESP2@{toRESP2}}
-\index{toRESP2@{toRESP2}!Client.cpp@{Client.cpp}}
-\doxysubsubsection{\texorpdfstring{toRESP2()}{toRESP2()}}
-{\footnotesize\ttfamily \label{Client_8cpp_add88fa84019131b67d72162722eafa96} 
-string to\+RESP2 (\begin{DoxyParamCaption}\item[{const string \&}]{data}{}\end{DoxyParamCaption})}
+\Hypertarget{Client_8cpp_aea022c8ab34c70c831d38ccf32ed99f2}\index{Client.cpp@{Client.cpp}!splitCommand@{splitCommand}}
+\index{splitCommand@{splitCommand}!Client.cpp@{Client.cpp}}
+\doxysubsubsection{\texorpdfstring{splitCommand()}{splitCommand()}}
+{\footnotesize\ttfamily \label{Client_8cpp_aea022c8ab34c70c831d38ccf32ed99f2} 
+vector$<$ string $>$ split\+Command (\begin{DoxyParamCaption}\item[{string}]{command}{}\end{DoxyParamCaption})}
 
 
 
-Converts a string into RESP2 protocol format. 
+Splits a command string into at most three parts (command, key, and value). 
 
 
 \begin{DoxyParams}{Parameters}
-{\em data} & The command string to be sent to the server. \\
+{\em command} & The input command string. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector containing the split components (command, key, and optionally value). 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{Client_8cpp_source_l00089}{89}} of file \mbox{\hyperlink{Client_8cpp_source}{Client.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00090\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ vector<string>\ result;}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{string}\ word\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{int}\ count\ =\ 2;}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ x\ :\ \mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}})}
+\DoxyCodeLine{00095\ \ \ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (x\ ==\ \textcolor{charliteral}{'\(\backslash\)0'})}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (x\ ==\ \textcolor{charliteral}{'\ '}\ \&\&\ count\ >\ 0)}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ result.push\_back(word);}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ word\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ count-\/-\/;}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ word\ =\ word\ +\ x;}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \ \ \ \ \}}
+\DoxyCodeLine{00112\ \ \ \ \ result.push\_back(word);}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00114\ \}}
+
+\end{DoxyCode}
+\Hypertarget{Client_8cpp_add2d5323005c8220f5b4d5f89fbad4b2}\index{Client.cpp@{Client.cpp}!toRESP2@{toRESP2}}
+\index{toRESP2@{toRESP2}!Client.cpp@{Client.cpp}}
+\doxysubsubsection{\texorpdfstring{toRESP2()}{toRESP2()}}
+{\footnotesize\ttfamily \label{Client_8cpp_add2d5323005c8220f5b4d5f89fbad4b2} 
+string to\+RESP2 (\begin{DoxyParamCaption}\item[{const string \&}]{command}{}\end{DoxyParamCaption})}
+
+
+
+Converts a string to Redis Serialization Protocol (RESP2) format. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The input string. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -221,12 +304,27 @@ The RESP2 formatted string.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{Client_8cpp_source_l00024}{24}} of file \mbox{\hyperlink{Client_8cpp_source}{Client.\+cpp}}.
+Definition at line \mbox{\hyperlink{Client_8cpp_source_l00025}{25}} of file \mbox{\hyperlink{Client_8cpp_source}{Client.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00025\ \{}
-\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}\$"{}}\ +\ to\_string(data.size())\ +\ \textcolor{stringliteral}{"{}\(\backslash\)r\(\backslash\)n"{}}\ +\ data\ +\ \textcolor{stringliteral}{"{}\(\backslash\)r\(\backslash\)n"{}};}
-\DoxyCodeLine{00027\ \}}
+\DoxyCodeLine{00026\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ istringstream\ stream(\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}});}
+\DoxyCodeLine{00028\ \ \ \ \ vector<string>\ tokens;}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{string}\ word;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordflow}{while}\ (stream\ >>\ word)}
+\DoxyCodeLine{00032\ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ tokens.push\_back(word);}
+\DoxyCodeLine{00034\ \ \ \ \ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{string}\ result\ =\ \textcolor{stringliteral}{"{}*"{}}\ +\ to\_string(tokens.size())\ +\ \textcolor{stringliteral}{"{}\(\backslash\)r\(\backslash\)n"{}};}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&token\ :\ tokens)}
+\DoxyCodeLine{00038\ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ result\ +=\ \textcolor{stringliteral}{"{}\$"{}}\ +\ to\_string(token.size())\ +\ \textcolor{stringliteral}{"{}\(\backslash\)r\(\backslash\)n"{}}\ +\ token\ +\ \textcolor{stringliteral}{"{}\(\backslash\)r\(\backslash\)n"{}};}
+\DoxyCodeLine{00040\ \ \ \ \ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00043\ \}}
 
 \end{DoxyCode}

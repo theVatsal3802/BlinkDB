@@ -126,79 +126,105 @@ $(function(){initNavTree('Utils_8h_source.html',''); initResizable(true); });
 </div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span></div>
 <div class="foldopen" id="foldopen00032" data-start="{" data-end="}">
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classUtils.html#a6f265fd8a4fcb74fc25b0d1a00e8d553">   32</a></span>    vector&lt;string&gt; <a class="code hl_function" href="classUtils.html#a6f265fd8a4fcb74fc25b0d1a00e8d553">splitCommand</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;<a class="code hl_variable" href="REPL_8cpp.html#a252cf30305a23a874371ecc779fab24b">command</a>)</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classUtils.html#a535e19702f14602c977a03d80e9208f7">   32</a></span>    vector&lt;string&gt; <a class="code hl_function" href="classUtils.html#a535e19702f14602c977a03d80e9208f7">splitCommand</a>(<span class="keywordtype">string</span> <a class="code hl_variable" href="REPL_8cpp.html#a252cf30305a23a874371ecc779fab24b">command</a>)</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    {</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        vector&lt;string&gt; result;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        stringstream ss(<a class="code hl_variable" href="REPL_8cpp.html#a252cf30305a23a874371ecc779fab24b">command</a>);</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keywordtype">string</span> word;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keywordtype">int</span> count = 2; <span class="comment">// Limit to three parts (command, key, value)</span></div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="keywordflow">while</span> (ss &gt;&gt; word &amp;&amp; count &gt; 0)</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        {</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>            result.push_back(word);</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>            count--;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        }</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="comment">// Add the remaining part as a single value</span></div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="keywordflow">if</span> (ss.rdbuf()-&gt;in_avail() &gt; 0)</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        {</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>            <span class="keywordtype">string</span> remaining;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>            getline(ss, remaining);</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>            result.push_back(remaining);</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        }</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keywordflow">return</span> result;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    }</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keywordtype">string</span> word = <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keywordtype">int</span> count = 2;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span> x : <a class="code hl_variable" href="REPL_8cpp.html#a252cf30305a23a874371ecc779fab24b">command</a>)</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        {</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>            <span class="keywordflow">if</span> (x == <span class="charliteral">&#39;\0&#39;</span>)</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>            {</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>            }</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>            <span class="keywordflow">if</span> (x == <span class="charliteral">&#39; &#39;</span> &amp;&amp; count &gt; 0)</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            {</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>                result.push_back(word);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>                word = <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>                count--;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>            }</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>            <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>            {</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>                word = word + x;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            }</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        }</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        result.push_back(word);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="keywordflow">return</span> result;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    }</div>
 </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span></div>
-<div class="foldopen" id="foldopen00063" data-start="{" data-end="}">
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classUtils.html#a53bf7de5e9b7bc2da2231e3ecac93543">   63</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classUtils.html#a53bf7de5e9b7bc2da2231e3ecac93543">startsWith</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;str, <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;prefix)</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    {</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <span class="keywordflow">return</span> str.rfind(prefix, 0) == 0;</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    }</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span></div>
+<div class="foldopen" id="foldopen00066" data-start="{" data-end="}">
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classUtils.html#a53bf7de5e9b7bc2da2231e3ecac93543">   66</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classUtils.html#a53bf7de5e9b7bc2da2231e3ecac93543">startsWith</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;str, <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;prefix)</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    {</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <span class="keywordflow">return</span> str.rfind(prefix, 0) == 0;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    }</div>
 </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span></div>
-<div class="foldopen" id="foldopen00074" data-start="{" data-end="}">
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="classUtils.html#a74638524efa66fa47ba86bfd8c233ac2">   74</a></span>    <span class="keywordtype">string</span> <a class="code hl_function" href="classUtils.html#a74638524efa66fa47ba86bfd8c233ac2">toRESP2</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;data)</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    {</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        <span class="keywordflow">return</span> <span class="stringliteral">&quot;$&quot;</span> + to_string(data.size()) + <span class="stringliteral">&quot;\r\n&quot;</span> + data + <span class="stringliteral">&quot;\r\n&quot;</span>;</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    }</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span></div>
+<div class="foldopen" id="foldopen00077" data-start="{" data-end="}">
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="classUtils.html#aff02e023c559fff102a734c4cd136f3e">   77</a></span>    <span class="keywordtype">string</span> <a class="code hl_function" href="classUtils.html#aff02e023c559fff102a734c4cd136f3e">toRESP2</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;<a class="code hl_variable" href="REPL_8cpp.html#a252cf30305a23a874371ecc779fab24b">command</a>)</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    {</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        istringstream stream(<a class="code hl_variable" href="REPL_8cpp.html#a252cf30305a23a874371ecc779fab24b">command</a>);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        vector&lt;string&gt; tokens;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        <span class="keywordtype">string</span> word;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        <span class="keywordflow">while</span> (stream &gt;&gt; word)</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        {</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>            tokens.push_back(word);</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        }</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        <span class="keywordtype">string</span> result = <span class="stringliteral">&quot;*&quot;</span> + to_string(tokens.size()) + <span class="stringliteral">&quot;\r\n&quot;</span>;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;token : tokens)</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        {</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>            result += <span class="stringliteral">&quot;$&quot;</span> + to_string(token.size()) + <span class="stringliteral">&quot;\r\n&quot;</span> + token + <span class="stringliteral">&quot;\r\n&quot;</span>;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        }</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        <span class="keywordflow">return</span> result;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    }</div>
 </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span></div>
-<div class="foldopen" id="foldopen00085" data-start="{" data-end="}">
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="classUtils.html#aa418bf6958923361fe5746687abd8b70">   85</a></span>    <span class="keywordtype">string</span> <a class="code hl_function" href="classUtils.html#aa418bf6958923361fe5746687abd8b70">fromRESP2</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;resp)</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    {</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        <span class="keywordflow">if</span> (resp.empty() || resp[0] != <span class="charliteral">&#39;$&#39;</span>)</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        istringstream stream(resp);</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        <span class="keywordtype">string</span> lengthLine, data;</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        getline(stream, lengthLine); <span class="comment">// Read first line ($length)</span></div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        getline(stream, data);       <span class="comment">// Read actual string</span></div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        <span class="comment">// Trim trailing \r if present</span></div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        <span class="keywordflow">if</span> (!lengthLine.empty() &amp;&amp; lengthLine.back() == <span class="charliteral">&#39;\r&#39;</span>)</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        {</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>            lengthLine.pop_back();</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        }</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        <span class="keywordflow">if</span> (!data.empty() &amp;&amp; data.back() == <span class="charliteral">&#39;\r&#39;</span>)</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        {</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>            data.pop_back();</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        }</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        <span class="keywordflow">return</span> data;</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    }</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span></div>
+<div class="foldopen" id="foldopen00103" data-start="{" data-end="}">
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="classUtils.html#ad29cd3a770214f620b6a183ccaccebe3">  103</a></span>    vector&lt;string&gt; <a class="code hl_function" href="classUtils.html#ad29cd3a770214f620b6a183ccaccebe3">fromRESP2</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;resp)</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    {</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        vector&lt;string&gt; result;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        istringstream stream(resp);</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        <span class="keywordtype">string</span> line;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        getline(stream, line, <span class="charliteral">&#39;\r&#39;</span>);</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        <span class="keywordflow">if</span> (line[0] != <span class="charliteral">&#39;*&#39;</span>)</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>            <span class="keywordflow">return</span> {}; <span class="comment">// Must start with &#39;*&#39;</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        <span class="keywordtype">int</span> numArgs = stoi(line.substr(1)); <span class="comment">// Number of arguments</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        stream.ignore(1);                   <span class="comment">// Ignore &#39;\n&#39;</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; numArgs; i++)</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        {</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>            getline(stream, line, <span class="charliteral">&#39;\r&#39;</span>);</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>            <span class="keywordflow">if</span> (line[0] != <span class="charliteral">&#39;$&#39;</span>)</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>                <span class="keywordflow">return</span> {}; <span class="comment">// Must start with &#39;$&#39;</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>            <span class="keywordtype">int</span> len = stoi(line.substr(1)); <span class="comment">// Get length of argument</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>            stream.ignore(1);               <span class="comment">// Ignore &#39;\n&#39;</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>            <span class="keywordtype">string</span> arg(len, <span class="charliteral">&#39; &#39;</span>);</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>            stream.read(&amp;arg[0], len); <span class="comment">// Read the argument</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>            result.push_back(arg);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>            stream.ignore(2); <span class="comment">// Ignore &#39;\r\n&#39;</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        }</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        <span class="keywordflow">return</span> result;</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    }</div>
 </div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>};</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>};</div>
 </div>
 <div class="ttc" id="aREPL_8cpp_html_a252cf30305a23a874371ecc779fab24b"><div class="ttname"><a href="REPL_8cpp.html#a252cf30305a23a874371ecc779fab24b">command</a></div><div class="ttdeci">Command command</div><div class="ttdoc">Stores the command to be executed.</div><div class="ttdef"><b>Definition</b> <a href="REPL_8cpp_source.html#l00018">REPL.cpp:18</a></div></div>
 <div class="ttc" id="aclassUtils_html"><div class="ttname"><a href="classUtils.html">Utils</a></div><div class="ttdoc">Utility class providing helper functions for hashing, string manipulation, and pattern matching.</div><div class="ttdef"><b>Definition</b> <a href="#l00010">Utils.h:11</a></div></div>
-<div class="ttc" id="aclassUtils_html_a53bf7de5e9b7bc2da2231e3ecac93543"><div class="ttname"><a href="classUtils.html#a53bf7de5e9b7bc2da2231e3ecac93543">Utils::startsWith</a></div><div class="ttdeci">bool startsWith(const string &amp;str, const string &amp;prefix)</div><div class="ttdoc">Checks if a given string starts with a specified prefix.</div><div class="ttdef"><b>Definition</b> <a href="#l00063">Utils.h:63</a></div></div>
-<div class="ttc" id="aclassUtils_html_a6f265fd8a4fcb74fc25b0d1a00e8d553"><div class="ttname"><a href="classUtils.html#a6f265fd8a4fcb74fc25b0d1a00e8d553">Utils::splitCommand</a></div><div class="ttdeci">vector&lt; string &gt; splitCommand(const string &amp;command)</div><div class="ttdoc">Splits a command string into at most three parts (command, key, and value).</div><div class="ttdef"><b>Definition</b> <a href="#l00032">Utils.h:32</a></div></div>
-<div class="ttc" id="aclassUtils_html_a74638524efa66fa47ba86bfd8c233ac2"><div class="ttname"><a href="classUtils.html#a74638524efa66fa47ba86bfd8c233ac2">Utils::toRESP2</a></div><div class="ttdeci">string toRESP2(const string &amp;data)</div><div class="ttdoc">Converts a string to Redis Serialization Protocol (RESP2) format.</div><div class="ttdef"><b>Definition</b> <a href="#l00074">Utils.h:74</a></div></div>
+<div class="ttc" id="aclassUtils_html_a535e19702f14602c977a03d80e9208f7"><div class="ttname"><a href="classUtils.html#a535e19702f14602c977a03d80e9208f7">Utils::splitCommand</a></div><div class="ttdeci">vector&lt; string &gt; splitCommand(string command)</div><div class="ttdoc">Splits a command string into at most three parts (command, key, and value).</div><div class="ttdef"><b>Definition</b> <a href="#l00032">Utils.h:32</a></div></div>
+<div class="ttc" id="aclassUtils_html_a53bf7de5e9b7bc2da2231e3ecac93543"><div class="ttname"><a href="classUtils.html#a53bf7de5e9b7bc2da2231e3ecac93543">Utils::startsWith</a></div><div class="ttdeci">bool startsWith(const string &amp;str, const string &amp;prefix)</div><div class="ttdoc">Checks if a given string starts with a specified prefix.</div><div class="ttdef"><b>Definition</b> <a href="#l00066">Utils.h:66</a></div></div>
 <div class="ttc" id="aclassUtils_html_aa1d553caf53f915881b47c961dd7ef2e"><div class="ttname"><a href="classUtils.html#aa1d553caf53f915881b47c961dd7ef2e">Utils::hash</a></div><div class="ttdeci">string hash(const string &amp;key)</div><div class="ttdoc">Hashes a string using Boost&#39;s hash function.</div><div class="ttdef"><b>Definition</b> <a href="#l00019">Utils.h:19</a></div></div>
-<div class="ttc" id="aclassUtils_html_aa418bf6958923361fe5746687abd8b70"><div class="ttname"><a href="classUtils.html#aa418bf6958923361fe5746687abd8b70">Utils::fromRESP2</a></div><div class="ttdeci">string fromRESP2(const string &amp;resp)</div><div class="ttdoc">Parses a RESP2-formatted string back to a normal string.</div><div class="ttdef"><b>Definition</b> <a href="#l00085">Utils.h:85</a></div></div>
+<div class="ttc" id="aclassUtils_html_ad29cd3a770214f620b6a183ccaccebe3"><div class="ttname"><a href="classUtils.html#ad29cd3a770214f620b6a183ccaccebe3">Utils::fromRESP2</a></div><div class="ttdeci">vector&lt; string &gt; fromRESP2(const string &amp;resp)</div><div class="ttdoc">Parses a RESP2-formatted string back to a normal string.</div><div class="ttdef"><b>Definition</b> <a href="#l00103">Utils.h:103</a></div></div>
+<div class="ttc" id="aclassUtils_html_aff02e023c559fff102a734c4cd136f3e"><div class="ttname"><a href="classUtils.html#aff02e023c559fff102a734c4cd136f3e">Utils::toRESP2</a></div><div class="ttdeci">string toRESP2(const string &amp;command)</div><div class="ttdoc">Converts a string to Redis Serialization Protocol (RESP2) format.</div><div class="ttdef"><b>Definition</b> <a href="#l00077">Utils.h:77</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

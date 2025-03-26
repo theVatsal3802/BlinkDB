@@ -17,38 +17,74 @@
 using namespace std;
 
 /**
- * @brief Converts a string into RESP2 protocol format.
- * @param data The command string to be sent to the server.
+ * @brief Converts a string to Redis Serialization Protocol (RESP2) format.
+ *
+ * @param data The input string.
  * @return The RESP2 formatted string.
  */
-string toRESP2(const string &data)
+string toRESP2(const string &command)
 {
-    return "$" + to_string(data.size()) + "\r\n" + data + "\r\n";
+    istringstream stream(command);
+    vector<string> tokens;
+    string word;
+
+    while (stream >> word)
+    {
+        tokens.push_back(word);
+    }
+
+    string result = "*" + to_string(tokens.size()) + "\r\n";
+    for (const auto &token : tokens)
+    {
+        result += "$" + to_string(token.size()) + "\r\n" + token + "\r\n";
+    }
+
+    return result;
 }
 
 /**
- * @brief Extracts the actual response from a RESP2 formatted string.
- * @param resp The RESP2 formatted response string received from the server.
- * @return The extracted response string.
+ * @brief Parses a RESP2-formatted string back to a normal string.
+ *
+ * @param resp The RESP2-formatted string.
+ * @return The extracted string data.
  */
-string fromRESP2(const string &resp)
+vector<string> fromRESP2(const string &resp)
 {
-    if (resp.empty() || resp[0] != '$')
-        return "";
-
+    vector<string> result;
     istringstream stream(resp);
-    string lengthLine, data;
+    string line;
 
-    getline(stream, lengthLine); // Read first line ($length)
-    getline(stream, data);       // Read actual string
+    getline(stream, line, '\r');
+    if (line[0] != '*')
+        return {}; // Must start with '*'
 
-    return data;
+    int numArgs = stoi(line.substr(1)); // Number of arguments
+    stream.ignore(1);                   // Ignore '\n'
+
+    for (int i = 0; i < numArgs; i++)
+    {
+        getline(stream, line, '\r');
+        if (line[0] != '$')
+            return {}; // Must start with '$'
+
+        int len = stoi(line.substr(1)); // Get length of argument
+        stream.ignore(1);               // Ignore '\n'
+
+        string arg(len, ' ');
+        stream.read(&arg[0], len); // Read the argument
+        result.push_back(arg);
+
+        stream.ignore(2); // Ignore '\r\n'
+    }
+
+    return result;
 }
 
 /**
- * @brief Splits the command string into individual words.
- * @param command The command string to be split.
- * @return A vector of strings containing the individual words.
+ * @brief Splits a command string into at most three parts (command, key, and value).
+ *
+ * @param command The input command string.
+ * @return A vector containing the split components (command, key, and optionally value).
  */
 vector<string> splitCommand(string command)
 {
@@ -144,9 +180,15 @@ int main(int argc, char *argv[])
         chrono::high_resolution_clock::time_point start = chrono::high_resolution_clock::now();
         ifstream testFile(filename);
         string line;
+        cout << "Executing commands from " << filename << "... Please wait..." << endl;
         while (getline(testFile, line))
         {
             // Convert command to RESP2 format and send it
+            struct timeval timeout;
+            timeout.tv_sec = 5; // Set timeout to 5 seconds
+            timeout.tv_usec = 0;
+
+            setsockopt(clientSocket, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout));
             string resp = toRESP2(line);
             send(clientSocket, resp.substr(0, resp.size() - 1).c_str(), resp.size(), 0);
 
@@ -154,14 +196,6 @@ int main(int argc, char *argv[])
             char response[512];
             memset(response, 0, sizeof(response));
             recv(clientSocket, response, sizeof(response), 0);
-
-            // Process and display response
-            string responseStr = fromRESP2(response);
-            vector<string> responseWords = splitCommand(line);
-            if (responseWords[0] == "get")
-            {
-                cout << "Server > " << responseStr << endl;
-            }
         }
         chrono::high_resolution_clock::time_point end = chrono::high_resolution_clock::now();
         chrono::duration<double> elapsed = end - start;
@@ -184,6 +218,11 @@ int main(int argc, char *argv[])
             }
 
             // Send command to server
+            struct timeval timeout;
+            timeout.tv_sec = 5; // Set timeout to 5 seconds
+            timeout.tv_usec = 0;
+
+            setsockopt(clientSocket, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout));
             string resp = toRESP2(input);
             send(clientSocket, resp.substr(0, resp.size() - 1).c_str(), resp.size(), 0);
 
@@ -199,8 +238,13 @@ int main(int argc, char *argv[])
             char response[512];
             memset(response, 0, sizeof(response));
             recv(clientSocket, response, sizeof(response), 0);
-            string responseStr = fromRESP2(response);
-            cout << "Server > " << responseStr << endl;
+            vector<string> responseStr = fromRESP2(response);
+            cout << "Server > ";
+            for (auto word : responseStr)
+            {
+                cout << word << " ";
+            }
+            cout << endl;
         }
     }
 

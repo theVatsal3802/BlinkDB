@@ -83,7 +83,7 @@ public:
      */
     string executeCommand(Command command)
     {
-        if (command.getCommand() == "set")
+        if (command.getCommand() == "SET")
         {
             // Clear cache if size exceeds limit
             if (L1Cache.getSize() >= 100000000)
@@ -95,7 +95,7 @@ public:
             setService.set(command.getKey(), command.getValue());
             return "Set Success";
         }
-        else if (command.getCommand() == "get")
+        else if (command.getCommand() == "GET")
         {
             // Check cache first
             string cacheCheckResult = L1Cache.get(command.getKey());
@@ -108,7 +108,7 @@ public:
                 return cacheCheckResult;
             }
         }
-        else if (command.getCommand() == "del")
+        else if (command.getCommand() == "DEL")
         {
             // Remove from cache and database
             L1Cache.del(command.getKey());

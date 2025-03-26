@@ -14,7 +14,7 @@ Service class for retrieving values from \doxylink{classBlinkDB}{Blink\+DB}.
 \item 
 \mbox{\hyperlink{classGetService_a017866fe7139f66ae106620694931d43}{Get\+Service}} (\mbox{\hyperlink{classBlinkDB}{Blink\+DB}} \&blink\+DB)
 \begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classGetService}{Get\+Service} instance. \end{DoxyCompactList}\item 
-string \mbox{\hyperlink{classGetService_ae07a04d7b3be712359f4efe92c9be572}{get}} (string key)
+string \mbox{\hyperlink{classGetService_a34be5acd1b357e6d5a325cae9631f65f}{get}} (const string \&key)
 \begin{DoxyCompactList}\small\item\em Retrieves the value associated with a given key. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -32,7 +32,7 @@ Definition at line \mbox{\hyperlink{GetService_8h_source_l00012}{12}} of file \m
 \index{GetService@{GetService}!GetService@{GetService}}
 \doxysubsubsection{\texorpdfstring{GetService()}{GetService()}}
 {\footnotesize\ttfamily \label{classGetService_a017866fe7139f66ae106620694931d43} 
-Get\+Service\+::\+Get\+Service (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBlinkDB}{Blink\+DB}} \&}]{blink\+DB}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+Get\+Service\+::\+Get\+Service (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBlinkDB}{Blink\+DB}} \&}]{blink\+DB}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
 
 
 
@@ -55,11 +55,11 @@ Definition at line \mbox{\hyperlink{GetService_8h_source_l00026}{26}} of file \m
 
 
 \doxysubsection{Member Function Documentation}
-\Hypertarget{classGetService_ae07a04d7b3be712359f4efe92c9be572}\index{GetService@{GetService}!get@{get}}
+\Hypertarget{classGetService_a34be5acd1b357e6d5a325cae9631f65f}\index{GetService@{GetService}!get@{get}}
 \index{get@{get}!GetService@{GetService}}
 \doxysubsubsection{\texorpdfstring{get()}{get()}}
-{\footnotesize\ttfamily \label{classGetService_ae07a04d7b3be712359f4efe92c9be572} 
-string Get\+Service\+::get (\begin{DoxyParamCaption}\item[{string}]{key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily \label{classGetService_a34be5acd1b357e6d5a325cae9631f65f} 
+string Get\+Service\+::get (\begin{DoxyParamCaption}\item[{const string \&}]{key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -71,7 +71,7 @@ Retrieves the value associated with a given key.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The value corresponding to the key, or an appropriate error message if the key does not exist. 
+The value corresponding to the key, or "{}\+Key not found"{} if it does not exist. 
 \end{DoxyReturn}
 
 
@@ -80,8 +80,17 @@ Definition at line \mbox{\hyperlink{GetService_8h_source_l00034}{34}} of file \m
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00035\ \ \ \ \ \{}
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ blinkDB.get(key);}
-\DoxyCodeLine{00037\ \ \ \ \ \}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ value\ =\ blinkDB.get(key);}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ value.empty()\ ?\ \textcolor{stringliteral}{"{}Key\ not\ found"{}}\ :\ value;}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ exception\ \&e)}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ cerr\ <<\ \textcolor{stringliteral}{"{}Error\ retrieving\ key\ '"{}}\ <<\ key\ <<\ \textcolor{stringliteral}{"{}':\ "{}}\ <<\ e.what()\ <<\ endl;}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Error\ retrieving\ value"{}};}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00046\ \ \ \ \ \}}
 
 \end{DoxyCode}
 

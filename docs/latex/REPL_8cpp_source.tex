@@ -37,19 +37,19 @@
 \DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00070}00070\ \ \ \ \ vector<string>\ result\ =\ \mbox{\hyperlink{REPL_8cpp_a0a9c1f677277ebf123dd67dd754228ba}{utils}}.splitCommand(input);}
 \DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00071}00071\ }
 \DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00072}00072\ \ \ \ \ \textcolor{comment}{//\ Process\ the\ command\ based\ on\ its\ type}}
-\DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00073}00073\ \ \ \ \ \textcolor{keywordflow}{if}\ (result.size()\ ==\ 3\ \&\&\ result[0]\ ==\ \textcolor{stringliteral}{"{}set"{}})}
+\DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00073}00073\ \ \ \ \ \textcolor{keywordflow}{if}\ (result.size()\ ==\ 3\ \&\&\ result[0]\ ==\ \textcolor{stringliteral}{"{}SET"{}})}
 \DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00074}00074\ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}\ =\ \mbox{\hyperlink{classCommand}{Command}}(result[0],\ result[1],\ result[2]);}
 \DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00076}00076\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00077}00077\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (result.size()\ ==\ 2\ \&\&\ result[0]\ ==\ \textcolor{stringliteral}{"{}get"{}})}
+\DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00077}00077\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (result.size()\ ==\ 2\ \&\&\ result[0]\ ==\ \textcolor{stringliteral}{"{}GET"{}})}
 \DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00078}00078\ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}\ =\ \mbox{\hyperlink{classCommand}{Command}}(result[0],\ result[1]);}
 \DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00080}00080\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00081}00081\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (result.size()\ ==\ 2\ \&\&\ result[0]\ ==\ \textcolor{stringliteral}{"{}del"{}})}
+\DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00081}00081\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (result.size()\ ==\ 2\ \&\&\ result[0]\ ==\ \textcolor{stringliteral}{"{}DEL"{}})}
 \DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00082}00082\ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}\ =\ \mbox{\hyperlink{classCommand}{Command}}(result[0],\ result[1]);}
 \DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00084}00084\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00085}00085\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (result[0]\ ==\ \textcolor{stringliteral}{"{}exit"{}})}
+\DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00085}00085\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (result[0]\ ==\ \textcolor{stringliteral}{"{}EXIT"{}})}
 \DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00086}00086\ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
 \DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00088}00088\ \ \ \ \ \}}
@@ -78,9 +78,9 @@
 \DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00111}00111\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00112}00112\ }
 \DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00113}00113\ \ \ \ \ \textcolor{comment}{//\ Print\ response\ based\ on\ mode}}
-\DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00114}00114\ \ \ \ \ \textcolor{keywordflow}{if}\ (mode\ ==\ \textcolor{stringliteral}{"{}1"{}}\ \&\&\ \mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.getCommand()\ ==\ \textcolor{stringliteral}{"{}get"{}})}
+\DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00114}00114\ \ \ \ \ \textcolor{keywordflow}{if}\ (mode\ ==\ \textcolor{stringliteral}{"{}1"{}}\ \&\&\ \mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.getCommand()\ ==\ \textcolor{stringliteral}{"{}GET"{}})}
 \DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00115}00115\ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Response:\ "{}}\ <<\ response.\mbox{\hyperlink{classResponse_ac39b6e8b87b8d363bdd6fc9c5110ce5d}{to\_string}}()\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ cout\ <<\ response.\mbox{\hyperlink{classResponse_a90db3bfe03b4b2d4bab3f3d104da8007}{getValue}}()\ <<\ endl;}
 \DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00117}00117\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00118}00118\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (mode\ ==\ \textcolor{stringliteral}{"{}0"{}})}
 \DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00119}00119\ \ \ \ \ \{}
@@ -120,7 +120,7 @@
 \DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00163}00163\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00164}00164\ \}}
 \DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00165}00165\ }
-\DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00174}\mbox{\hyperlink{REPL_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{00174}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{Server_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}}(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ *argv[])}
+\DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00174}\mbox{\hyperlink{REPL_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{00174}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{TestGenerator_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}}(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ *argv[])}
 \DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00175}00175\ \{}
 \DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00176}00176\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Initializing\ BlinkDB\ server..."{}}\ <<\ endl;}
 \DoxyCodeLine{\Hypertarget{REPL_8cpp_source_l00177}00177\ }

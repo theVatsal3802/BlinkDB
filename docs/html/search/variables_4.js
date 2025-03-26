@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['utils_0',['utils',['../REPL_8cpp.html#a0a9c1f677277ebf123dd67dd754228ba',1,'utils:&#160;REPL.cpp'],['../Server_8cpp.html#a0a9c1f677277ebf123dd67dd754228ba',1,'utils:&#160;Server.cpp']]]
+  ['sendmutex_0',['sendMutex',['../Server_8cpp.html#a24c7846dc65efd651291de16681a008c',1,'Server.cpp']]],
+  ['serversocket_1',['serverSocket',['../Server_8cpp.html#a106cd1d02a334c78f546d2897a1b939c',1,'Server.cpp']]]
 ];

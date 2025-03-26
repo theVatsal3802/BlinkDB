@@ -23,16 +23,25 @@ public:
      *
      * @param blinkDB Reference to the BlinkDB database instance.
      */
-    GetService(BlinkDB &blinkDB) : blinkDB(blinkDB) {}
+    explicit GetService(BlinkDB &blinkDB) : blinkDB(blinkDB) {}
 
     /**
      * @brief Retrieves the value associated with a given key.
      *
      * @param key The key whose value is to be retrieved.
-     * @return The value corresponding to the key, or an appropriate error message if the key does not exist.
+     * @return The value corresponding to the key, or "Key not found" if it does not exist.
      */
-    string get(string key)
+    string get(const string &key)
     {
-        return blinkDB.get(key);
+        try
+        {
+            string value = blinkDB.get(key);
+            return value.empty() ? "Key not found" : value;
+        }
+        catch (const exception &e)
+        {
+            cerr << "Error retrieving key '" << key << "': " << e.what() << endl;
+            return "Error retrieving value";
+        }
     }
 };

@@ -15,28 +15,34 @@
 \begin{DoxyCompactItemize}
 \item 
 atomic$<$ int $>$ \mbox{\hyperlink{Server_8cpp_a1316d6efd1a452dcf543f6339b346adf}{active\+Connections}} (0)
-\begin{DoxyCompactList}\small\item\em Tracks the number of active client connections. \end{DoxyCompactList}\item 
+\item 
+void \mbox{\hyperlink{Server_8cpp_aefd6bc58b38afde3e2d9e65e59f1887d}{close\+Server}} ()
+\item 
 void \mbox{\hyperlink{Server_8cpp_ad2e59c7203b3bddc1bc9a2224b52e8e7}{signal\+Handler}} (int signal)
-\begin{DoxyCompactList}\small\item\em Handles termination signals (e.\+g., Ctrl+C). \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{Server_8cpp_a28ce186ce771194512785b1d1d5310c0}{handle\+Client}} (int client\+Socket)
-\begin{DoxyCompactList}\small\item\em Handles an individual client connection. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{Server_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
-\begin{DoxyCompactList}\small\item\em Entry point of the \doxylink{classBlinkDB}{Blink\+DB} server. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{Server_8cpp_a00ce7b39b30e7dbc04bf5adefd4d6e13}{handle\+Client}} (int client\+Socket, string mode)
+\item 
+int \mbox{\hyperlink{Server_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
+int \mbox{\hyperlink{Server_8cpp_a106cd1d02a334c78f546d2897a1b939c}{server\+Socket}}
+\item 
 \mbox{\hyperlink{classBlinkDB}{Blink\+DB}} \mbox{\hyperlink{Server_8cpp_a402d683058e8918de804245d663a5b4c}{blink\+DB}}
-\begin{DoxyCompactList}\small\item\em Represents the main database instance. \end{DoxyCompactList}\item 
+\item 
 \mbox{\hyperlink{classCommand}{Command}} \mbox{\hyperlink{Server_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}
-\begin{DoxyCompactList}\small\item\em Stores the command to be executed. \end{DoxyCompactList}\item 
+\item 
 \mbox{\hyperlink{classAPIGateway}{APIGateway}} \mbox{\hyperlink{Server_8cpp_a5303a76873839b12bb127f7e29ea998b}{api\+Gateway}} (\mbox{\hyperlink{REPL_8cpp_a402d683058e8918de804245d663a5b4c}{blink\+DB}})
-\begin{DoxyCompactList}\small\item\em Handles API requests for executing database commands. \end{DoxyCompactList}\item 
+\item 
 \mbox{\hyperlink{classDiscBackupHandler}{Disc\+Backup\+Handler}} \mbox{\hyperlink{Server_8cpp_a3f7d9a523aae4471718c08c5427f95cb}{disc\+Backup\+Handler}}
-\begin{DoxyCompactList}\small\item\em Manages disk backup operations. \end{DoxyCompactList}\item 
+\item 
 \mbox{\hyperlink{classUtils}{Utils}} \mbox{\hyperlink{Server_8cpp_a0a9c1f677277ebf123dd67dd754228ba}{utils}}
-\begin{DoxyCompactList}\small\item\em Utility class for helper functions. \end{DoxyCompactList}\item 
+\item 
 mutex \mbox{\hyperlink{Server_8cpp_ab8f5b274da3fd63bb861160625460c82}{db\+Mutex}}
-\begin{DoxyCompactList}\small\item\em Mutex to synchronize access to the database. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\item 
+mutex \mbox{\hyperlink{Server_8cpp_a24c7846dc65efd651291de16681a008c}{send\+Mutex}}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
@@ -46,182 +52,214 @@ mutex \mbox{\hyperlink{Server_8cpp_ab8f5b274da3fd63bb861160625460c82}{db\+Mutex}
 {\footnotesize\ttfamily \label{Server_8cpp_a1316d6efd1a452dcf543f6339b346adf} 
 atomic$<$ int $>$ active\+Connections (\begin{DoxyParamCaption}\item[{0}]{}{}\end{DoxyParamCaption})}
 
-
-
-Tracks the number of active client connections. 
-
-\Hypertarget{Server_8cpp_a28ce186ce771194512785b1d1d5310c0}\index{Server.cpp@{Server.cpp}!handleClient@{handleClient}}
-\index{handleClient@{handleClient}!Server.cpp@{Server.cpp}}
-\doxysubsubsection{\texorpdfstring{handleClient()}{handleClient()}}
-{\footnotesize\ttfamily \label{Server_8cpp_a28ce186ce771194512785b1d1d5310c0} 
-void handle\+Client (\begin{DoxyParamCaption}\item[{int}]{client\+Socket}{}\end{DoxyParamCaption})}
+\Hypertarget{Server_8cpp_aefd6bc58b38afde3e2d9e65e59f1887d}\index{Server.cpp@{Server.cpp}!closeServer@{closeServer}}
+\index{closeServer@{closeServer}!Server.cpp@{Server.cpp}}
+\doxysubsubsection{\texorpdfstring{closeServer()}{closeServer()}}
+{\footnotesize\ttfamily \label{Server_8cpp_aefd6bc58b38afde3e2d9e65e59f1887d} 
+void close\+Server (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
 
 
-Handles an individual client connection. 
-
-Receives commands from the client, processes them, executes the necessary database operations, and sends the response back to the client.
-
-
-\begin{DoxyParams}{Parameters}
-{\em client\+Socket} & The socket file descriptor for the client connection. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line \mbox{\hyperlink{Server_8cpp_source_l00075}{75}} of file \mbox{\hyperlink{Server_8cpp_source}{Server.\+cpp}}.
+Definition at line \mbox{\hyperlink{Server_8cpp_source_l00025}{25}} of file \mbox{\hyperlink{Server_8cpp_source}{Server.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00076\ \{}
-\DoxyCodeLine{00077\ \ \ \ \ \mbox{\hyperlink{Server_8cpp_a1316d6efd1a452dcf543f6339b346adf}{activeConnections}}++;}
-\DoxyCodeLine{00078\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}New\ client\ connected.\ Active\ clients:\ "{}}\ <<\ \mbox{\hyperlink{Server_8cpp_a1316d6efd1a452dcf543f6339b346adf}{activeConnections}}\ <<\ endl;}
-\DoxyCodeLine{00079\ }
-\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{char}\ buffer[512];}
-\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{true})}
-\DoxyCodeLine{00082\ \ \ \ \ \{}
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ memset(buffer,\ 0,\ \textcolor{keyword}{sizeof}(buffer));}
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ bytesReceived\ =\ recv(clientSocket,\ buffer,\ \textcolor{keyword}{sizeof}(buffer),\ 0);}
-\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (bytesReceived\ <=\ 0)}
-\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Client\ disconnected.\ Active\ clients:\ "{}}\ <<\ -\/-\/\mbox{\hyperlink{Server_8cpp_a1316d6efd1a452dcf543f6339b346adf}{activeConnections}}\ <<\ endl;}
-\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ commandString\ =\ \mbox{\hyperlink{REPL_8cpp_a0a9c1f677277ebf123dd67dd754228ba}{utils}}.fromRESP2(buffer);}
-\DoxyCodeLine{00091\ }
-\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ vector<string>\ result\ =\ \mbox{\hyperlink{REPL_8cpp_a0a9c1f677277ebf123dd67dd754228ba}{utils}}.splitCommand(commandString);}
-\DoxyCodeLine{00093\ }
-\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result.size()\ ==\ 3\ \&\&\ result[0]\ ==\ \textcolor{stringliteral}{"{}set"{}})}
-\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}\ =\ \mbox{\hyperlink{classCommand}{Command}}(result[0],\ result[1],\ result[2]);}
-\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (result.size()\ ==\ 2\ \&\&\ result[0]\ ==\ \textcolor{stringliteral}{"{}get"{}})}
-\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}\ =\ \mbox{\hyperlink{classCommand}{Command}}(result[0],\ result[1]);}
-\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (result.size()\ ==\ 2\ \&\&\ result[0]\ ==\ \textcolor{stringliteral}{"{}del"{}})}
-\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}\ =\ \mbox{\hyperlink{classCommand}{Command}}(result[0],\ result[1]);}
-\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (result[0]\ ==\ \textcolor{stringliteral}{"{}exit"{}})}
-\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Invalid\ command"{}}\ <<\ endl;}
-\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
-\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00115\ }
-\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ apiResponse;}
-\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ lock\_guard<mutex>\ lock(\mbox{\hyperlink{REPL_8cpp_ab8f5b274da3fd63bb861160625460c82}{dbMutex}});}
-\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ apiResponse\ =\ \mbox{\hyperlink{REPL_8cpp_a5303a76873839b12bb127f7e29ea998b}{apiGateway}}.executeCommand(\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}});}
-\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classResponse}{Response}}\ response;}
-\DoxyCodeLine{00122\ }
-\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (apiResponse\ ==\ \textcolor{stringliteral}{"{}-\/1"{}}\ ||\ apiResponse\ ==\ \textcolor{stringliteral}{"{}-\/2"{}})}
-\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ response\ =\ \mbox{\hyperlink{classResponse}{Response}}(404,\ \textcolor{stringliteral}{"{}Not\ Found"{}},\ \{\textcolor{stringliteral}{"{}Data"{}},\ \textcolor{stringliteral}{"{}Key\ not\ found"{}}\});}
-\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ response\ =\ \mbox{\hyperlink{classResponse}{Response}}(200,\ \textcolor{stringliteral}{"{}Success"{}},\ \{\textcolor{stringliteral}{"{}Data"{}},\ apiResponse\});}
-\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ memset(buffer,\ 0,\ \textcolor{keyword}{sizeof}(buffer));}
-\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ strcpy(buffer,\ response.\mbox{\hyperlink{classResponse_ac39b6e8b87b8d363bdd6fc9c5110ce5d}{to\_string}}().c\_str());}
-\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ temp\ =\ \mbox{\hyperlink{REPL_8cpp_a0a9c1f677277ebf123dd67dd754228ba}{utils}}.toRESP2(response.\mbox{\hyperlink{classResponse_ac39b6e8b87b8d363bdd6fc9c5110ce5d}{to\_string}}());}
-\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ temp\ =\ temp.substr(0,\ temp.size()\ -\/\ 1).c\_str();}
-\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ strcpy(buffer,\ temp.c\_str());}
-\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.getCommand()\ ==\ \textcolor{stringliteral}{"{}get"{}})}
-\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ send(clientSocket,\ buffer,\ strlen(buffer),\ 0);}
-\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00140\ \ \ \ \ \}}
-\DoxyCodeLine{00141\ }
-\DoxyCodeLine{00142\ \ \ \ \ close(clientSocket);}
-\DoxyCodeLine{00143\ \}}
+\DoxyCodeLine{00026\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ close(\mbox{\hyperlink{Server_8cpp_a106cd1d02a334c78f546d2897a1b939c}{serverSocket}});}
+\DoxyCodeLine{00028\ \}}
 
 \end{DoxyCode}
-\Hypertarget{Server_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\index{Server.cpp@{Server.cpp}!main@{main}}
-\index{main@{main}!Server.cpp@{Server.cpp}}
-\doxysubsubsection{\texorpdfstring{main()}{main()}}
-{\footnotesize\ttfamily \label{Server_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
-int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+\Hypertarget{Server_8cpp_a00ce7b39b30e7dbc04bf5adefd4d6e13}\index{Server.cpp@{Server.cpp}!handleClient@{handleClient}}
+\index{handleClient@{handleClient}!Server.cpp@{Server.cpp}}
+\doxysubsubsection{\texorpdfstring{handleClient()}{handleClient()}}
+{\footnotesize\ttfamily \label{Server_8cpp_a00ce7b39b30e7dbc04bf5adefd4d6e13} 
+void handle\+Client (\begin{DoxyParamCaption}\item[{int}]{client\+Socket}{, }\item[{string}]{mode}{}\end{DoxyParamCaption})}
 
 
 
-Entry point of the \doxylink{classBlinkDB}{Blink\+DB} server. 
-
-Initializes the server, sets up a signal handler for termination, starts listening for client connections, and creates separate threads for each connected client.
-
-\begin{DoxyReturn}{Returns}
-int Exit status code. 
-\end{DoxyReturn}
-
-
-Definition at line \mbox{\hyperlink{Server_8cpp_source_l00153}{153}} of file \mbox{\hyperlink{Server_8cpp_source}{Server.\+cpp}}.
+Definition at line \mbox{\hyperlink{Server_8cpp_source_l00041}{41}} of file \mbox{\hyperlink{Server_8cpp_source}{Server.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00154\ \{}
-\DoxyCodeLine{00155\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Initializing\ BlinkDB\ server..."{}}\ <<\ endl;}
-\DoxyCodeLine{00156\ }
-\DoxyCodeLine{00157\ \ \ \ \ \textcolor{comment}{//\ Register\ signal\ handler\ for\ graceful\ termination}}
-\DoxyCodeLine{00158\ \ \ \ \ signal(SIGINT,\ \mbox{\hyperlink{REPL_8cpp_ad2e59c7203b3bddc1bc9a2224b52e8e7}{signalHandler}});}
-\DoxyCodeLine{00159\ }
-\DoxyCodeLine{00160\ \ \ \ \ \textcolor{comment}{//\ Create\ a\ server\ socket}}
-\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordtype}{int}\ serverSocket\ =\ socket(AF\_INET,\ SOCK\_STREAM,\ 0);}
-\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordflow}{if}\ (serverSocket\ ==\ -\/1)}
-\DoxyCodeLine{00163\ \ \ \ \ \{}
-\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ cerr\ <<\ \textcolor{stringliteral}{"{}Socket\ creation\ failed"{}}\ <<\ endl;}
-\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
-\DoxyCodeLine{00166\ \ \ \ \ \}}
-\DoxyCodeLine{00167\ }
-\DoxyCodeLine{00168\ \ \ \ \ \textcolor{comment}{//\ Configure\ server\ address\ settings}}
+\DoxyCodeLine{00042\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ lock\_guard<mutex>\ lock(\mbox{\hyperlink{Server_8cpp_a24c7846dc65efd651291de16681a008c}{sendMutex}});}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{Server_8cpp_a1316d6efd1a452dcf543f6339b346adf}{activeConnections}}++;}
+\DoxyCodeLine{00046\ \ \ \ \ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{char}\ buffer[512];}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{true})}
+\DoxyCodeLine{00050\ \ \ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ memset(buffer,\ 0,\ \textcolor{keyword}{sizeof}(buffer));}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ bytesReceived\ =\ recv(clientSocket,\ buffer,\ \textcolor{keyword}{sizeof}(buffer),\ 0);}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (bytesReceived\ <=\ 0)}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lock\_guard<mutex>\ lock(\mbox{\hyperlink{Server_8cpp_a24c7846dc65efd651291de16681a008c}{sendMutex}});}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/-\/\mbox{\hyperlink{Server_8cpp_a1316d6efd1a452dcf543f6339b346adf}{activeConnections}};}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ vector<string>\ result\ =\ \mbox{\hyperlink{REPL_8cpp_a0a9c1f677277ebf123dd67dd754228ba}{utils}}.fromRESP2(buffer);}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result.empty())}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result[0]\ ==\ \textcolor{stringliteral}{"{}CONFIG"{}})}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ result.erase(result.begin());}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ apiResponse;}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classResponse}{Response}}\ response;}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCommand}{Command}}\ \mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}};\ \textcolor{comment}{//\ Fix:\ Use\ local\ variable\ instead\ of\ global\ command}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result.size()\ ==\ 3\ \&\&\ result[0]\ ==\ \textcolor{stringliteral}{"{}SET"{}})}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}\ =\ \mbox{\hyperlink{classCommand}{Command}}(result[0],\ result[1],\ result[2]);}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (result.size()\ ==\ 2\ \&\&\ result[0]\ ==\ \textcolor{stringliteral}{"{}GET"{}})}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}\ =\ \mbox{\hyperlink{classCommand}{Command}}(result[0],\ result[1]);}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (result.size()\ ==\ 2\ \&\&\ result[0]\ ==\ \textcolor{stringliteral}{"{}DEL"{}})}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}\ =\ \mbox{\hyperlink{classCommand}{Command}}(result[0],\ result[1]);}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (result[0]\ ==\ \textcolor{stringliteral}{"{}EXIT"{}})}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (result[0]\ ==\ \textcolor{stringliteral}{"{}PING"{}})}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ response\ =\ \mbox{\hyperlink{classResponse}{Response}}(200,\ \textcolor{stringliteral}{"{}Success"{}},\ \{\textcolor{stringliteral}{"{}Data"{}},\ \textcolor{stringliteral}{"{}PONG"{}}\});}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ response\ =\ \mbox{\hyperlink{classResponse}{Response}}(400,\ \textcolor{stringliteral}{"{}Bad\ Request"{}},\ \{\textcolor{stringliteral}{"{}Data"{}},\ \textcolor{stringliteral}{"{}Invalid\ command"{}}\});}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result[0]\ !=\ \textcolor{stringliteral}{"{}PING"{}})}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lock\_guard<mutex>\ lock(\mbox{\hyperlink{REPL_8cpp_ab8f5b274da3fd63bb861160625460c82}{dbMutex}});}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ apiResponse\ =\ \mbox{\hyperlink{REPL_8cpp_a5303a76873839b12bb127f7e29ea998b}{apiGateway}}.executeCommand(\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}});}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mode\ ==\ \textcolor{stringliteral}{"{}0"{}})}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ apiResponse\ =\ \textcolor{stringliteral}{"{}+OK\(\backslash\)r\(\backslash\)n"{}};}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ memset(buffer,\ 0,\ \textcolor{keyword}{sizeof}(buffer));}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fix:\ Use\ strncpy\ to\ avoid\ buffer\ overflow}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ strncpy(buffer,\ apiResponse.c\_str(),\ \textcolor{keyword}{sizeof}(buffer)\ -\/\ 1);}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ buffer[\textcolor{keyword}{sizeof}(buffer)\ -\/\ 1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lock\_guard<mutex>\ lock(\mbox{\hyperlink{Server_8cpp_a24c7846dc65efd651291de16681a008c}{sendMutex}});}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ send(clientSocket,\ buffer,\ strlen(buffer),\ 0);}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (apiResponse\ ==\ \textcolor{stringliteral}{"{}-\/1"{}}\ ||\ apiResponse\ ==\ \textcolor{stringliteral}{"{}-\/2"{}})}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ response\ =\ \mbox{\hyperlink{classResponse}{Response}}(404,\ \textcolor{stringliteral}{"{}Not\ Found"{}},\ \{\textcolor{stringliteral}{"{}Data"{}},\ \textcolor{stringliteral}{"{}Key\ not\ found"{}}\});}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ response\ =\ \mbox{\hyperlink{classResponse}{Response}}(200,\ \textcolor{stringliteral}{"{}Success"{}},\ \{\textcolor{stringliteral}{"{}Data"{}},\ apiResponse\});}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ memset(buffer,\ 0,\ \textcolor{keyword}{sizeof}(buffer));}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ temp\ =\ \mbox{\hyperlink{REPL_8cpp_a0a9c1f677277ebf123dd67dd754228ba}{utils}}.toRESP2(response.\mbox{\hyperlink{classResponse_ac39b6e8b87b8d363bdd6fc9c5110ce5d}{to\_string}}());}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ temp\ =\ temp.substr(0,\ temp.size()\ -\/\ 1);}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fix:\ Use\ strncpy}}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ strncpy(buffer,\ temp.c\_str(),\ \textcolor{keyword}{sizeof}(buffer)\ -\/\ 1);}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ buffer[\textcolor{keyword}{sizeof}(buffer)\ -\/\ 1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lock\_guard<mutex>\ lock(\mbox{\hyperlink{Server_8cpp_a24c7846dc65efd651291de16681a008c}{sendMutex}});}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ send(clientSocket,\ buffer,\ strlen(buffer),\ 0);}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00143\ \ \ \ \ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ close(clientSocket);}
+\DoxyCodeLine{00146\ \}}
+
+\end{DoxyCode}
+\Hypertarget{Server_8cpp_a0ddf1224851353fc92bfbff6f499fa97}\index{Server.cpp@{Server.cpp}!main@{main}}
+\index{main@{main}!Server.cpp@{Server.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{Server_8cpp_a0ddf1224851353fc92bfbff6f499fa97} 
+int main (\begin{DoxyParamCaption}\item[{int}]{argc}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{argv}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{Server_8cpp_source_l00148}{148}} of file \mbox{\hyperlink{Server_8cpp_source}{Server.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00149\ \{}
+\DoxyCodeLine{00150\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Initializing\ BlinkDB\ server..."{}}\ <<\ endl;}
+\DoxyCodeLine{00151\ \ \ \ \ signal(SIGINT,\ \mbox{\hyperlink{REPL_8cpp_ad2e59c7203b3bddc1bc9a2224b52e8e7}{signalHandler}});}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordflow}{if}\ (argc\ <\ 2)}
+\DoxyCodeLine{00154\ \ \ \ \ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Enter\ 1\ for\ Client-\/server\ mode\ and\ 0\ for\ redis-\/benchmark\ mode"{}}\ <<\ endl;}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exiting\ BlinkDB:\ Closing\ server..."{}}\ <<\ endl;}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exited"{}}\ <<\ endl;}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{REPL_8cpp_a3f7d9a523aae4471718c08c5427f95cb}{discBackupHandler}}.terminate();}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00160\ \ \ \ \ \}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \mbox{\hyperlink{Server_8cpp_a106cd1d02a334c78f546d2897a1b939c}{serverSocket}}\ =\ socket(AF\_INET,\ SOCK\_STREAM,\ 0);}
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{Server_8cpp_a106cd1d02a334c78f546d2897a1b939c}{serverSocket}}\ ==\ -\/1)}
+\DoxyCodeLine{00164\ \ \ \ \ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ cerr\ <<\ \textcolor{stringliteral}{"{}Socket\ creation\ failed"{}}\ <<\ endl;}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00167\ \ \ \ \ \}}
+\DoxyCodeLine{00168\ }
 \DoxyCodeLine{00169\ \ \ \ \ sockaddr\_in\ serverAddress;}
 \DoxyCodeLine{00170\ \ \ \ \ serverAddress.sin\_family\ =\ AF\_INET;}
 \DoxyCodeLine{00171\ \ \ \ \ serverAddress.sin\_port\ =\ htons(5000);}
 \DoxyCodeLine{00172\ \ \ \ \ serverAddress.sin\_addr.s\_addr\ =\ INADDR\_ANY;}
 \DoxyCodeLine{00173\ }
-\DoxyCodeLine{00174\ \ \ \ \ \textcolor{comment}{//\ Bind\ the\ socket\ to\ the\ port}}
-\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordtype}{int}\ bindStatus\ =\ bind(serverSocket,\ (sockaddr\ *)\&serverAddress,\ \textcolor{keyword}{sizeof}(serverAddress));}
-\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordflow}{if}\ (bindStatus\ ==\ -\/1)}
-\DoxyCodeLine{00177\ \ \ \ \ \{}
-\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ cerr\ <<\ \textcolor{stringliteral}{"{}Binding\ to\ port\ 5000\ failed."{}}\ <<\ endl;}
-\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/2;}
-\DoxyCodeLine{00180\ \ \ \ \ \}}
-\DoxyCodeLine{00181\ }
-\DoxyCodeLine{00182\ \ \ \ \ \textcolor{comment}{//\ Start\ listening\ for\ client\ connections}}
-\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordtype}{int}\ listenStatus\ =\ listen(serverSocket,\ 100000);}
-\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordflow}{if}\ (listenStatus\ ==\ -\/1)}
-\DoxyCodeLine{00185\ \ \ \ \ \{}
-\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ cerr\ <<\ \textcolor{stringliteral}{"{}Listening\ on\ port\ 5000\ failed."{}}\ <<\ endl;}
-\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/3;}
-\DoxyCodeLine{00188\ \ \ \ \ \}}
-\DoxyCodeLine{00189\ }
-\DoxyCodeLine{00190\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Initialized\ BlinkDB\ server."{}}\ <<\ endl;}
-\DoxyCodeLine{00191\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Listening\ on\ port\ 5000..."{}}\ <<\ endl;}
-\DoxyCodeLine{00192\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Press\ Ctrl+C\ to\ exit."{}}\ <<\ endl;}
-\DoxyCodeLine{00193\ }
-\DoxyCodeLine{00194\ \ \ \ \ \textcolor{comment}{//\ Accept\ and\ handle\ client\ connections\ in\ separate\ threads}}
-\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{true})}
-\DoxyCodeLine{00196\ \ \ \ \ \{}
-\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ sockaddr\_in\ clientAddress;}
-\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ socklen\_t\ clientAddressSize\ =\ \textcolor{keyword}{sizeof}(clientAddress);}
-\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ clientSocket\ =\ accept(serverSocket,\ (sockaddr\ *)\&clientAddress,\ \&clientAddressSize);}
-\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (clientSocket\ ==\ -\/1)}
-\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ cerr\ <<\ \textcolor{stringliteral}{"{}Accepting\ connection\ failed."{}}\ <<\ endl;}
-\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
-\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keywordtype}{int}\ bindStatus\ =\ bind(\mbox{\hyperlink{Server_8cpp_a106cd1d02a334c78f546d2897a1b939c}{serverSocket}},\ (sockaddr\ *)\&serverAddress,\ \textcolor{keyword}{sizeof}(serverAddress));}
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordflow}{if}\ (bindStatus\ ==\ -\/1)}
+\DoxyCodeLine{00176\ \ \ \ \ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ cerr\ <<\ \textcolor{stringliteral}{"{}Binding\ to\ port\ 5000\ failed."{}}\ <<\ endl;}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/2;}
+\DoxyCodeLine{00179\ \ \ \ \ \}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keywordtype}{int}\ listenStatus\ =\ listen(\mbox{\hyperlink{Server_8cpp_a106cd1d02a334c78f546d2897a1b939c}{serverSocket}},\ 100000);}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keywordflow}{if}\ (listenStatus\ ==\ -\/1)}
+\DoxyCodeLine{00183\ \ \ \ \ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ cerr\ <<\ \textcolor{stringliteral}{"{}Listening\ on\ port\ 5000\ failed."{}}\ <<\ endl;}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/3;}
+\DoxyCodeLine{00186\ \ \ \ \ \}}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Initialized\ BlinkDB\ server."{}}\ <<\ endl;}
+\DoxyCodeLine{00189\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Listening\ on\ port\ 5000..."{}}\ <<\ endl;}
+\DoxyCodeLine{00190\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Press\ Ctrl+C\ to\ exit."{}}\ <<\ endl;}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{true})}
+\DoxyCodeLine{00193\ \ \ \ \ \{}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ sockaddr\_in\ clientAddress;}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ socklen\_t\ clientAddressSize\ =\ \textcolor{keyword}{sizeof}(clientAddress);}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ clientSocket\ =\ accept(\mbox{\hyperlink{Server_8cpp_a106cd1d02a334c78f546d2897a1b939c}{serverSocket}},\ (sockaddr\ *)\&clientAddress,\ \&clientAddressSize);}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (clientSocket\ ==\ -\/1)}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ cerr\ <<\ \textcolor{stringliteral}{"{}Accepting\ connection\ failed."{}}\ <<\ endl;}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ thread(\mbox{\hyperlink{Server_8cpp_a00ce7b39b30e7dbc04bf5adefd4d6e13}{handleClient}},\ clientSocket,\ argv[1]).detach();}
+\DoxyCodeLine{00204\ \ \ \ \ \}}
 \DoxyCodeLine{00205\ }
-\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ thread(\mbox{\hyperlink{Server_8cpp_a28ce186ce771194512785b1d1d5310c0}{handleClient}},\ clientSocket).detach();}
-\DoxyCodeLine{00207\ \ \ \ \ \}}
-\DoxyCodeLine{00208\ }
-\DoxyCodeLine{00209\ \ \ \ \ close(serverSocket);}
-\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{00211\ \}}
+\DoxyCodeLine{00206\ \ \ \ \ close(\mbox{\hyperlink{Server_8cpp_a106cd1d02a334c78f546d2897a1b939c}{serverSocket}});}
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00208\ \}}
 
 \end{DoxyCode}
 \Hypertarget{Server_8cpp_ad2e59c7203b3bddc1bc9a2224b52e8e7}\index{Server.cpp@{Server.cpp}!signalHandler@{signalHandler}}
@@ -232,29 +270,19 @@ void signal\+Handler (\begin{DoxyParamCaption}\item[{int}]{signal}{}\end{DoxyPar
 
 
 
-Handles termination signals (e.\+g., Ctrl+C). 
-
-Terminates ongoing operations, deletes backups, and shuts down the server.
-
-
-\begin{DoxyParams}{Parameters}
-{\em signal} & The received signal code. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line \mbox{\hyperlink{Server_8cpp_source_l00057}{57}} of file \mbox{\hyperlink{Server_8cpp_source}{Server.\+cpp}}.
+Definition at line \mbox{\hyperlink{Server_8cpp_source_l00030}{30}} of file \mbox{\hyperlink{Server_8cpp_source}{Server.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00058\ \{}
-\DoxyCodeLine{00059\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exiting\ BlinkDB:\ Deleting\ Backups..."{}}\ <<\ endl;}
-\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{REPL_8cpp_a3f7d9a523aae4471718c08c5427f95cb}{discBackupHandler}}.terminate();}
-\DoxyCodeLine{00061\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exiting\ BlinkDB:\ Deleting\ Backups...\ Done"{}}\ <<\ endl;}
-\DoxyCodeLine{00062\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exiting\ BlinkDB:\ Closing\ server..."{}}\ <<\ endl;}
-\DoxyCodeLine{00063\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exited"{}}\ <<\ endl;}
-\DoxyCodeLine{00064\ \ \ \ \ exit(signal);}
-\DoxyCodeLine{00065\ \}}
+\DoxyCodeLine{00031\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exiting\ BlinkDB:\ Deleting\ Backups..."{}}\ <<\ endl;}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{REPL_8cpp_a3f7d9a523aae4471718c08c5427f95cb}{discBackupHandler}}.terminate();}
+\DoxyCodeLine{00034\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exiting\ BlinkDB:\ Deleting\ Backups...\ Done"{}}\ <<\ endl;}
+\DoxyCodeLine{00035\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exiting\ BlinkDB:\ Closing\ server..."{}}\ <<\ endl;}
+\DoxyCodeLine{00036\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exited"{}}\ <<\ endl;}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{Server_8cpp_aefd6bc58b38afde3e2d9e65e59f1887d}{closeServer}}();}
+\DoxyCodeLine{00038\ \ \ \ \ exit(signal);}
+\DoxyCodeLine{00039\ \}}
 
 \end{DoxyCode}
 
@@ -266,10 +294,6 @@ Definition at line \mbox{\hyperlink{Server_8cpp_source_l00057}{57}} of file \mbo
 {\footnotesize\ttfamily \label{Server_8cpp_a5303a76873839b12bb127f7e29ea998b} 
 \mbox{\hyperlink{classAPIGateway}{APIGateway}} api\+Gateway(\mbox{\hyperlink{REPL_8cpp_a402d683058e8918de804245d663a5b4c}{blink\+DB}}) (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{REPL_8cpp_a402d683058e8918de804245d663a5b4c}{blink\+DB}}}]{}{}\end{DoxyParamCaption})}
 
-
-
-Handles API requests for executing database commands. 
-
 \Hypertarget{Server_8cpp_a402d683058e8918de804245d663a5b4c}\index{Server.cpp@{Server.cpp}!blinkDB@{blinkDB}}
 \index{blinkDB@{blinkDB}!Server.cpp@{Server.cpp}}
 \doxysubsubsection{\texorpdfstring{blinkDB}{blinkDB}}
@@ -278,11 +302,7 @@ Handles API requests for executing database commands.
 
 
 
-Represents the main database instance. 
-
-
-
-Definition at line \mbox{\hyperlink{Server_8cpp_source_l00018}{18}} of file \mbox{\hyperlink{Server_8cpp_source}{Server.\+cpp}}.
+Definition at line \mbox{\hyperlink{Server_8cpp_source_l00016}{16}} of file \mbox{\hyperlink{Server_8cpp_source}{Server.\+cpp}}.
 
 \Hypertarget{Server_8cpp_a252cf30305a23a874371ecc779fab24b}\index{Server.cpp@{Server.cpp}!command@{command}}
 \index{command@{command}!Server.cpp@{Server.cpp}}
@@ -292,11 +312,7 @@ Definition at line \mbox{\hyperlink{Server_8cpp_source_l00018}{18}} of file \mbo
 
 
 
-Stores the command to be executed. 
-
-
-
-Definition at line \mbox{\hyperlink{Server_8cpp_source_l00023}{23}} of file \mbox{\hyperlink{Server_8cpp_source}{Server.\+cpp}}.
+Definition at line \mbox{\hyperlink{Server_8cpp_source_l00017}{17}} of file \mbox{\hyperlink{Server_8cpp_source}{Server.\+cpp}}.
 
 \Hypertarget{Server_8cpp_ab8f5b274da3fd63bb861160625460c82}\index{Server.cpp@{Server.cpp}!dbMutex@{dbMutex}}
 \index{dbMutex@{dbMutex}!Server.cpp@{Server.cpp}}
@@ -306,11 +322,7 @@ mutex db\+Mutex}
 
 
 
-Mutex to synchronize access to the database. 
-
-
-
-Definition at line \mbox{\hyperlink{Server_8cpp_source_l00048}{48}} of file \mbox{\hyperlink{Server_8cpp_source}{Server.\+cpp}}.
+Definition at line \mbox{\hyperlink{Server_8cpp_source_l00022}{22}} of file \mbox{\hyperlink{Server_8cpp_source}{Server.\+cpp}}.
 
 \Hypertarget{Server_8cpp_a3f7d9a523aae4471718c08c5427f95cb}\index{Server.cpp@{Server.cpp}!discBackupHandler@{discBackupHandler}}
 \index{discBackupHandler@{discBackupHandler}!Server.cpp@{Server.cpp}}
@@ -320,11 +332,27 @@ Definition at line \mbox{\hyperlink{Server_8cpp_source_l00048}{48}} of file \mbo
 
 
 
-Manages disk backup operations. 
+Definition at line \mbox{\hyperlink{Server_8cpp_source_l00019}{19}} of file \mbox{\hyperlink{Server_8cpp_source}{Server.\+cpp}}.
+
+\Hypertarget{Server_8cpp_a24c7846dc65efd651291de16681a008c}\index{Server.cpp@{Server.cpp}!sendMutex@{sendMutex}}
+\index{sendMutex@{sendMutex}!Server.cpp@{Server.cpp}}
+\doxysubsubsection{\texorpdfstring{sendMutex}{sendMutex}}
+{\footnotesize\ttfamily \label{Server_8cpp_a24c7846dc65efd651291de16681a008c} 
+mutex send\+Mutex}
 
 
 
-Definition at line \mbox{\hyperlink{Server_8cpp_source_l00033}{33}} of file \mbox{\hyperlink{Server_8cpp_source}{Server.\+cpp}}.
+Definition at line \mbox{\hyperlink{Server_8cpp_source_l00023}{23}} of file \mbox{\hyperlink{Server_8cpp_source}{Server.\+cpp}}.
+
+\Hypertarget{Server_8cpp_a106cd1d02a334c78f546d2897a1b939c}\index{Server.cpp@{Server.cpp}!serverSocket@{serverSocket}}
+\index{serverSocket@{serverSocket}!Server.cpp@{Server.cpp}}
+\doxysubsubsection{\texorpdfstring{serverSocket}{serverSocket}}
+{\footnotesize\ttfamily \label{Server_8cpp_a106cd1d02a334c78f546d2897a1b939c} 
+int server\+Socket}
+
+
+
+Definition at line \mbox{\hyperlink{Server_8cpp_source_l00015}{15}} of file \mbox{\hyperlink{Server_8cpp_source}{Server.\+cpp}}.
 
 \Hypertarget{Server_8cpp_a0a9c1f677277ebf123dd67dd754228ba}\index{Server.cpp@{Server.cpp}!utils@{utils}}
 \index{utils@{utils}!Server.cpp@{Server.cpp}}
@@ -334,9 +362,5 @@ Definition at line \mbox{\hyperlink{Server_8cpp_source_l00033}{33}} of file \mbo
 
 
 
-Utility class for helper functions. 
-
-
-
-Definition at line \mbox{\hyperlink{Server_8cpp_source_l00038}{38}} of file \mbox{\hyperlink{Server_8cpp_source}{Server.\+cpp}}.
+Definition at line \mbox{\hyperlink{Server_8cpp_source_l00020}{20}} of file \mbox{\hyperlink{Server_8cpp_source}{Server.\+cpp}}.
 

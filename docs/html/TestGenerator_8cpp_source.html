@@ -116,7 +116,7 @@ $(function(){initNavTree('TestGenerator_8cpp_source.html',''); initResizable(tru
 <div class="foldopen" id="foldopen00008" data-start="{" data-end="}">
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="TestGenerator_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">    8</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="TestGenerator_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a>()</div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>{</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    vector&lt;string&gt; commandType = {<span class="stringliteral">&quot;set&quot;</span>, <span class="stringliteral">&quot;get&quot;</span>, <span class="stringliteral">&quot;del&quot;</span>, <span class="stringliteral">&quot;set&quot;</span>, <span class="stringliteral">&quot;get&quot;</span>, <span class="stringliteral">&quot;del&quot;</span>};</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    vector&lt;string&gt; commandType = {<span class="stringliteral">&quot;SET&quot;</span>, <span class="stringliteral">&quot;GET&quot;</span>, <span class="stringliteral">&quot;DEL&quot;</span>, <span class="stringliteral">&quot;SET&quot;</span>, <span class="stringliteral">&quot;GET&quot;</span>, <span class="stringliteral">&quot;DEL&quot;</span>};</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <span class="keywordtype">string</span> key[] = {<span class="stringliteral">&quot;key1&quot;</span>, <span class="stringliteral">&quot;key2&quot;</span>, <span class="stringliteral">&quot;key3&quot;</span>, <span class="stringliteral">&quot;key4&quot;</span>, <span class="stringliteral">&quot;key5&quot;</span>, <span class="stringliteral">&quot;key6&quot;</span>, <span class="stringliteral">&quot;key7&quot;</span>, <span class="stringliteral">&quot;key8&quot;</span>, <span class="stringliteral">&quot;key9&quot;</span>, <span class="stringliteral">&quot;key10&quot;</span>};</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <span class="keywordtype">string</span> value[] = {<span class="stringliteral">&quot;value1&quot;</span>, <span class="stringliteral">&quot;value2&quot;</span>, <span class="stringliteral">&quot;value3&quot;</span>, <span class="stringliteral">&quot;value4&quot;</span>, <span class="stringliteral">&quot;value5&quot;</span>, <span class="stringliteral">&quot;value6&quot;</span>, <span class="stringliteral">&quot;value7&quot;</span>, <span class="stringliteral">&quot;value8&quot;</span>, <span class="stringliteral">&quot;value9&quot;</span>, <span class="stringliteral">&quot;value10&quot;</span>};</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keywordtype">string</span> <a class="code hl_variable" href="REPL_8cpp.html#a252cf30305a23a874371ecc779fab24b">command</a>;</div>
@@ -137,22 +137,22 @@ $(function(){initNavTree('TestGenerator_8cpp_source.html',''); initResizable(tru
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordflow">if</span> (workloadType == 1)</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    {</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        commandType[0] = <span class="stringliteral">&quot;get&quot;</span>;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        commandType[1] = <span class="stringliteral">&quot;get&quot;</span>;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        commandType[2] = <span class="stringliteral">&quot;get&quot;</span>;</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        commandType[3] = <span class="stringliteral">&quot;get&quot;</span>;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        commandType[4] = <span class="stringliteral">&quot;set&quot;</span>;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        commandType[5] = <span class="stringliteral">&quot;del&quot;</span>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        commandType[0] = <span class="stringliteral">&quot;GET&quot;</span>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        commandType[1] = <span class="stringliteral">&quot;GET&quot;</span>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        commandType[2] = <span class="stringliteral">&quot;GET&quot;</span>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        commandType[3] = <span class="stringliteral">&quot;GET&quot;</span>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        commandType[4] = <span class="stringliteral">&quot;SET&quot;</span>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        commandType[5] = <span class="stringliteral">&quot;DEL&quot;</span>;</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        output.open(<span class="stringliteral">&quot;readHeavy_&quot;</span> + to_string(numCommands) + <span class="stringliteral">&quot;.txt&quot;</span>, ios::out);</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    }</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (workloadType == 2)</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    {</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        commandType[0] = <span class="stringliteral">&quot;set&quot;</span>;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        commandType[1] = <span class="stringliteral">&quot;set&quot;</span>;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        commandType[2] = <span class="stringliteral">&quot;set&quot;</span>;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        commandType[3] = <span class="stringliteral">&quot;set&quot;</span>;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        commandType[4] = <span class="stringliteral">&quot;get&quot;</span>;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        commandType[5] = <span class="stringliteral">&quot;del&quot;</span>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        commandType[0] = <span class="stringliteral">&quot;SET&quot;</span>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        commandType[1] = <span class="stringliteral">&quot;SET&quot;</span>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        commandType[2] = <span class="stringliteral">&quot;SET&quot;</span>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        commandType[3] = <span class="stringliteral">&quot;SET&quot;</span>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        commandType[4] = <span class="stringliteral">&quot;GET&quot;</span>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        commandType[5] = <span class="stringliteral">&quot;DEL&quot;</span>;</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        output.open(<span class="stringliteral">&quot;writeHeavy_&quot;</span> + to_string(numCommands) + <span class="stringliteral">&quot;.txt&quot;</span>, ios::out);</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    }</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordflow">else</span></div>
@@ -170,7 +170,7 @@ $(function(){initNavTree('TestGenerator_8cpp_source.html',''); initResizable(tru
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            cerr &lt;&lt; <span class="stringliteral">&quot;Unable to open file&quot;</span> &lt;&lt; endl;</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        }</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="REPL_8cpp.html#a252cf30305a23a874371ecc779fab24b">command</a> == <span class="stringliteral">&quot;set&quot;</span>)</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="REPL_8cpp.html#a252cf30305a23a874371ecc779fab24b">command</a> == <span class="stringliteral">&quot;SET&quot;</span>)</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        {</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>            output &lt;&lt; <a class="code hl_variable" href="REPL_8cpp.html#a252cf30305a23a874371ecc779fab24b">command</a> &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; keyName &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; keyValue &lt;&lt; endl;</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        }</div>

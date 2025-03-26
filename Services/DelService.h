@@ -23,15 +23,22 @@ public:
      *
      * @param blinkDB Reference to the BlinkDB database instance.
      */
-    DelService(BlinkDB &blinkDB) : blinkDB(blinkDB) {}
+    explicit DelService(BlinkDB &blinkDB) : blinkDB(blinkDB) {}
 
     /**
      * @brief Deletes a key from BlinkDB.
      *
      * @param key The key to be deleted.
      */
-    void del(string key)
+    void del(const string &key)
     {
-        blinkDB.del(key);
+        try
+        {
+            blinkDB.del(key);
+        }
+        catch (const exception &e)
+        {
+            cerr << "Error deleting key '" << key << "': " << e.what() << endl;
+        }
     }
 };

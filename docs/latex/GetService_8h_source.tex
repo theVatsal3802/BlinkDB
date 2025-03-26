@@ -14,12 +14,21 @@
 \DoxyCodeLine{\Hypertarget{GetService_8h_source_l00018}00018\ \ \ \ \ \mbox{\hyperlink{classBlinkDB}{BlinkDB}}\ \&blinkDB;}
 \DoxyCodeLine{\Hypertarget{GetService_8h_source_l00019}00019\ }
 \DoxyCodeLine{\Hypertarget{GetService_8h_source_l00020}00020\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{\Hypertarget{GetService_8h_source_l00026}\mbox{\hyperlink{classGetService_a017866fe7139f66ae106620694931d43}{00026}}\ \ \ \ \ \mbox{\hyperlink{classGetService_a017866fe7139f66ae106620694931d43}{GetService}}(\mbox{\hyperlink{classBlinkDB}{BlinkDB}}\ \&blinkDB)\ :\ blinkDB(blinkDB)\ \{\}}
+\DoxyCodeLine{\Hypertarget{GetService_8h_source_l00026}\mbox{\hyperlink{classGetService_a017866fe7139f66ae106620694931d43}{00026}}\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classGetService_a017866fe7139f66ae106620694931d43}{GetService}}(\mbox{\hyperlink{classBlinkDB}{BlinkDB}}\ \&blinkDB)\ :\ blinkDB(blinkDB)\ \{\}}
 \DoxyCodeLine{\Hypertarget{GetService_8h_source_l00027}00027\ }
-\DoxyCodeLine{\Hypertarget{GetService_8h_source_l00034}\mbox{\hyperlink{classGetService_ae07a04d7b3be712359f4efe92c9be572}{00034}}\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classGetService_ae07a04d7b3be712359f4efe92c9be572}{get}}(\textcolor{keywordtype}{string}\ key)}
+\DoxyCodeLine{\Hypertarget{GetService_8h_source_l00034}\mbox{\hyperlink{classGetService_a34be5acd1b357e6d5a325cae9631f65f}{00034}}\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classGetService_a34be5acd1b357e6d5a325cae9631f65f}{get}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&key)}
 \DoxyCodeLine{\Hypertarget{GetService_8h_source_l00035}00035\ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{GetService_8h_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ blinkDB.get(key);}
-\DoxyCodeLine{\Hypertarget{GetService_8h_source_l00037}00037\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{GetService_8h_source_l00038}00038\ \};}
+\DoxyCodeLine{\Hypertarget{GetService_8h_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{GetService_8h_source_l00037}00037\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{GetService_8h_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ value\ =\ blinkDB.get(key);}
+\DoxyCodeLine{\Hypertarget{GetService_8h_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ value.empty()\ ?\ \textcolor{stringliteral}{"{}Key\ not\ found"{}}\ :\ value;}
+\DoxyCodeLine{\Hypertarget{GetService_8h_source_l00040}00040\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GetService_8h_source_l00041}00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ exception\ \&e)}
+\DoxyCodeLine{\Hypertarget{GetService_8h_source_l00042}00042\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{GetService_8h_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ cerr\ <<\ \textcolor{stringliteral}{"{}Error\ retrieving\ key\ '"{}}\ <<\ key\ <<\ \textcolor{stringliteral}{"{}':\ "{}}\ <<\ e.what()\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{GetService_8h_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Error\ retrieving\ value"{}};}
+\DoxyCodeLine{\Hypertarget{GetService_8h_source_l00045}00045\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GetService_8h_source_l00046}00046\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{GetService_8h_source_l00047}00047\ \};}
 
 \end{DoxyCode}

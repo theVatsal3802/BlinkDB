@@ -74,9 +74,24 @@ public:
      * @param data The input string.
      * @return The RESP2 formatted string.
      */
-    string toRESP2(const string &data)
+    string toRESP2(const string &command)
     {
-        return "$" + to_string(data.size()) + "\r\n" + data + "\r\n";
+        istringstream stream(command);
+        vector<string> tokens;
+        string word;
+
+        while (stream >> word)
+        {
+            tokens.push_back(word);
+        }
+
+        string result = "*" + to_string(tokens.size()) + "\r\n";
+        for (const auto &token : tokens)
+        {
+            result += "$" + to_string(token.size()) + "\r\n" + token + "\r\n";
+        }
+
+        return result;
     }
 
     /**
@@ -85,27 +100,35 @@ public:
      * @param resp The RESP2-formatted string.
      * @return The extracted string data.
      */
-    string fromRESP2(const string &resp)
+    vector<string> fromRESP2(const string &resp)
     {
-        if (resp.empty() || resp[0] != '$')
-            return "";
-
+        vector<string> result;
         istringstream stream(resp);
-        string lengthLine, data;
+        string line;
 
-        getline(stream, lengthLine); // Read first line ($length)
-        getline(stream, data);       // Read actual string
+        getline(stream, line, '\r');
+        if (line[0] != '*')
+            return {}; // Must start with '*'
 
-        // Trim trailing \r if present
-        if (!lengthLine.empty() && lengthLine.back() == '\r')
+        int numArgs = stoi(line.substr(1)); // Number of arguments
+        stream.ignore(1);                   // Ignore '\n'
+
+        for (int i = 0; i < numArgs; i++)
         {
-            lengthLine.pop_back();
-        }
-        if (!data.empty() && data.back() == '\r')
-        {
-            data.pop_back();
+            getline(stream, line, '\r');
+            if (line[0] != '$')
+                return {}; // Must start with '$'
+
+            int len = stoi(line.substr(1)); // Get length of argument
+            stream.ignore(1);               // Ignore '\n'
+
+            string arg(len, ' ');
+            stream.read(&arg[0], len); // Read the argument
+            result.push_back(arg);
+
+            stream.ignore(2); // Ignore '\r\n'
         }
 
-        return data;
+        return result;
     }
 };

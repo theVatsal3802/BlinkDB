@@ -211,7 +211,7 @@ Public Member Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="APIGateway_8h_source.html#l00084">84</a> of file <a class="el" href="APIGateway_8h_source.html">APIGateway.h</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   85</span>    {</div>
-<div class="line"><span class="lineno">   86</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="REPL_8cpp.html#a252cf30305a23a874371ecc779fab24b">command</a>.<a class="code hl_function" href="classCommand.html#abdd31f136459c4aeaabcac39ec21bbf1">getCommand</a>() == <span class="stringliteral">&quot;set&quot;</span>)</div>
+<div class="line"><span class="lineno">   86</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="REPL_8cpp.html#a252cf30305a23a874371ecc779fab24b">command</a>.<a class="code hl_function" href="classCommand.html#abdd31f136459c4aeaabcac39ec21bbf1">getCommand</a>() == <span class="stringliteral">&quot;SET&quot;</span>)</div>
 <div class="line"><span class="lineno">   87</span>        {</div>
 <div class="line"><span class="lineno">   88</span>            <span class="comment">// Clear cache if size exceeds limit</span></div>
 <div class="line"><span class="lineno">   89</span>            <span class="keywordflow">if</span> (L1Cache.getSize() &gt;= 100000000)</div>
@@ -223,7 +223,7 @@ Public Member Functions</h2></td></tr>
 <div class="line"><span class="lineno">   95</span>            setService.set(<a class="code hl_variable" href="REPL_8cpp.html#a252cf30305a23a874371ecc779fab24b">command</a>.<a class="code hl_function" href="classCommand.html#a684ed199358c644a0766d91e8c903ee8">getKey</a>(), <a class="code hl_variable" href="REPL_8cpp.html#a252cf30305a23a874371ecc779fab24b">command</a>.<a class="code hl_function" href="classCommand.html#a7f13017cfdbbc43288aa28adb553e2cd">getValue</a>());</div>
 <div class="line"><span class="lineno">   96</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Set Success&quot;</span>;</div>
 <div class="line"><span class="lineno">   97</span>        }</div>
-<div class="line"><span class="lineno">   98</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code hl_variable" href="REPL_8cpp.html#a252cf30305a23a874371ecc779fab24b">command</a>.<a class="code hl_function" href="classCommand.html#abdd31f136459c4aeaabcac39ec21bbf1">getCommand</a>() == <span class="stringliteral">&quot;get&quot;</span>)</div>
+<div class="line"><span class="lineno">   98</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code hl_variable" href="REPL_8cpp.html#a252cf30305a23a874371ecc779fab24b">command</a>.<a class="code hl_function" href="classCommand.html#abdd31f136459c4aeaabcac39ec21bbf1">getCommand</a>() == <span class="stringliteral">&quot;GET&quot;</span>)</div>
 <div class="line"><span class="lineno">   99</span>        {</div>
 <div class="line"><span class="lineno">  100</span>            <span class="comment">// Check cache first</span></div>
 <div class="line"><span class="lineno">  101</span>            <span class="keywordtype">string</span> cacheCheckResult = L1Cache.get(<a class="code hl_variable" href="REPL_8cpp.html#a252cf30305a23a874371ecc779fab24b">command</a>.<a class="code hl_function" href="classCommand.html#a684ed199358c644a0766d91e8c903ee8">getKey</a>());</div>
@@ -236,7 +236,7 @@ Public Member Functions</h2></td></tr>
 <div class="line"><span class="lineno">  108</span>                <span class="keywordflow">return</span> cacheCheckResult;</div>
 <div class="line"><span class="lineno">  109</span>            }</div>
 <div class="line"><span class="lineno">  110</span>        }</div>
-<div class="line"><span class="lineno">  111</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code hl_variable" href="REPL_8cpp.html#a252cf30305a23a874371ecc779fab24b">command</a>.<a class="code hl_function" href="classCommand.html#abdd31f136459c4aeaabcac39ec21bbf1">getCommand</a>() == <span class="stringliteral">&quot;del&quot;</span>)</div>
+<div class="line"><span class="lineno">  111</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code hl_variable" href="REPL_8cpp.html#a252cf30305a23a874371ecc779fab24b">command</a>.<a class="code hl_function" href="classCommand.html#abdd31f136459c4aeaabcac39ec21bbf1">getCommand</a>() == <span class="stringliteral">&quot;DEL&quot;</span>)</div>
 <div class="line"><span class="lineno">  112</span>        {</div>
 <div class="line"><span class="lineno">  113</span>            <span class="comment">// Remove from cache and database</span></div>
 <div class="line"><span class="lineno">  114</span>            L1Cache.del(<a class="code hl_variable" href="REPL_8cpp.html#a252cf30305a23a874371ecc779fab24b">command</a>.<a class="code hl_function" href="classCommand.html#a684ed199358c644a0766d91e8c903ee8">getKey</a>());</div>

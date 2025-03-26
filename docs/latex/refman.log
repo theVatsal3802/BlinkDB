@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.3.25)  25 MAR 2025 22:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.3.25)  26 MAR 2025 20:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1025,55 +1025,53 @@ Underfull \hbox (badness 10000) detected at line 73
 [19]
 
 [20]
-Underfull \hbox (badness 10000) detected at line 137
+Underfull \hbox (badness 10000) detected at line 160
 [][][]
  []
 
 ) (./classSetService.tex
 
-[21]) (./classUtils.tex
+[21]
+
+[22]) (./classUtils.tex
 LaTeX Font Info:    Font shape `TS1/phv/m/it' in size <9> not available
 (Font)              Font shape `TS1/phv/m/sl' tried instead on input line 16.
 LaTeX Font Info:    Font shape `TS1/phv/m/sl' will be
 (Font)              scaled to size 8.09995pt on input line 16.
 
 
-[22]
-Underfull \hbox (badness 10000) detected at line 50
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 98
-[][][]
- []
-
-
-
 [23]
-Underfull \hbox (badness 10000) detected at line 129
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 179
+Underfull \hbox (badness 10000) detected at line 50
 [][][]
  []
 
 
 
 [24]
-Underfull \hbox (badness 10000) detected at line 208
+Underfull \hbox (badness 10000) detected at line 106
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 137
+[][][]
+ []
+
+
+
+[25]
+Underfull \hbox (badness 10000) detected at line 190
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 219
 [][][]
  []
 
 )
 
-[25]
-
-[26
-
-]
+[26]
 Chapter 4.
 (./APIGateway_8h.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--9
@@ -1082,7 +1080,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--9
 
 ) (./APIGateway_8h_source.tex
 
-[27]) (./Cache_8h.tex
+[27
+
+]) (./Cache_8h.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
@@ -1097,12 +1097,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--13
 
 
 [29]
-Underfull \hbox (badness 10000) detected at line 40
+Underfull \hbox (badness 10000) detected at line 42
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 73
+Underfull \hbox (badness 10000) detected at line 93
 [][][]
  []
 
@@ -1111,163 +1111,166 @@ Underfull \hbox (badness 10000) detected at line 73
 [30]
 
 [31]
-Underfull \hbox (badness 10000) detected at line 219
+Underfull \hbox (badness 10000) detected at line 251
+[][][]
+ []
+
+
+
+[32]
+Underfull \hbox (badness 10000) detected at line 302
 [][][]
  []
 
 ) (./Client_8cpp_source.tex
 
-[32]
+[33]
 
-[33]) (./BlinkDB_8h.tex
+[34]
+
+[35]) (./BlinkDB_8h.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--5
 
  []
 
 ) (./BlinkDB_8h_source.tex
 
-[34]) (./DiscBackupHandler_8h.tex
+[36]) (./DiscBackupHandler_8h.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--7
 
  []
 
 ) (./DiscBackupHandler_8h_source.tex
 
-[35]
+[37]
 
-[36]) (./Command_8h.tex
+[38]) (./Command_8h.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
 ) (./Command_8h_source.tex
 
-[37]) (./Response_8h.tex
+[39]) (./Response_8h.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
 ) (./Response_8h_source.tex
 
-[38]) (./REPL_8cpp.tex
+[40]) (./REPL_8cpp.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--9
 
  []
 
 
 
-[39]
+[41]
 Underfull \hbox (badness 10000) detected at line 57
 [][][]
  []
 
 
 
-[40]
+[42]
 Underfull \hbox (badness 10000) detected at line 135
 [][][]
  []
 
 
 
-[41]
-
-[42]) (./REPL_8cpp_source.tex
-
 [43]
 
-[44]) (./Server_8cpp.tex
+[44]) (./REPL_8cpp_source.tex
+
+[45]
+
+[46]) (./Server_8cpp.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--14
 
  []
 
 
 
-[45]
-
-[46]
-
 [47]
-Underfull \hbox (badness 10000) detected at line 158
-[][][]
- []
-
-
 
 [48]
 
-[49]) (./Server_8cpp_source.tex
+[49]
 
 [50]
 
-[51]) (./DelService_8h.tex
+[51]) (./Server_8cpp_source.tex
+
+[52]
+
+[53]) (./DelService_8h.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--5
 
  []
 
-) (./DelService_8h_source.tex
 
-[52]) (./GetService_8h.tex
+
+[54]) (./DelService_8h_source.tex) (./GetService_8h.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--5
 
  []
 
-) (./GetService_8h_source.tex) (./SetService_8h.tex
+) (./GetService_8h_source.tex
+
+[55]) (./SetService_8h.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
-) (./SetService_8h_source.tex
-
-[53]) (./TestGenerator_8cpp.tex
+) (./SetService_8h_source.tex) (./TestGenerator_8cpp.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--7
 
  []
 
 
 
-[54]) (./TestGenerator_8cpp_source.tex
+[56]
 
-[55]) (./Utils_8h.tex
+[57]) (./TestGenerator_8cpp_source.tex
+
+[58]) (./Utils_8h.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--5
 
  []
 
 ) (./Utils_8h_source.tex
 
-[56])
+[59])
 
-[57]
-
-[58
-
-] (./refman.ind
+[60] (./refman.ind
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 22.39185pt on input line 1.
 
 
 
 
-[59
+[61
+
 
 
 ]
 
 
 
-[60]) (./refman.aux)
+[62]) (./refman.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `refman.out' has not changed.
-(rerunfilecheck)             Checksum: 7B8FCE70ABACDB6DEAEB871CB47D53CF;27320.
+(rerunfilecheck)             Checksum: FB821EFDECF198D9A77A6AAA24662369;28229.
  ) 
 Here is how much of TeX's memory you used:
- 20073 strings out of 475171
- 333885 string characters out of 5767095
- 742389 words of memory out of 5000000
- 41216 multiletter control sequences out of 15000+600000
+ 20264 strings out of 475171
+ 338815 string characters out of 5767095
+ 745726 words of memory out of 5000000
+ 41225 multiletter control sequences out of 15000+600000
  615786 words of font info for 107 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  101i,16n,117p,608b,749s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1281,10 +1284,10 @@ exmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-dist/fonts/type1
 .pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvb8ac.pfb></usr/share/te
 xmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-dist/fonts/type1
 /urw/helvetic/uhvro8a.pfb>
-Output written on refman.pdf (66 pages, 295124 bytes).
+Output written on refman.pdf (68 pages, 309760 bytes).
 PDF statistics:
- 3504 PDF objects out of 3580 (max. 8388607)
- 3370 compressed objects within 34 object streams
- 1453 named destinations out of 1728 (max. 500000)
- 1129 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 3821 PDF objects out of 4296 (max. 8388607)
+ 3682 compressed objects within 37 object streams
+ 1635 named destinations out of 1728 (max. 500000)
+ 1169 words of extra memory for PDF output out of 10000 (max. 10000000)
 

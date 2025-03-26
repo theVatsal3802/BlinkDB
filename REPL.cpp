@@ -70,19 +70,19 @@ int executeCommand(string input, string mode)
     vector<string> result = utils.splitCommand(input);
 
     // Process the command based on its type
-    if (result.size() == 3 && result[0] == "set")
+    if (result.size() == 3 && result[0] == "SET")
     {
         command = Command(result[0], result[1], result[2]);
     }
-    else if (result.size() == 2 && result[0] == "get")
+    else if (result.size() == 2 && result[0] == "GET")
     {
         command = Command(result[0], result[1]);
     }
-    else if (result.size() == 2 && result[0] == "del")
+    else if (result.size() == 2 && result[0] == "DEL")
     {
         command = Command(result[0], result[1]);
     }
-    else if (result[0] == "exit")
+    else if (result[0] == "EXIT")
     {
         return -1;
     }
@@ -111,9 +111,9 @@ int executeCommand(string input, string mode)
     }
 
     // Print response based on mode
-    if (mode == "1" && command.getCommand() == "get")
+    if (mode == "1" && command.getCommand() == "GET")
     {
-        cout << "Response: " << response.to_string() << endl;
+        cout << response.getValue() << endl;
     }
     else if (mode == "0")
     {

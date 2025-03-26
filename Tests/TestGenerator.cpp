@@ -7,7 +7,7 @@ using namespace std;
 
 int main()
 {
-    vector<string> commandType = {"set", "get", "del", "set", "get", "del"};
+    vector<string> commandType = {"SET", "GET", "DEL", "SET", "GET", "DEL"};
     string key[] = {"key1", "key2", "key3", "key4", "key5", "key6", "key7", "key8", "key9", "key10"};
     string value[] = {"value1", "value2", "value3", "value4", "value5", "value6", "value7", "value8", "value9", "value10"};
     string command;
@@ -28,22 +28,22 @@ int main()
 
     if (workloadType == 1)
     {
-        commandType[0] = "get";
-        commandType[1] = "get";
-        commandType[2] = "get";
-        commandType[3] = "get";
-        commandType[4] = "set";
-        commandType[5] = "del";
+        commandType[0] = "GET";
+        commandType[1] = "GET";
+        commandType[2] = "GET";
+        commandType[3] = "GET";
+        commandType[4] = "SET";
+        commandType[5] = "DEL";
         output.open("readHeavy_" + to_string(numCommands) + ".txt", ios::out);
     }
     else if (workloadType == 2)
     {
-        commandType[0] = "set";
-        commandType[1] = "set";
-        commandType[2] = "set";
-        commandType[3] = "set";
-        commandType[4] = "get";
-        commandType[5] = "del";
+        commandType[0] = "SET";
+        commandType[1] = "SET";
+        commandType[2] = "SET";
+        commandType[3] = "SET";
+        commandType[4] = "GET";
+        commandType[5] = "DEL";
         output.open("writeHeavy_" + to_string(numCommands) + ".txt", ios::out);
     }
     else
@@ -61,7 +61,7 @@ int main()
             cerr << "Unable to open file" << endl;
             break;
         }
-        if (command == "set")
+        if (command == "SET")
         {
             output << command << " " << keyName << " " << keyValue << endl;
         }

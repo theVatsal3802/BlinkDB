@@ -34,7 +34,7 @@
 \DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00070}00070\ }
 \DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00084}\mbox{\hyperlink{classAPIGateway_a7b560b881c96a25943ad753dfc76b100}{00084}}\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classAPIGateway_a7b560b881c96a25943ad753dfc76b100}{executeCommand}}(\mbox{\hyperlink{classCommand}{Command}}\ \mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}})}
 \DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00085}00085\ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.getCommand()\ ==\ \textcolor{stringliteral}{"{}set"{}})}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.getCommand()\ ==\ \textcolor{stringliteral}{"{}SET"{}})}
 \DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00087}00087\ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Clear\ cache\ if\ size\ exceeds\ limit}}
 \DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (L1Cache.getSize()\ >=\ 100000000)}
@@ -46,7 +46,7 @@
 \DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ setService.set(\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.getKey(),\ \mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.getValue());}
 \DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Set\ Success"{}};}
 \DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00097}00097\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00098}00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.getCommand()\ ==\ \textcolor{stringliteral}{"{}get"{}})}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00098}00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.getCommand()\ ==\ \textcolor{stringliteral}{"{}GET"{}})}
 \DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00099}00099\ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ cache\ first}}
 \DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ cacheCheckResult\ =\ L1Cache.get(\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.getKey());}
@@ -59,7 +59,7 @@
 \DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ cacheCheckResult;}
 \DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00110}00110\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00111}00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.getCommand()\ ==\ \textcolor{stringliteral}{"{}del"{}})}
+\DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00111}00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.getCommand()\ ==\ \textcolor{stringliteral}{"{}DEL"{}})}
 \DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00112}00112\ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Remove\ from\ cache\ and\ database}}
 \DoxyCodeLine{\Hypertarget{APIGateway_8h_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ L1Cache.del(\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.getKey());}

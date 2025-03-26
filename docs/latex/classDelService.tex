@@ -14,7 +14,7 @@ Service class for handling key deletion in \doxylink{classBlinkDB}{Blink\+DB}.
 \item 
 \mbox{\hyperlink{classDelService_a36a34fe9e62de6caf4e4f1a0d2a338b1}{Del\+Service}} (\mbox{\hyperlink{classBlinkDB}{Blink\+DB}} \&blink\+DB)
 \begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classDelService}{Del\+Service} instance. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classDelService_a31480079f7045fe1e41e19c6498f9c69}{del}} (string key)
+void \mbox{\hyperlink{classDelService_a9f610dcf3b883b0c3add7afd26121feb}{del}} (const string \&key)
 \begin{DoxyCompactList}\small\item\em Deletes a key from \doxylink{classBlinkDB}{Blink\+DB}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -32,7 +32,7 @@ Definition at line \mbox{\hyperlink{DelService_8h_source_l00012}{12}} of file \m
 \index{DelService@{DelService}!DelService@{DelService}}
 \doxysubsubsection{\texorpdfstring{DelService()}{DelService()}}
 {\footnotesize\ttfamily \label{classDelService_a36a34fe9e62de6caf4e4f1a0d2a338b1} 
-Del\+Service\+::\+Del\+Service (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBlinkDB}{Blink\+DB}} \&}]{blink\+DB}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+Del\+Service\+::\+Del\+Service (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBlinkDB}{Blink\+DB}} \&}]{blink\+DB}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
 
 
 
@@ -55,11 +55,11 @@ Definition at line \mbox{\hyperlink{DelService_8h_source_l00026}{26}} of file \m
 
 
 \doxysubsection{Member Function Documentation}
-\Hypertarget{classDelService_a31480079f7045fe1e41e19c6498f9c69}\index{DelService@{DelService}!del@{del}}
+\Hypertarget{classDelService_a9f610dcf3b883b0c3add7afd26121feb}\index{DelService@{DelService}!del@{del}}
 \index{del@{del}!DelService@{DelService}}
 \doxysubsubsection{\texorpdfstring{del()}{del()}}
-{\footnotesize\ttfamily \label{classDelService_a31480079f7045fe1e41e19c6498f9c69} 
-void Del\+Service\+::del (\begin{DoxyParamCaption}\item[{string}]{key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily \label{classDelService_a9f610dcf3b883b0c3add7afd26121feb} 
+void Del\+Service\+::del (\begin{DoxyParamCaption}\item[{const string \&}]{key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -77,8 +77,15 @@ Definition at line \mbox{\hyperlink{DelService_8h_source_l00033}{33}} of file \m
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00034\ \ \ \ \ \{}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ blinkDB.del(key);}
-\DoxyCodeLine{00036\ \ \ \ \ \}}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ blinkDB.del(key);}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ exception\ \&e)}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ cerr\ <<\ \textcolor{stringliteral}{"{}Error\ deleting\ key\ '"{}}\ <<\ key\ <<\ \textcolor{stringliteral}{"{}':\ "{}}\ <<\ e.what()\ <<\ endl;}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00043\ \ \ \ \ \}}
 
 \end{DoxyCode}
 

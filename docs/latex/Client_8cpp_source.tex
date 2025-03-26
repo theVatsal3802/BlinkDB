@@ -16,145 +16,217 @@
 \DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00016}00016\ }
 \DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00017}00017\ \textcolor{keyword}{using\ namespace\ }std;}
 \DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00018}00018\ }
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00024}\mbox{\hyperlink{Client_8cpp_add88fa84019131b67d72162722eafa96}{00024}}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{Client_8cpp_add88fa84019131b67d72162722eafa96}{toRESP2}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&data)}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00025}00025\ \{}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00026}00026\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}\$"{}}\ +\ to\_string(data.size())\ +\ \textcolor{stringliteral}{"{}\(\backslash\)r\(\backslash\)n"{}}\ +\ data\ +\ \textcolor{stringliteral}{"{}\(\backslash\)r\(\backslash\)n"{}};}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00027}00027\ \}}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00028}00028\ }
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00034}\mbox{\hyperlink{Client_8cpp_a2f5edd46c776c8aa8fef1c6178b50210}{00034}}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{Client_8cpp_a2f5edd46c776c8aa8fef1c6178b50210}{fromRESP2}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&resp)}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00035}00035\ \{}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00036}00036\ \ \ \ \ \textcolor{keywordflow}{if}\ (resp.empty()\ ||\ resp[0]\ !=\ \textcolor{charliteral}{'\$'})}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00038}00038\ }
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00039}00039\ \ \ \ \ istringstream\ stream(resp);}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00040}00040\ \ \ \ \ \textcolor{keywordtype}{string}\ lengthLine,\ data;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00025}\mbox{\hyperlink{Client_8cpp_add2d5323005c8220f5b4d5f89fbad4b2}{00025}}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{Client_8cpp_add2d5323005c8220f5b4d5f89fbad4b2}{toRESP2}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}})}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00026}00026\ \{}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00027}00027\ \ \ \ \ istringstream\ stream(\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}});}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00028}00028\ \ \ \ \ vector<string>\ tokens;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00029}00029\ \ \ \ \ \textcolor{keywordtype}{string}\ word;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00031}00031\ \ \ \ \ \textcolor{keywordflow}{while}\ (stream\ >>\ word)}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00032}00032\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ tokens.push\_back(word);}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00034}00034\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00036}00036\ \ \ \ \ \textcolor{keywordtype}{string}\ result\ =\ \textcolor{stringliteral}{"{}*"{}}\ +\ to\_string(tokens.size())\ +\ \textcolor{stringliteral}{"{}\(\backslash\)r\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00037}00037\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&token\ :\ tokens)}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00038}00038\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ result\ +=\ \textcolor{stringliteral}{"{}\$"{}}\ +\ to\_string(token.size())\ +\ \textcolor{stringliteral}{"{}\(\backslash\)r\(\backslash\)n"{}}\ +\ token\ +\ \textcolor{stringliteral}{"{}\(\backslash\)r\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00040}00040\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00041}00041\ }
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00042}00042\ \ \ \ \ getline(stream,\ lengthLine);\ \textcolor{comment}{//\ Read\ first\ line\ (\$length)}}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00043}00043\ \ \ \ \ getline(stream,\ data);\ \ \ \ \ \ \ \textcolor{comment}{//\ Read\ actual\ string}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00042}00042\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00043}00043\ \}}
 \DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00044}00044\ }
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00045}00045\ \ \ \ \ \textcolor{keywordflow}{return}\ data;}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00046}00046\ \}}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00047}00047\ }
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00052}\mbox{\hyperlink{Client_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{00052}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{Server_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}}(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ *argv[])}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00053}00053\ \{}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00054}00054\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Connecting\ to\ BlinkDB\ server..."{}}\ <<\ endl;}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00055}00055\ }
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00056}00056\ \ \ \ \ \textcolor{comment}{//\ Check\ if\ sufficient\ arguments\ are\ provided}}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00057}00057\ \ \ \ \ \textcolor{keywordflow}{if}\ (argc\ <\ 2)}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00058}00058\ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Enter\ 0\ for\ interactive\ mode\ and\ 1\ for\ file\ mode\ in\ command\ line\ and\ a\ filename\ for\ file\ mode."{}}\ <<\ endl;}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exiting\ BlinkDB:\ Closing\ server..."{}}\ <<\ endl;}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exited"{}}\ <<\ endl;}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00063}00063\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00064}00064\ }
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00065}00065\ \ \ \ \ \textcolor{comment}{//\ Create\ a\ TCP\ socket}}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00066}00066\ \ \ \ \ \textcolor{keywordtype}{int}\ clientSocket\ =\ socket(AF\_INET,\ SOCK\_STREAM,\ 0);}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00067}00067\ \ \ \ \ \textcolor{keywordflow}{if}\ (clientSocket\ ==\ -\/1)}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00068}00068\ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ cerr\ <<\ \textcolor{stringliteral}{"{}Socket\ creation\ failed"{}}\ <<\ endl;}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00071}00071\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00051}\mbox{\hyperlink{Client_8cpp_a28d45d845cfebeaca828094718709c77}{00051}}\ vector<string>\ \mbox{\hyperlink{Client_8cpp_a28d45d845cfebeaca828094718709c77}{fromRESP2}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&resp)}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00052}00052\ \{}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00053}00053\ \ \ \ \ vector<string>\ result;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00054}00054\ \ \ \ \ istringstream\ stream(resp);}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00055}00055\ \ \ \ \ \textcolor{keywordtype}{string}\ line;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00057}00057\ \ \ \ \ getline(stream,\ line,\ \textcolor{charliteral}{'\(\backslash\)r'});}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00058}00058\ \ \ \ \ \textcolor{keywordflow}{if}\ (line[0]\ !=\ \textcolor{charliteral}{'*'})}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\};\ \textcolor{comment}{//\ Must\ start\ with\ '*'}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00061}00061\ \ \ \ \ \textcolor{keywordtype}{int}\ numArgs\ =\ stoi(line.substr(1));\ \textcolor{comment}{//\ Number\ of\ arguments}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00062}00062\ \ \ \ \ stream.ignore(1);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ignore\ '\(\backslash\)n'}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00064}00064\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ numArgs;\ i++)}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00065}00065\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ getline(stream,\ line,\ \textcolor{charliteral}{'\(\backslash\)r'});}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line[0]\ !=\ \textcolor{charliteral}{'\$'})}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\};\ \textcolor{comment}{//\ Must\ start\ with\ '\$'}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ len\ =\ stoi(line.substr(1));\ \textcolor{comment}{//\ Get\ length\ of\ argument}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ stream.ignore(1);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ignore\ '\(\backslash\)n'}}
 \DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00072}00072\ }
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00073}00073\ \ \ \ \ \textcolor{comment}{//\ Define\ server\ address}}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00074}00074\ \ \ \ \ sockaddr\_in\ serverAddress;}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00075}00075\ \ \ \ \ serverAddress.sin\_family\ =\ AF\_INET;}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00076}00076\ \ \ \ \ serverAddress.sin\_port\ =\ htons(5000);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Port\ number}}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00077}00077\ \ \ \ \ serverAddress.sin\_addr.s\_addr\ =\ inet\_addr(\textcolor{stringliteral}{"{}127.0.0.1"{}});\ \textcolor{comment}{//\ Localhost}}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00078}00078\ }
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00079}00079\ \ \ \ \ \textcolor{comment}{//\ Attempt\ to\ connect\ to\ the\ BlinkDB\ server}}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00080}00080\ \ \ \ \ \textcolor{keywordtype}{int}\ connectionStatus\ =\ connect(clientSocket,\ (sockaddr\ *)\&serverAddress,\ \textcolor{keyword}{sizeof}(serverAddress));}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00081}00081\ \ \ \ \ \textcolor{keywordflow}{if}\ (connectionStatus\ ==\ -\/1)}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00082}00082\ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ cerr\ <<\ \textcolor{stringliteral}{"{}Connection\ to\ BlinkDB\ failed."{}}\ <<\ endl;}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/2;}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00085}00085\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00086}00086\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Connected\ to\ BlinkDB\ server."{}}\ <<\ endl;}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00087}00087\ }
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00088}00088\ \ \ \ \ \textcolor{keywordtype}{string}\ mode\ =\ string(argv[1]);}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00089}00089\ \ \ \ \ \textcolor{keywordtype}{string}\ filename\ =\ string(argv[2]\ !=\ NULL\ ?\ argv[2]\ :\ \textcolor{stringliteral}{"{}"{}});}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00090}00090\ }
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00091}00091\ \ \ \ \ \textcolor{comment}{//\ Validate\ mode\ input}}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00092}00092\ \ \ \ \ \textcolor{keywordflow}{if}\ (mode\ !=\ \textcolor{stringliteral}{"{}0"{}}\ \&\&\ mode\ !=\ \textcolor{stringliteral}{"{}1"{}})}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00093}00093\ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Enter\ 0\ for\ interactive\ mode\ and\ 1\ for\ file\ mode"{}}\ <<\ endl;}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exiting\ BlinkDB:\ Closing\ server..."{}}\ <<\ endl;}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exited"{}}\ <<\ endl;}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00097}00097\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00098}00098\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00099}00099\ }
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00100}00100\ \ \ \ \ \textcolor{comment}{//\ Validate\ filename\ in\ file\ mode}}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00101}00101\ \ \ \ \ \textcolor{keywordflow}{if}\ (mode\ ==\ \textcolor{stringliteral}{"{}1"{}}\ \&\&\ filename\ ==\ \textcolor{stringliteral}{"{}"{}})}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00102}00102\ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Please\ provide\ a\ filename\ for\ the\ test\ file"{}}\ <<\ endl;}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00104}00104\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exiting\ BlinkDB:\ Closing\ server..."{}}\ <<\ endl;}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00105}00105\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exited"{}}\ <<\ endl;}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00107}00107\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00108}00108\ }
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00109}00109\ \ \ \ \ \textcolor{comment}{//\ File\ mode\ execution}}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00110}00110\ \ \ \ \ \textcolor{keywordflow}{if}\ (mode\ ==\ \textcolor{stringliteral}{"{}1"{}})}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00111}00111\ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ chrono::high\_resolution\_clock::time\_point\ start\ =\ chrono::high\_resolution\_clock::now();}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ ifstream\ testFile(filename);}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ line;}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (getline(testFile,\ line))}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Convert\ command\ to\ RESP2\ format\ and\ send\ it}}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ resp\ =\ \mbox{\hyperlink{Client_8cpp_add88fa84019131b67d72162722eafa96}{toRESP2}}(line);}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ send(clientSocket,\ resp.substr(0,\ resp.size()\ -\/\ 1).c\_str(),\ resp.size(),\ 0);}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00120}00120\ }
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Receive\ response\ from\ server}}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ response[512];}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ memset(response,\ 0,\ \textcolor{keyword}{sizeof}(response));}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ recv(clientSocket,\ response,\ \textcolor{keyword}{sizeof}(response),\ 0);}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00125}00125\ }
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Process\ and\ display\ response}}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ responseStr\ =\ \mbox{\hyperlink{Client_8cpp_a2f5edd46c776c8aa8fef1c6178b50210}{fromRESP2}}(response);}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Server\ >\ "{}}\ <<\ responseStr\ <<\ endl;}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00130}00130\ \ \ \ \ \ \ \ \ chrono::high\_resolution\_clock::time\_point\ end\ =\ chrono::high\_resolution\_clock::now();}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00131}00131\ \ \ \ \ \ \ \ \ chrono::duration<double>\ elapsed\ =\ end\ -\/\ start;}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Time\ taken\ to\ execute\ all\ commands:\ "{}}\ <<\ elapsed.count()\ <<\ \textcolor{stringliteral}{"{}s"{}}\ <<\ endl;}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00133}00133\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00134}00134\ \ \ \ \ \textcolor{comment}{//\ Interactive\ mode\ execution}}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00135}00135\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (mode\ ==\ \textcolor{stringliteral}{"{}0"{}})}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ arg(len,\ \textcolor{charliteral}{'\ '});}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ stream.read(\&arg[0],\ len);\ \textcolor{comment}{//\ Read\ the\ argument}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ result.push\_back(arg);}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ stream.ignore(2);\ \textcolor{comment}{//\ Ignore\ '\(\backslash\)r\(\backslash\)n'}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00078}00078\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00080}00080\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00081}00081\ \}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00089}\mbox{\hyperlink{Client_8cpp_aea022c8ab34c70c831d38ccf32ed99f2}{00089}}\ vector<string>\ \mbox{\hyperlink{Client_8cpp_aea022c8ab34c70c831d38ccf32ed99f2}{splitCommand}}(\textcolor{keywordtype}{string}\ \mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}})}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00090}00090\ \{}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00091}00091\ \ \ \ \ vector<string>\ result;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00092}00092\ \ \ \ \ \textcolor{keywordtype}{string}\ word\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00093}00093\ \ \ \ \ \textcolor{keywordtype}{int}\ count\ =\ 2;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00094}00094\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ x\ :\ \mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}})}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00095}00095\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (x\ ==\ \textcolor{charliteral}{'\(\backslash\)0'})}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00097}00097\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (x\ ==\ \textcolor{charliteral}{'\ '}\ \&\&\ count\ >\ 0)}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ result.push\_back(word);}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ word\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ count-\/-\/;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00107}00107\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ word\ =\ word\ +\ x;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00111}00111\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00112}00112\ \ \ \ \ result.push\_back(word);}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00113}00113\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00114}00114\ \}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00120}\mbox{\hyperlink{Client_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{00120}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{TestGenerator_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}}(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ *argv[])}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00121}00121\ \{}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00122}00122\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Connecting\ to\ BlinkDB\ server..."{}}\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00124}00124\ \ \ \ \ \textcolor{comment}{//\ Check\ if\ sufficient\ arguments\ are\ provided}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00125}00125\ \ \ \ \ \textcolor{keywordflow}{if}\ (argc\ <\ 2)}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00126}00126\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Enter\ 0\ for\ interactive\ mode\ and\ 1\ for\ file\ mode\ in\ command\ line\ and\ a\ filename\ for\ file\ mode."{}}\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exiting\ BlinkDB:\ Closing\ server..."{}}\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exited"{}}\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00130}00130\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00131}00131\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00133}00133\ \ \ \ \ \textcolor{comment}{//\ Create\ a\ TCP\ socket}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00134}00134\ \ \ \ \ \textcolor{keywordtype}{int}\ clientSocket\ =\ socket(AF\_INET,\ SOCK\_STREAM,\ 0);}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00135}00135\ \ \ \ \ \textcolor{keywordflow}{if}\ (clientSocket\ ==\ -\/1)}
 \DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00136}00136\ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{true})}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00138}00138\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}User\ >\ "{}};}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ input;}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ getline(cin,\ input);}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00142}00142\ }
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Validate\ user\ input}}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (input.empty())}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Invalid\ Command\(\backslash\)n"{}};}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00149}00149\ }
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Send\ command\ to\ server}}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ resp\ =\ \mbox{\hyperlink{Client_8cpp_add88fa84019131b67d72162722eafa96}{toRESP2}}(input);}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ send(clientSocket,\ resp.substr(0,\ resp.size()\ -\/\ 1).c\_str(),\ resp.size(),\ 0);}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00153}00153\ }
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Handle\ exit\ command}}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (input\ ==\ \textcolor{stringliteral}{"{}exit"{}})}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ close(clientSocket);}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exiting\ BlinkDB..."{}}\ <<\ endl;}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00161}00161\ }
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Receive\ and\ display\ server\ response}}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ response[512];}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ memset(response,\ 0,\ \textcolor{keyword}{sizeof}(response));}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ recv(clientSocket,\ response,\ \textcolor{keyword}{sizeof}(response),\ 0);}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ responseStr\ =\ \mbox{\hyperlink{Client_8cpp_a2f5edd46c776c8aa8fef1c6178b50210}{fromRESP2}}(response);}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Server\ >\ "{}}\ <<\ responseStr\ <<\ endl;}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00168}00168\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00169}00169\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00170}00170\ }
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00171}00171\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00172}00172\ \}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ cerr\ <<\ \textcolor{stringliteral}{"{}Socket\ creation\ failed"{}}\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00138}00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00139}00139\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00140}00140\ }
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00141}00141\ \ \ \ \ \textcolor{comment}{//\ Define\ server\ address}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00142}00142\ \ \ \ \ sockaddr\_in\ serverAddress;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00143}00143\ \ \ \ \ serverAddress.sin\_family\ =\ AF\_INET;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00144}00144\ \ \ \ \ serverAddress.sin\_port\ =\ htons(5000);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Port\ number}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00145}00145\ \ \ \ \ serverAddress.sin\_addr.s\_addr\ =\ inet\_addr(\textcolor{stringliteral}{"{}127.0.0.1"{}});\ \textcolor{comment}{//\ Localhost}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00147}00147\ \ \ \ \ \textcolor{comment}{//\ Attempt\ to\ connect\ to\ the\ BlinkDB\ server}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00148}00148\ \ \ \ \ \textcolor{keywordtype}{int}\ connectionStatus\ =\ connect(clientSocket,\ (sockaddr\ *)\&serverAddress,\ \textcolor{keyword}{sizeof}(serverAddress));}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00149}00149\ \ \ \ \ \textcolor{keywordflow}{if}\ (connectionStatus\ ==\ -\/1)}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00150}00150\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00151}00151\ \ \ \ \ \ \ \ \ cerr\ <<\ \textcolor{stringliteral}{"{}Connection\ to\ BlinkDB\ failed."{}}\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00152}00152\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/2;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00153}00153\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00154}00154\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Connected\ to\ BlinkDB\ server."{}}\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00156}00156\ \ \ \ \ \textcolor{keywordtype}{string}\ mode\ =\ string(argv[1]);}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00157}00157\ \ \ \ \ \textcolor{keywordtype}{string}\ filename\ =\ string(argv[2]\ !=\ NULL\ ?\ argv[2]\ :\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00159}00159\ \ \ \ \ \textcolor{comment}{//\ Validate\ mode\ input}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00160}00160\ \ \ \ \ \textcolor{keywordflow}{if}\ (mode\ !=\ \textcolor{stringliteral}{"{}0"{}}\ \&\&\ mode\ !=\ \textcolor{stringliteral}{"{}1"{}})}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00161}00161\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00162}00162\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Enter\ 0\ for\ interactive\ mode\ and\ 1\ for\ file\ mode"{}}\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00163}00163\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exiting\ BlinkDB:\ Closing\ server..."{}}\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00164}00164\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exited"{}}\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00165}00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00166}00166\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00167}00167\ }
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00168}00168\ \ \ \ \ \textcolor{comment}{//\ Validate\ filename\ in\ file\ mode}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00169}00169\ \ \ \ \ \textcolor{keywordflow}{if}\ (mode\ ==\ \textcolor{stringliteral}{"{}1"{}}\ \&\&\ filename\ ==\ \textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00170}00170\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00171}00171\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Please\ provide\ a\ filename\ for\ the\ test\ file"{}}\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00172}00172\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exiting\ BlinkDB:\ Closing\ server..."{}}\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00173}00173\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exited"{}}\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00174}00174\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00175}00175\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00176}00176\ }
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00177}00177\ \ \ \ \ \textcolor{comment}{//\ File\ mode\ execution}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00178}00178\ \ \ \ \ \textcolor{keywordflow}{if}\ (mode\ ==\ \textcolor{stringliteral}{"{}1"{}})}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00179}00179\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00180}00180\ \ \ \ \ \ \ \ \ chrono::high\_resolution\_clock::time\_point\ start\ =\ chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00181}00181\ \ \ \ \ \ \ \ \ ifstream\ testFile(filename);}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00182}00182\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ line;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00183}00183\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Executing\ commands\ from\ "{}}\ <<\ filename\ <<\ \textcolor{stringliteral}{"{}...\ Please\ wait..."{}}\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00184}00184\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (getline(testFile,\ line))}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00185}00185\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Convert\ command\ to\ RESP2\ format\ and\ send\ it}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }timeval\ timeout;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ timeout.tv\_sec\ =\ 5;\ \textcolor{comment}{//\ Set\ timeout\ to\ 5\ seconds}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ timeout.tv\_usec\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00190}00190\ }
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ setsockopt(clientSocket,\ SOL\_SOCKET,\ SO\_RCVTIMEO,\ \&timeout,\ \textcolor{keyword}{sizeof}(timeout));}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ resp\ =\ \mbox{\hyperlink{Client_8cpp_add2d5323005c8220f5b4d5f89fbad4b2}{toRESP2}}(line);}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ send(clientSocket,\ resp.substr(0,\ resp.size()\ -\/\ 1).c\_str(),\ resp.size(),\ 0);}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00194}00194\ }
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Receive\ response\ from\ server}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ response[512];}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ memset(response,\ 0,\ \textcolor{keyword}{sizeof}(response));}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ recv(clientSocket,\ response,\ \textcolor{keyword}{sizeof}(response),\ 0);}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00199}00199\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00200}00200\ \ \ \ \ \ \ \ \ chrono::high\_resolution\_clock::time\_point\ end\ =\ chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00201}00201\ \ \ \ \ \ \ \ \ chrono::duration<double>\ elapsed\ =\ end\ -\/\ start;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00202}00202\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Time\ taken\ to\ execute\ all\ commands:\ "{}}\ <<\ elapsed.count()\ <<\ \textcolor{stringliteral}{"{}s"{}}\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00203}00203\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00204}00204\ \ \ \ \ \textcolor{comment}{//\ Interactive\ mode\ execution}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00205}00205\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (mode\ ==\ \textcolor{stringliteral}{"{}0"{}})}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00206}00206\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00207}00207\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{true})}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00208}00208\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}User\ >\ "{}};}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ input;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ getline(cin,\ input);}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00212}00212\ }
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Validate\ user\ input}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (input.empty())}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Invalid\ Command\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00219}00219\ }
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Send\ command\ to\ server}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }timeval\ timeout;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ timeout.tv\_sec\ =\ 5;\ \textcolor{comment}{//\ Set\ timeout\ to\ 5\ seconds}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ timeout.tv\_usec\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00224}00224\ }
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ setsockopt(clientSocket,\ SOL\_SOCKET,\ SO\_RCVTIMEO,\ \&timeout,\ \textcolor{keyword}{sizeof}(timeout));}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ resp\ =\ \mbox{\hyperlink{Client_8cpp_add2d5323005c8220f5b4d5f89fbad4b2}{toRESP2}}(input);}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ send(clientSocket,\ resp.substr(0,\ resp.size()\ -\/\ 1).c\_str(),\ resp.size(),\ 0);}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00228}00228\ }
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Handle\ exit\ command}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00230}00230\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (input\ ==\ \textcolor{stringliteral}{"{}exit"{}})}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00231}00231\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00232}00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ close(clientSocket);}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00233}00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exiting\ BlinkDB..."{}}\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00234}00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00235}00235\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00236}00236\ }
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Receive\ and\ display\ server\ response}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ response[512];}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ memset(response,\ 0,\ \textcolor{keyword}{sizeof}(response));}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ recv(clientSocket,\ response,\ \textcolor{keyword}{sizeof}(response),\ 0);}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ vector<string>\ responseStr\ =\ \mbox{\hyperlink{Client_8cpp_a28d45d845cfebeaca828094718709c77}{fromRESP2}}(response);}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00242}00242\ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Server\ >\ "{}};}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00243}00243\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ word\ :\ responseStr)}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ word\ <<\ \textcolor{stringliteral}{"{}\ "{}};}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00248}00248\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00249}00249\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00250}00250\ }
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00251}00251\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{Client_8cpp_source_l00252}00252\ \}}
 
 \end{DoxyCode}

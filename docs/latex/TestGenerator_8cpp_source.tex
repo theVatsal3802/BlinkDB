@@ -11,7 +11,7 @@
 \DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00007}00007\ }
 \DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00008}\mbox{\hyperlink{TestGenerator_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{00008}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{TestGenerator_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}}()}
 \DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00009}00009\ \{}
-\DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00010}00010\ \ \ \ \ vector<string>\ commandType\ =\ \{\textcolor{stringliteral}{"{}set"{}},\ \textcolor{stringliteral}{"{}get"{}},\ \textcolor{stringliteral}{"{}del"{}},\ \textcolor{stringliteral}{"{}set"{}},\ \textcolor{stringliteral}{"{}get"{}},\ \textcolor{stringliteral}{"{}del"{}}\};}
+\DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00010}00010\ \ \ \ \ vector<string>\ commandType\ =\ \{\textcolor{stringliteral}{"{}SET"{}},\ \textcolor{stringliteral}{"{}GET"{}},\ \textcolor{stringliteral}{"{}DEL"{}},\ \textcolor{stringliteral}{"{}SET"{}},\ \textcolor{stringliteral}{"{}GET"{}},\ \textcolor{stringliteral}{"{}DEL"{}}\};}
 \DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00011}00011\ \ \ \ \ \textcolor{keywordtype}{string}\ key[]\ =\ \{\textcolor{stringliteral}{"{}key1"{}},\ \textcolor{stringliteral}{"{}key2"{}},\ \textcolor{stringliteral}{"{}key3"{}},\ \textcolor{stringliteral}{"{}key4"{}},\ \textcolor{stringliteral}{"{}key5"{}},\ \textcolor{stringliteral}{"{}key6"{}},\ \textcolor{stringliteral}{"{}key7"{}},\ \textcolor{stringliteral}{"{}key8"{}},\ \textcolor{stringliteral}{"{}key9"{}},\ \textcolor{stringliteral}{"{}key10"{}}\};}
 \DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00012}00012\ \ \ \ \ \textcolor{keywordtype}{string}\ value[]\ =\ \{\textcolor{stringliteral}{"{}value1"{}},\ \textcolor{stringliteral}{"{}value2"{}},\ \textcolor{stringliteral}{"{}value3"{}},\ \textcolor{stringliteral}{"{}value4"{}},\ \textcolor{stringliteral}{"{}value5"{}},\ \textcolor{stringliteral}{"{}value6"{}},\ \textcolor{stringliteral}{"{}value7"{}},\ \textcolor{stringliteral}{"{}value8"{}},\ \textcolor{stringliteral}{"{}value9"{}},\ \textcolor{stringliteral}{"{}value10"{}}\};}
 \DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00013}00013\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}};}
@@ -32,22 +32,22 @@
 \DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00028}00028\ }
 \DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00029}00029\ \ \ \ \ \textcolor{keywordflow}{if}\ (workloadType\ ==\ 1)}
 \DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00030}00030\ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ commandType[0]\ =\ \textcolor{stringliteral}{"{}get"{}};}
-\DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00032}00032\ \ \ \ \ \ \ \ \ commandType[1]\ =\ \textcolor{stringliteral}{"{}get"{}};}
-\DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ commandType[2]\ =\ \textcolor{stringliteral}{"{}get"{}};}
-\DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ commandType[3]\ =\ \textcolor{stringliteral}{"{}get"{}};}
-\DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ commandType[4]\ =\ \textcolor{stringliteral}{"{}set"{}};}
-\DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ commandType[5]\ =\ \textcolor{stringliteral}{"{}del"{}};}
+\DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ commandType[0]\ =\ \textcolor{stringliteral}{"{}GET"{}};}
+\DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00032}00032\ \ \ \ \ \ \ \ \ commandType[1]\ =\ \textcolor{stringliteral}{"{}GET"{}};}
+\DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ commandType[2]\ =\ \textcolor{stringliteral}{"{}GET"{}};}
+\DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ commandType[3]\ =\ \textcolor{stringliteral}{"{}GET"{}};}
+\DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ commandType[4]\ =\ \textcolor{stringliteral}{"{}SET"{}};}
+\DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ commandType[5]\ =\ \textcolor{stringliteral}{"{}DEL"{}};}
 \DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ output.open(\textcolor{stringliteral}{"{}readHeavy\_"{}}\ +\ to\_string(numCommands)\ +\ \textcolor{stringliteral}{"{}.txt"{}},\ ios::out);}
 \DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00038}00038\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00039}00039\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (workloadType\ ==\ 2)}
 \DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00040}00040\ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ commandType[0]\ =\ \textcolor{stringliteral}{"{}set"{}};}
-\DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ commandType[1]\ =\ \textcolor{stringliteral}{"{}set"{}};}
-\DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ commandType[2]\ =\ \textcolor{stringliteral}{"{}set"{}};}
-\DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ commandType[3]\ =\ \textcolor{stringliteral}{"{}set"{}};}
-\DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ commandType[4]\ =\ \textcolor{stringliteral}{"{}get"{}};}
-\DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ commandType[5]\ =\ \textcolor{stringliteral}{"{}del"{}};}
+\DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ commandType[0]\ =\ \textcolor{stringliteral}{"{}SET"{}};}
+\DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ commandType[1]\ =\ \textcolor{stringliteral}{"{}SET"{}};}
+\DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ commandType[2]\ =\ \textcolor{stringliteral}{"{}SET"{}};}
+\DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ commandType[3]\ =\ \textcolor{stringliteral}{"{}SET"{}};}
+\DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ commandType[4]\ =\ \textcolor{stringliteral}{"{}GET"{}};}
+\DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ commandType[5]\ =\ \textcolor{stringliteral}{"{}DEL"{}};}
 \DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ output.open(\textcolor{stringliteral}{"{}writeHeavy\_"{}}\ +\ to\_string(numCommands)\ +\ \textcolor{stringliteral}{"{}.txt"{}},\ ios::out);}
 \DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00048}00048\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00049}00049\ \ \ \ \ \textcolor{keywordflow}{else}}
@@ -65,7 +65,7 @@
 \DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ cerr\ <<\ \textcolor{stringliteral}{"{}Unable\ to\ open\ file"{}}\ <<\ endl;}
 \DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
 \DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}\ ==\ \textcolor{stringliteral}{"{}set"{}})}
+\DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}\ ==\ \textcolor{stringliteral}{"{}SET"{}})}
 \DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ output\ <<\ \mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}\ <<\ \textcolor{stringliteral}{"{}\ "{}}\ <<\ keyName\ <<\ \textcolor{stringliteral}{"{}\ "{}}\ <<\ keyValue\ <<\ endl;}
 \DoxyCodeLine{\Hypertarget{TestGenerator_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \}}

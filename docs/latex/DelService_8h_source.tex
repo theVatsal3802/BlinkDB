@@ -14,12 +14,19 @@
 \DoxyCodeLine{\Hypertarget{DelService_8h_source_l00018}00018\ \ \ \ \ \mbox{\hyperlink{classBlinkDB}{BlinkDB}}\ \&blinkDB;}
 \DoxyCodeLine{\Hypertarget{DelService_8h_source_l00019}00019\ }
 \DoxyCodeLine{\Hypertarget{DelService_8h_source_l00020}00020\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{\Hypertarget{DelService_8h_source_l00026}\mbox{\hyperlink{classDelService_a36a34fe9e62de6caf4e4f1a0d2a338b1}{00026}}\ \ \ \ \ \mbox{\hyperlink{classDelService_a36a34fe9e62de6caf4e4f1a0d2a338b1}{DelService}}(\mbox{\hyperlink{classBlinkDB}{BlinkDB}}\ \&blinkDB)\ :\ blinkDB(blinkDB)\ \{\}}
+\DoxyCodeLine{\Hypertarget{DelService_8h_source_l00026}\mbox{\hyperlink{classDelService_a36a34fe9e62de6caf4e4f1a0d2a338b1}{00026}}\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classDelService_a36a34fe9e62de6caf4e4f1a0d2a338b1}{DelService}}(\mbox{\hyperlink{classBlinkDB}{BlinkDB}}\ \&blinkDB)\ :\ blinkDB(blinkDB)\ \{\}}
 \DoxyCodeLine{\Hypertarget{DelService_8h_source_l00027}00027\ }
-\DoxyCodeLine{\Hypertarget{DelService_8h_source_l00033}\mbox{\hyperlink{classDelService_a31480079f7045fe1e41e19c6498f9c69}{00033}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDelService_a31480079f7045fe1e41e19c6498f9c69}{del}}(\textcolor{keywordtype}{string}\ key)}
+\DoxyCodeLine{\Hypertarget{DelService_8h_source_l00033}\mbox{\hyperlink{classDelService_a9f610dcf3b883b0c3add7afd26121feb}{00033}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDelService_a9f610dcf3b883b0c3add7afd26121feb}{del}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&key)}
 \DoxyCodeLine{\Hypertarget{DelService_8h_source_l00034}00034\ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{DelService_8h_source_l00035}00035\ \ \ \ \ \ \ \ \ blinkDB.del(key);}
-\DoxyCodeLine{\Hypertarget{DelService_8h_source_l00036}00036\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{DelService_8h_source_l00037}00037\ \};}
+\DoxyCodeLine{\Hypertarget{DelService_8h_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{DelService_8h_source_l00036}00036\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{DelService_8h_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ blinkDB.del(key);}
+\DoxyCodeLine{\Hypertarget{DelService_8h_source_l00038}00038\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{DelService_8h_source_l00039}00039\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ exception\ \&e)}
+\DoxyCodeLine{\Hypertarget{DelService_8h_source_l00040}00040\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{DelService_8h_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ cerr\ <<\ \textcolor{stringliteral}{"{}Error\ deleting\ key\ '"{}}\ <<\ key\ <<\ \textcolor{stringliteral}{"{}':\ "{}}\ <<\ e.what()\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{DelService_8h_source_l00042}00042\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{DelService_8h_source_l00043}00043\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{DelService_8h_source_l00044}00044\ \};}
 
 \end{DoxyCode}

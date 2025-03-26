@@ -75,4 +75,13 @@ public:
     {
         return "Status Code: " + std::to_string(statusCode) + ", Message: " + message + ", Data: " + data.second;
     }
+
+    string getValue()
+    {
+        if (data.first == "Data")
+        {
+            return data.second;
+        }
+        return "-1";
+    }
 };

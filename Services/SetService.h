@@ -22,7 +22,7 @@ public:
      *
      * @param blinkDB Reference to the BlinkDB database instance.
      */
-    SetService(BlinkDB &blinkDB) : blinkDB(blinkDB) {}
+    explicit SetService(BlinkDB &blinkDB) : blinkDB(blinkDB) {}
 
     /**
      * @brief Stores a key-value pair in BlinkDB.
@@ -30,8 +30,15 @@ public:
      * @param key The key to store.
      * @param value The value associated with the key.
      */
-    void set(string key, string value)
+    void set(const string &key, const string &value)
     {
-        blinkDB.set(key, value);
+        try
+        {
+            blinkDB.set(key, value);
+        }
+        catch (const exception &e)
+        {
+            cerr << "Error setting key '" << key << "': " << e.what() << endl;
+        }
     }
 };

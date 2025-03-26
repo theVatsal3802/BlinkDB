@@ -94,7 +94,7 @@ Definition at line \mbox{\hyperlink{APIGateway_8h_source_l00084}{84}} of file \m
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00085\ \ \ \ \ \{}
-\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.\mbox{\hyperlink{classCommand_abdd31f136459c4aeaabcac39ec21bbf1}{getCommand}}()\ ==\ \textcolor{stringliteral}{"{}set"{}})}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.\mbox{\hyperlink{classCommand_abdd31f136459c4aeaabcac39ec21bbf1}{getCommand}}()\ ==\ \textcolor{stringliteral}{"{}SET"{}})}
 \DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Clear\ cache\ if\ size\ exceeds\ limit}}
 \DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (L1Cache.getSize()\ >=\ 100000000)}
@@ -106,7 +106,7 @@ Definition at line \mbox{\hyperlink{APIGateway_8h_source_l00084}{84}} of file \m
 \DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ setService.set(\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.\mbox{\hyperlink{classCommand_a684ed199358c644a0766d91e8c903ee8}{getKey}}(),\ \mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.\mbox{\hyperlink{classCommand_a7f13017cfdbbc43288aa28adb553e2cd}{getValue}}());}
 \DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Set\ Success"{}};}
 \DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.\mbox{\hyperlink{classCommand_abdd31f136459c4aeaabcac39ec21bbf1}{getCommand}}()\ ==\ \textcolor{stringliteral}{"{}get"{}})}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.\mbox{\hyperlink{classCommand_abdd31f136459c4aeaabcac39ec21bbf1}{getCommand}}()\ ==\ \textcolor{stringliteral}{"{}GET"{}})}
 \DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ cache\ first}}
 \DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ cacheCheckResult\ =\ L1Cache.get(\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.\mbox{\hyperlink{classCommand_a684ed199358c644a0766d91e8c903ee8}{getKey}}());}
@@ -119,7 +119,7 @@ Definition at line \mbox{\hyperlink{APIGateway_8h_source_l00084}{84}} of file \m
 \DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ cacheCheckResult;}
 \DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.\mbox{\hyperlink{classCommand_abdd31f136459c4aeaabcac39ec21bbf1}{getCommand}}()\ ==\ \textcolor{stringliteral}{"{}del"{}})}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.\mbox{\hyperlink{classCommand_abdd31f136459c4aeaabcac39ec21bbf1}{getCommand}}()\ ==\ \textcolor{stringliteral}{"{}DEL"{}})}
 \DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Remove\ from\ cache\ and\ database}}
 \DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ L1Cache.del(\mbox{\hyperlink{REPL_8cpp_a252cf30305a23a874371ecc779fab24b}{command}}.\mbox{\hyperlink{classCommand_a684ed199358c644a0766d91e8c903ee8}{getKey}}());}

@@ -14,7 +14,7 @@ Service class for setting key-\/value pairs in \doxylink{classBlinkDB}{Blink\+DB
 \item 
 \mbox{\hyperlink{classSetService_a46efa328eaa22de384f326fce848ec62}{Set\+Service}} (\mbox{\hyperlink{classBlinkDB}{Blink\+DB}} \&blink\+DB)
 \begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classSetService}{Set\+Service} instance. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classSetService_a7c918775cd2f5d8c1e45f1fbb8297c44}{set}} (string key, string value)
+void \mbox{\hyperlink{classSetService_a6a3af6952f88c044efc6f42d667b5c80}{set}} (const string \&key, const string \&value)
 \begin{DoxyCompactList}\small\item\em Stores a key-\/value pair in \doxylink{classBlinkDB}{Blink\+DB}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -32,7 +32,7 @@ Definition at line \mbox{\hyperlink{SetService_8h_source_l00011}{11}} of file \m
 \index{SetService@{SetService}!SetService@{SetService}}
 \doxysubsubsection{\texorpdfstring{SetService()}{SetService()}}
 {\footnotesize\ttfamily \label{classSetService_a46efa328eaa22de384f326fce848ec62} 
-Set\+Service\+::\+Set\+Service (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBlinkDB}{Blink\+DB}} \&}]{blink\+DB}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+Set\+Service\+::\+Set\+Service (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBlinkDB}{Blink\+DB}} \&}]{blink\+DB}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
 
 
 
@@ -55,11 +55,11 @@ Definition at line \mbox{\hyperlink{SetService_8h_source_l00025}{25}} of file \m
 
 
 \doxysubsection{Member Function Documentation}
-\Hypertarget{classSetService_a7c918775cd2f5d8c1e45f1fbb8297c44}\index{SetService@{SetService}!set@{set}}
+\Hypertarget{classSetService_a6a3af6952f88c044efc6f42d667b5c80}\index{SetService@{SetService}!set@{set}}
 \index{set@{set}!SetService@{SetService}}
 \doxysubsubsection{\texorpdfstring{set()}{set()}}
-{\footnotesize\ttfamily \label{classSetService_a7c918775cd2f5d8c1e45f1fbb8297c44} 
-void Set\+Service\+::set (\begin{DoxyParamCaption}\item[{string}]{key}{, }\item[{string}]{value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily \label{classSetService_a6a3af6952f88c044efc6f42d667b5c80} 
+void Set\+Service\+::set (\begin{DoxyParamCaption}\item[{const string \&}]{key}{, }\item[{const string \&}]{value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -79,8 +79,15 @@ Definition at line \mbox{\hyperlink{SetService_8h_source_l00033}{33}} of file \m
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00034\ \ \ \ \ \{}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ blinkDB.set(key,\ value);}
-\DoxyCodeLine{00036\ \ \ \ \ \}}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ blinkDB.set(key,\ value);}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ exception\ \&e)}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ cerr\ <<\ \textcolor{stringliteral}{"{}Error\ setting\ key\ '"{}}\ <<\ key\ <<\ \textcolor{stringliteral}{"{}':\ "{}}\ <<\ e.what()\ <<\ endl;}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00043\ \ \ \ \ \}}
 
 \end{DoxyCode}
 
