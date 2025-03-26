@@ -130,3 +130,7 @@ To run automated benchmarking tests, execute:
 - Benchmark results are stored in `/results`.
 
 ---
+
+## Documentation
+
+Access the complete documentation [here](https://thevatsal3802.github.io/BlinkDB/).
